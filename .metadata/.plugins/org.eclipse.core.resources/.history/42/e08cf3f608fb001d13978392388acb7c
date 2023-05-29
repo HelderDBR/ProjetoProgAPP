@@ -1,0 +1,32 @@
+package ex1;
+
+public class Confirmacao {
+	private int codigo;
+	private String mensagem;
+	
+	public Confirmacao() {
+		this.codigo = 200;
+		this.mensagem = null;
+	}
+	
+	public Confirmacao(String mensagem) {
+		this.codigo = 500;
+		this.mensagem = mensagem;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	
+	public String getMensagem() {
+		return this.mensagem;
+	}
+	
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}	
+}

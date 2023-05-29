@@ -1,0 +1,15 @@
+package ex1;
+
+public class Mensagem {
+	private int id_operacao;
+	private String nome;
+	private String email;
+	private String senha;
+	private String token;
+	private String id_usuario;
+	private String data;
+	private String rodovia;
+	private int km;
+	private int tipo_incidente;
+	private String faixa_km;
+}

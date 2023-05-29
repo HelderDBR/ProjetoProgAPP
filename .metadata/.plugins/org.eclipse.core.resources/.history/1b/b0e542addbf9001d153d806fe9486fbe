@@ -1,0 +1,111 @@
+package ex1;
+
+public class Mensagem {
+	private int id_operacao;
+	private String nome;
+	private String email;
+	private String senha;
+	private String token;
+	private String id_usuario;
+	private String data;
+	private String rodovia;
+	private int km;
+	private int tipo_incidente;
+	private String faixa_km;
+	
+	public Mensagem(int id_operacao, String nome, String email, String senha, String token, String id_usuario,
+			String data, String rodovia, int km, int tipo_incidente, String faixa_km) {
+		this.id_operacao = id_operacao;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.token = token;
+		this.id_usuario = id_usuario;
+		this.data = data;
+		this.rodovia = rodovia;
+		this.km = km;
+		this.tipo_incidente = tipo_incidente;
+		this.faixa_km = faixa_km;
+	}
+	
+	public Mensagem(int id_operacao, String nome, String email, String senha) { //login
+		this.id_operacao = id_operacao;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+	}
+	
+	public int getId_operacao() {
+		return id_operacao;
+	}
+	public void setId_operacao(int id_operacao) {
+		this.id_operacao = id_operacao;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getId_usuario() {
+		return id_usuario;
+	}
+	public void setId_usuario(String id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public String getRodovia() {
+		return rodovia;
+	}
+	public void setRodovia(String rodovia) {
+		this.rodovia = rodovia;
+	}
+	public int getKm() {
+		return km;
+	}
+	public void setKm(int km) {
+		this.km = km;
+	}
+	public int getTipo_incidente() {
+		return tipo_incidente;
+	}
+	public void setTipo_incidente(int tipo_incidente) {
+		this.tipo_incidente = tipo_incidente;
+	}
+	public String getFaixa_km() {
+		return faixa_km;
+	}
+	public void setFaixa_km(String faixa_km) {
+		this.faixa_km = faixa_km;
+	}
+	
+	@Override
+	public String toString() {
+		return "Mensagem [id_operacao=" + id_operacao + ", nome=" + nome + ", email=" + email + ", senha=" + senha
+				+ ", token=" + token + ", id_usuario=" + id_usuario + ", data=" + data + ", rodovia=" + rodovia
+				+ ", km=" + km + ", tipo_incidente=" + tipo_incidente + ", faixa_km=" + faixa_km + "]";
+	}
+}

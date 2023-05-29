@@ -1,0 +1,96 @@
+package ex1;
+
+public class Usuario {
+	private String token;
+	private String nome;
+	private String email;
+	private String senha;
+	
+	public Usuario(int id_operacao, String nome, String email, String senha) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.token = null;
+	}
+	
+	public String getToken() {
+		return this.token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public boolean cadastrar(String nome, String email, String senha) {
+		if(!nome.isBlank() && !email.isBlank() && !senha.isBlank()) {
+		      
+			// verificando tam. nome
+		      if(nome.length() >= 3 && nome.length() <= 32) {
+		    	  //se o nome nao tiver numero
+		    	  if(!nome.matches(".*\\d.*")) {
+		    		  this.nome = nome;
+		    	  }else {
+		    		  return false;
+		    	  }
+		      }else {
+		    	  return false;
+		      }
+		      
+		      // verificando tam. email
+		      if(email.length() >= 16 && email.length() <= 50) {
+		    	  //se o email tem @
+		    	  if(email.matches(".*@.*")) {
+		    		  this.email = email;
+		    	  }else {
+		    		  return false;
+		    	  }
+		      }else {
+		    	  return false;
+		      }
+		      
+		      if(senha.length() >= 8 && senha.length() <= 32) {
+		    	  return true;
+		      }
+		      
+		      return false;
+		      
+		      
+		      
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
+	}
+	
+	
+	
+	
+}
