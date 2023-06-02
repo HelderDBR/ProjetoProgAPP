@@ -17,6 +17,17 @@ import javax.swing.JMenuItem;
 public class RendimentoMensalWindow extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JButton btnNewButton_5;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_3;
+	private JLabel lblNewLabel;
+	private JTextArea textArea;
+	private JTextArea textArea_1;
 
 	/**
 	 * Launch the application.
@@ -61,48 +72,48 @@ public class RendimentoMensalWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Mês");
+		lblNewLabel = new JLabel("Mês");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 49));
 		lblNewLabel.setBounds(221, 0, 576, 77);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Cadastrar Categoria");
+		btnNewButton = new JButton("Cadastrar Categoria");
 		btnNewButton.setBounds(22, 44, 186, 21);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Cadastrar Categoria");
+		btnNewButton_1 = new JButton("Cadastrar Categoria");
 		btnNewButton_1.setBounds(22, 80, 186, 21);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Cadastrar Categoria");
+		btnNewButton_2 = new JButton("Cadastrar Categoria");
 		btnNewButton_2.setBounds(21, 111, 186, 21);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Cadastrar Categoria");
+		btnNewButton_3 = new JButton("Cadastrar Categoria");
 		btnNewButton_3.setBounds(830, 48, 186, 21);
 		contentPane.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Cadastrar Categoria");
+		btnNewButton_4 = new JButton("Cadastrar Categoria");
 		btnNewButton_4.setBounds(829, 77, 186, 21);
 		contentPane.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Cadastrar Categoria");
+		btnNewButton_5 = new JButton("Cadastrar Categoria");
 		btnNewButton_5.setBounds(828, 109, 186, 21);
 		contentPane.add(btnNewButton_5);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(9, 150, 516, 467);
 		contentPane.add(panel);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		panel.add(textArea);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBounds(538, 151, 488, 466);
 		contentPane.add(panel_1);
 		
-		JTextArea textArea_1 = new JTextArea();
+		textArea_1 = new JTextArea();
 		panel_1.add(textArea_1);
 	}
 }

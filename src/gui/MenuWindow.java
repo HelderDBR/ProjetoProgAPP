@@ -12,6 +12,11 @@ import java.awt.event.ActionEvent;
 public class MenuWindow extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnNewButton;
+	private JButton btnConsultarRendimento;
+	private JButton btnConsultarDespesasOcasionais;
+	private JButton btnResumoMensal;
+	private JButton btnResumoAnual;
 
 	/**
 	 * Launch the application.
@@ -41,7 +46,7 @@ public class MenuWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Consultar Mês");
+		btnNewButton = new JButton("Consultar Mês");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -49,19 +54,19 @@ public class MenuWindow extends JFrame {
 		btnNewButton.setBounds(81, 97, 246, 65);
 		contentPane.add(btnNewButton);
 		
-		JButton btnConsultarRendimento = new JButton("Consultar Rendimento");
+		btnConsultarRendimento = new JButton("Consultar Rendimento");
 		btnConsultarRendimento.setBounds(81, 180, 246, 65);
 		contentPane.add(btnConsultarRendimento);
 		
-		JButton btnConsultarDespesasOcasionais = new JButton("Consultar Despesas Ocasionais");
+		btnConsultarDespesasOcasionais = new JButton("Consultar Despesas Ocasionais");
 		btnConsultarDespesasOcasionais.setBounds(81, 265, 246, 65);
 		contentPane.add(btnConsultarDespesasOcasionais);
 		
-		JButton btnResumoMensal = new JButton("Resumo Mensal");
+		btnResumoMensal = new JButton("Resumo Mensal");
 		btnResumoMensal.setBounds(81, 353, 246, 65);
 		contentPane.add(btnResumoMensal);
 		
-		JButton btnResumoAnual = new JButton("Resumo Anual");
+		btnResumoAnual = new JButton("Resumo Anual");
 		btnResumoAnual.setBounds(81, 439, 246, 65);
 		contentPane.add(btnResumoAnual);
 	}
