@@ -13,21 +13,49 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import java.awt.ScrollPane;
+import javax.swing.JTable;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RendimentoMensalWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
+	private JLabel lblTítulo;
+	private JPanel editionPanel;
 	private JPanel panel;
+	private JScrollPane scrollPane;
+	private JTable table;
+	private JButton btnDelCat;
+	private JButton btnEditCat;
+	private JButton btnAddCat;
+	private JButton btnAddRend;
+	private JButton btnEditRend;
+	private JButton btnDelRend;
+	private JButton btnAddDesp;
+	private JButton btnEditDesp;
+	private JButton btnDelDesp;
 	private JPanel panel_1;
-	private JButton btnNewButton_5;
-	private JButton btnNewButton_4;
-	private JButton btnNewButton_3;
-	private JLabel lblNewLabel;
-	private JTextArea textArea;
-	private JTextArea textArea_1;
+	private JScrollPane scrollPane_1;
+	private JTable table_1;
+	private JMenuBar menuBar;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -49,71 +77,133 @@ public class RendimentoMensalWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public RendimentoMensalWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1057, 662);
+		setTitle("Rendimento e Despesas Mensais");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1070, 700);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Categoria");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar Categoria");
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Editar Categoria");
-		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Excluir Categoria");
-		mnNewMenu.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblNewLabel = new JLabel("Mês");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 49));
-		lblNewLabel.setBounds(221, 0, 576, 77);
-		contentPane.add(lblNewLabel);
+		lblTítulo = new JLabel("Rendimentos e Despesas Mensais:");
+		lblTítulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTítulo.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblTítulo.setBounds(9, 10, 510, 92);
+		contentPane.add(lblTítulo);
 		
-		btnNewButton = new JButton("Cadastrar Categoria");
-		btnNewButton.setBounds(22, 44, 186, 21);
-		contentPane.add(btnNewButton);
+		editionPanel = new JPanel();
+		editionPanel.setBorder(new TitledBorder(null, "Edi\u00E7\u00E3o", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		editionPanel.setBounds(536, 10, 497, 133);
+		contentPane.add(editionPanel);
+		editionPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		btnNewButton_1 = new JButton("Cadastrar Categoria");
-		btnNewButton_1.setBounds(22, 80, 186, 21);
-		contentPane.add(btnNewButton_1);
+		btnAddCat = new JButton("Cadastrar Categoria");
+		editionPanel.add(btnAddCat);
 		
-		btnNewButton_2 = new JButton("Cadastrar Categoria");
-		btnNewButton_2.setBounds(21, 111, 186, 21);
-		contentPane.add(btnNewButton_2);
+		btnEditCat = new JButton("Editar Categoria");
+		editionPanel.add(btnEditCat);
 		
-		btnNewButton_3 = new JButton("Cadastrar Categoria");
-		btnNewButton_3.setBounds(830, 48, 186, 21);
-		contentPane.add(btnNewButton_3);
+		btnDelCat = new JButton("Excluir Categoria");
+		editionPanel.add(btnDelCat);
 		
-		btnNewButton_4 = new JButton("Cadastrar Categoria");
-		btnNewButton_4.setBounds(829, 77, 186, 21);
-		contentPane.add(btnNewButton_4);
+		btnAddRend = new JButton("Cadastrar Rendimento");
+		editionPanel.add(btnAddRend);
 		
-		btnNewButton_5 = new JButton("Cadastrar Categoria");
-		btnNewButton_5.setBounds(828, 109, 186, 21);
-		contentPane.add(btnNewButton_5);
+		btnEditRend = new JButton("Editar Rendimento");
+		editionPanel.add(btnEditRend);
+		
+		btnDelRend = new JButton("Excluir Rendimento");
+		editionPanel.add(btnDelRend);
+		
+		btnAddDesp = new JButton("Cadastrar Despesa");
+		editionPanel.add(btnAddDesp);
+		
+		btnEditDesp = new JButton("Editar Despesa");
+		editionPanel.add(btnEditDesp);
+		
+		btnDelDesp = new JButton("Excluir Despesa");
+		editionPanel.add(btnDelDesp);
 		
 		panel = new JPanel();
-		panel.setBounds(9, 150, 516, 467);
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Rendimentos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(10, 162, 510, 469);
 		contentPane.add(panel);
 		
-		textArea = new JTextArea();
-		panel.add(textArea);
+		scrollPane = new JScrollPane();
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 483, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
+		);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Categoria", "Rendimento", "Mensal", "Ocasional", "Total Ano"
+			}
+		));
+		scrollPane.setViewportView(table);
+		panel.setLayout(gl_panel);
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(538, 151, 488, 466);
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Despesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBounds(536, 162, 510, 469);
 		contentPane.add(panel_1);
 		
-		textArea_1 = new JTextArea();
-		panel_1.add(textArea_1);
+		scrollPane_1 = new JScrollPane();
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 483, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Categoria", "Despesa", "Mensal", "Ocasional", "Total Ano"
+			}
+		));
+		scrollPane_1.setViewportView(table_1);
+		panel_1.setLayout(gl_panel_1);
+		
+		btnBack = new JButton("Voltar");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MenuWindow().setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnBack.setBounds(19, 126, 85, 21);
+		contentPane.add(btnBack);
 	}
 }

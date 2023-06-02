@@ -49,12 +49,19 @@ public class MenuWindow extends JFrame {
 		btnNewButton = new JButton("Consultar Mês");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				RendimentoMensalWindow teste = new RendimentoMensalWindow();
+				teste.setVisible(true);
+				setVisible(false);
+				if (teste.isShowing() == false) {
+					setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(81, 97, 246, 65);
 		contentPane.add(btnNewButton);
 		
-		btnConsultarRendimento = new JButton("Consultar Rendimento");
+		btnConsultarRendimento = new JButton("Consultar Investimento");
 		btnConsultarRendimento.setBounds(81, 180, 246, 65);
 		contentPane.add(btnConsultarRendimento);
 		
