@@ -53,9 +53,6 @@ public class MenuWindow extends JFrame {
 				RendimentoMensalWindow teste = new RendimentoMensalWindow();
 				teste.setVisible(true);
 				setVisible(false);
-				if (teste.isShowing() == false) {
-					setVisible(true);
-				}
 			}
 		});
 		btnNewButton.setBounds(81, 97, 246, 65);
