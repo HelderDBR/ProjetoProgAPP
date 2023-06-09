@@ -20,8 +20,8 @@ import java.awt.event.ActionEvent;
 public class ResumoAnualWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton btnExport;
+	private JButton btnBack;
 	private JLabel lblNewLabel;
 	private JPanel panel;
 	private JTable table;
@@ -47,6 +47,7 @@ public class ResumoAnualWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ResumoAnualWindow() {
+		setResizable(false);
 		setTitle("Resumo Anual");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 854, 452);
@@ -86,18 +87,18 @@ public class ResumoAnualWindow extends JFrame {
 		table.getColumnModel().getColumn(3).setPreferredWidth(136);
 		scrollPane.setViewportView(table);
 		
-		btnNewButton = new JButton("Exportar Resumo");
-		btnNewButton.setBounds(642, 43, 177, 21);
-		contentPane.add(btnNewButton);
+		btnExport = new JButton("Exportar Resumo");
+		btnExport.setBounds(642, 43, 177, 21);
+		contentPane.add(btnExport);
 		
-		btnNewButton_1 = new JButton("Voltar");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnBack = new JButton("Voltar");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MenuWindow().setVisible(true);
 				setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(10, 43, 85, 21);
-		contentPane.add(btnNewButton_1);
+		btnBack.setBounds(10, 43, 85, 21);
+		contentPane.add(btnBack);
 	}
 }

@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.ScrollPane;
 import javax.swing.JTable;
@@ -32,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class RendimentoMensalWindow extends JFrame {
@@ -56,6 +58,7 @@ public class RendimentoMensalWindow extends JFrame {
 	private JTable table_1;
 	private JMenuBar menuBar;
 	private JButton btnBack;
+	private List<String> categorias;
 
 	/**
 	 * Launch the application.
@@ -77,6 +80,12 @@ public class RendimentoMensalWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public RendimentoMensalWindow() {
+		setResizable(false);
+		this.initComponents();
+		
+	}
+	
+	public void initComponents() {
 		setTitle("Rendimento e Despesas Mensais");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -103,6 +112,11 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		btnAddCat = new JButton("Cadastrar Categoria");
+		btnAddCat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		editionPanel.add(btnAddCat);
 		
 		btnEditCat = new JButton("Editar Categoria");
@@ -112,6 +126,11 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.add(btnDelCat);
 		
 		btnAddRend = new JButton("Cadastrar Rendimento");
+		btnAddRend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		editionPanel.add(btnAddRend);
 		
 		btnEditRend = new JButton("Editar Rendimento");
@@ -206,4 +225,5 @@ public class RendimentoMensalWindow extends JFrame {
 		btnBack.setBounds(19, 126, 85, 21);
 		contentPane.add(btnBack);
 	}
+	
 }

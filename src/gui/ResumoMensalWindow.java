@@ -20,8 +20,8 @@ import java.awt.event.ActionEvent;
 public class ResumoMensalWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton btnExport;
+	private JButton btnBack;
 	private JLabel lblNewLabel;
 	private JPanel panel;
 	private JTable table;
@@ -84,18 +84,18 @@ public class ResumoMensalWindow extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(218);
 		scrollPane.setViewportView(table);
 		
-		btnNewButton = new JButton("Exportar Resumo");
-		btnNewButton.setBounds(642, 43, 177, 21);
-		contentPane.add(btnNewButton);
+		btnExport = new JButton("Exportar Resumo");
+		btnExport.setBounds(642, 43, 177, 21);
+		contentPane.add(btnExport);
 		
-		btnNewButton_1 = new JButton("Voltar");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnBack = new JButton("Voltar");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MenuWindow().setVisible(true);
 				setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(10, 43, 85, 21);
-		contentPane.add(btnNewButton_1);
+		btnBack.setBounds(10, 43, 85, 21);
+		contentPane.add(btnBack);
 	}
 }

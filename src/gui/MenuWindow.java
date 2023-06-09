@@ -16,11 +16,12 @@ import javax.swing.SwingConstants;
 public class MenuWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnConsultarRendimento;
+	private JButton btnConsultarMes;
+	private JButton btnConsultarInvestimento;
 	private JButton btnConsultarDespesasOcasionais;
 	private JButton btnResumoMensal;
 	private JButton btnResumoAnual;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -56,15 +57,27 @@ public class MenuWindow extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		btnNewButton = new JButton("Consultar Mês");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		panel.add(btnNewButton);
+		btnConsultarMes = new JButton("Consultar Mês");
+		btnConsultarMes.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnConsultarMes);
 		
-		btnConsultarRendimento = new JButton("Consultar Investimento");
-		btnConsultarRendimento.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		panel.add(btnConsultarRendimento);
+		btnConsultarInvestimento = new JButton("Consultar Investimento");
+		btnConsultarInvestimento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new InvestimentoLongoWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnConsultarInvestimento.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnConsultarInvestimento);
 		
 		btnConsultarDespesasOcasionais = new JButton("Consultar Despesas Ocasionais");
+		btnConsultarDespesasOcasionais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DespesasOcasionaisWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnConsultarDespesasOcasionais.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.add(btnConsultarDespesasOcasionais);
 		
@@ -89,12 +102,12 @@ public class MenuWindow extends JFrame {
 		btnResumoAnual.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.add(btnResumoAnual);
 		
-		JLabel lblNewLabel = new JLabel("Menu Inicial");
+		lblNewLabel = new JLabel("Menu Inicial");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		lblNewLabel.setBounds(10, 10, 416, 74);
 		contentPane.add(lblNewLabel);
-		btnNewButton.addActionListener(new ActionListener() {
+		btnConsultarMes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				new RendimentoMensalWindow().setVisible(true);
