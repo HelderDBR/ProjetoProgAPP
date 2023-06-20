@@ -17,7 +17,6 @@ public class RendimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-
 			st = conn.prepareStatement("insert into rendimento (nome, valor, recorrencia, codigo_categoria_rendimento) values (?, ?, ?, ?)");
 			
 			st.setString(1, rendimento.getNome());
