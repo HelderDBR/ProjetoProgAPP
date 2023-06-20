@@ -12,11 +12,14 @@ import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
 import entities.Categoria;
+import service.CategoriaService;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -34,7 +37,7 @@ public class CriacaoWindow extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
 	private JButton btnSend;
-	private Categoria categorias;
+	private CategoriaService categorias;
 
 	/**
 	 * Launch the application.
@@ -54,23 +57,25 @@ public class CriacaoWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws SQLException 
 	 */
 	
 	
-	public CriacaoWindow() {
+	public CriacaoWindow() throws SQLException, IOException {
 		setResizable(false);
 		this.initComponents();
-		this.categorias = new Categoria();
+		this.categorias = new CategoriaService();
 		
 		this.buscarCategorias();
 	}
 
-	private void buscarCategorias() {
-		/*List<Categoria> categoria = this.categorias;
+	private void buscarCategorias() throws SQLException, IOException {
+		List<Categoria> categoria = this.categorias.buscarCategorias();
 		for(Categoria categoria1 : categoria) {
 			
 			this.comboCat.addItem(categoria1);
-		}*/
+		}
 	}
 
 	private void initComponents() {
