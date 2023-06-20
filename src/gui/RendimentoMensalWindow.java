@@ -30,6 +30,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import entities.Categoria;
+import entities.Despesas;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -43,7 +47,7 @@ public class RendimentoMensalWindow extends JFrame {
 	private JPanel editionPanel;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	private JTable table;
+	private JTable tblRend;
 	private JButton btnDelCat;
 	private JButton btnEditCat;
 	private JButton btnAddCat;
@@ -55,10 +59,11 @@ public class RendimentoMensalWindow extends JFrame {
 	private JButton btnDelDesp;
 	private JPanel panel_1;
 	private JScrollPane scrollPane_1;
-	private JTable table_1;
+	private JTable tblDesp;
 	private JMenuBar menuBar;
 	private JButton btnBack;
-	private List<String> categorias;
+	private Categoria categorias;
+	private Despesas despesa;
 
 	/**
 	 * Launch the application.
@@ -83,6 +88,56 @@ public class RendimentoMensalWindow extends JFrame {
 		setResizable(false);
 		this.initComponents();
 		
+		this.categorias = new Categoria();
+		
+		this.buscarCategorias();
+		this.buscarRendimentos();
+		this.buscarDespesas();
+	}
+
+	private void buscarDespesas() {
+		/*	DefaultTableModel modelo = (DefaultTableModel) tblDesp.getModel();
+		 * modelo.fireTableDataChanged();
+		 * modelo.setRowCount(0);
+		 * 
+		 * List<Despesas> despesas = this.despesasService.buscarTodos();
+		 * 
+		 * for(Despesasa despesa : despesas){
+		 * 
+		 * modelo.addRow(new Object[]{
+		 * despesa.getCategoria();
+		 * despesa.getNome();
+		 * despesa.getValor();
+		 * });
+		 * 
+		 */
+	}
+
+	private void buscarRendimentos() {
+		/*	DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
+		 * modelo.fireTableDataChanged();
+		 * modelo.setRowCount(0);
+		 * 
+		 * List<Rendimento> rendimentos = this.rendimentoService.buscarTodos();
+		 * 
+		 * for(Rendimento rendimento : rendimentos){
+		 * 
+		 * modelo.addRow(new Object[]{
+		 * rendimento.getCategoria();
+		 * rendimento.getNome();
+		 * rendimento.getValor();
+		 * });
+		 * 
+		 */
+		
+	}
+
+	private void buscarCategorias() {
+		/*List<Categoria> categoria = this.categorias;
+		for(Categoria categoria1 : categoria) {
+			
+			this.comboCat.addItem(categoria1);
+		}*/
 	}
 	
 	public void initComponents() {
@@ -114,7 +169,10 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddCat = new JButton("Cadastrar Categoria");
 		btnAddCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				 
+				String nome = JOptionPane.showInputDialog(null, "Digite o Nome da Categoria", "Cadastro de Categoria", JOptionPane.QUESTION_MESSAGE);
+				System.out.println("Categoria: " + nome);
+				//Manda nome para a função de criar Categoria nova
 			}
 		});
 		editionPanel.add(btnAddCat);
@@ -123,12 +181,16 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.add(btnEditCat);
 		
 		btnDelCat = new JButton("Excluir Categoria");
+		btnDelCat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		editionPanel.add(btnDelCat);
 		
 		btnAddRend = new JButton("Cadastrar Rendimento");
 		btnAddRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new CriacaoWindow().setVisible(true);
 			}
 		});
 		editionPanel.add(btnAddRend);
@@ -140,6 +202,11 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.add(btnDelRend);
 		
 		btnAddDesp = new JButton("Cadastrar Despesa");
+		btnAddDesp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CriacaoWindow().setVisible(true);
+			}
+		});
 		editionPanel.add(btnAddDesp);
 		
 		btnEditDesp = new JButton("Editar Despesa");
@@ -170,15 +237,15 @@ public class RendimentoMensalWindow extends JFrame {
 					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tblRend = new JTable();
+		tblRend.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Categoria", "Rendimento", "Mensal", "Ocasional", "Total Ano"
 			}
 		));
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(tblRend);
 		panel.setLayout(gl_panel);
 		
 		panel_1 = new JPanel();
@@ -203,15 +270,15 @@ public class RendimentoMensalWindow extends JFrame {
 					.addContainerGap())
 		);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		tblDesp = new JTable();
+		tblDesp.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Categoria", "Despesa", "Mensal", "Ocasional", "Total Ano"
 			}
 		));
-		scrollPane_1.setViewportView(table_1);
+		scrollPane_1.setViewportView(tblDesp);
 		panel_1.setLayout(gl_panel_1);
 		
 		btnBack = new JButton("Voltar");

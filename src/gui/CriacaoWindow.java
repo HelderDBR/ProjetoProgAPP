@@ -10,18 +10,23 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
+
+import entities.Categoria;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CriacaoWindow extends JFrame {
 	private JLabel lblCategoria;
-	private JRadioButton rdbtnNewRadioButton_1;
-	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnOcasional;
+	private JRadioButton rdbtnMensal;
 	private JPanel panel;
 	private JTextField textValor;
 	private JTextField textRend;
@@ -29,6 +34,7 @@ public class CriacaoWindow extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
 	private JButton btnSend;
+	private Categoria categorias;
 
 	/**
 	 * Launch the application.
@@ -49,13 +55,33 @@ public class CriacaoWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	
 	public CriacaoWindow() {
+		setResizable(false);
+		this.initComponents();
+		this.categorias = new Categoria();
+		
+		this.buscarCategorias();
+	}
+
+	private void buscarCategorias() {
+		/*List<Categoria> categoria = this.categorias;
+		for(Categoria categoria1 : categoria) {
+			
+			this.comboCat.addItem(categoria1);
+		}*/
+	}
+
+	private void initComponents() {
+		
+		
 		setTitle("Cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 258);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -112,15 +138,15 @@ public class CriacaoWindow extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		rdbtnNewRadioButton = new JRadioButton("Mensal");
-		panel.add(rdbtnNewRadioButton);
+		rdbtnMensal = new JRadioButton("Mensal");
+		panel.add(rdbtnMensal);
 		
-		rdbtnNewRadioButton_1 = new JRadioButton("Ocasional");
-		panel.add(rdbtnNewRadioButton_1);
+		rdbtnOcasional = new JRadioButton("Ocasional");
+		panel.add(rdbtnOcasional);
 		
 		btnGropuTipo = new ButtonGroup();
-		btnGropuTipo.add(rdbtnNewRadioButton);
-		btnGropuTipo.add(rdbtnNewRadioButton_1);
+		btnGropuTipo.add(rdbtnMensal);
+		btnGropuTipo.add(rdbtnOcasional);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
 		lblCategoria.setBounds(10, 26, 399, 13);
@@ -129,8 +155,11 @@ public class CriacaoWindow extends JFrame {
 		btnSend = new JButton("Enviar");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Chama a função de cadastrar Rendimento/Despesa //
-				
+				String nome = textRend.getText();
+				double valor = (Double.parseDouble(textValor.getText()));
+				if(rdbtnMensal.isSelected()) {
+					boolean recorrencia = false;
+				}
 				setVisible(false);
 			}
 		});
