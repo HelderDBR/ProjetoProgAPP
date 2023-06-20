@@ -1,5 +1,6 @@
 package entities;
 
+
 public class Rendimento {
 
 	private int codigo;
@@ -12,9 +13,9 @@ public class Rendimento {
 		
 	}
 
-	public Rendimento(Categoria categoria, String nome, float valor, boolean recorrencia) {
+	public Rendimento(CategoriaRendimento categoria, String nome, float valor, boolean recorrencia) {
 		super();
-		this.categoria = categoria;
+		this.categoriaRendimento = categoria;
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;
