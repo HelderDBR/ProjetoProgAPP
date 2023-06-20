@@ -1,4 +1,9 @@
+/gui/
+/dao/
 /entities/
+<<<<<<< HEAD
 /dao/
 /gui/
+=======
+>>>>>>> main
 /service/

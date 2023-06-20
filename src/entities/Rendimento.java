@@ -13,9 +13,15 @@ public class Rendimento {
 		
 	}
 
+<<<<<<< HEAD
 	public Rendimento(CategoriaRendimento categoria, String nome, float valor, boolean recorrencia) {
 		super();
 		this.categoriaRendimento = categoria;
+=======
+	public Rendimento(CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
+		super();
+		this.categoriaRendimento = categoriaRendimento;
+>>>>>>> main
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;

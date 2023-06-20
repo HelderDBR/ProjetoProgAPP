@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
-import entities.Categoria;
-import service.CategoriaService;
+import entities.*;
+import service.*;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -71,11 +71,13 @@ public class CriacaoWindow extends JFrame {
 	}
 
 	private void buscarCategorias() throws SQLException, IOException {
-		List<Categoria> categoria = this.categorias.buscarCategorias();
-		for(Categoria categoria1 : categoria) {
+		/*List<CategoriaRendimento> categoria = this.categorias.buscarCategorias();
+		for(CategoriaRendimento categoria1 : categoria) {
 			
 			this.comboCat.addItem(categoria1);
-		}
+		}*/
+		
+		this.comboCat.addItem("Teste");
 	}
 
 	private void initComponents() {
@@ -163,7 +165,7 @@ public class CriacaoWindow extends JFrame {
 				String nome = textRend.getText();
 				double valor = (Double.parseDouble(textValor.getText()));
 				if(rdbtnMensal.isSelected()) {
-					boolean recorrencia = false;
+					boolean recorrencia = true;
 				}
 				setVisible(false);
 			}
