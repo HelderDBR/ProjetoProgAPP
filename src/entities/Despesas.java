@@ -3,7 +3,7 @@ package entities;
 public class Despesas {
 
 	private int codigo;
-	private Categoria categoria;
+	private CategoriaDespesa categoriaDespesa;
 	private String nome;
 	private float valor;
 	private boolean recorrencia;
@@ -12,18 +12,18 @@ public class Despesas {
 		
 	}
 	
-	public Despesas(Categoria categoria, String nome, float valor, boolean recorrencia) {
+	public Despesas(CategoriaDespesa categoriaDespesa, String nome, float valor, boolean recorrencia) {
 		super();
-		this.categoria = categoria;
+		this.categoriaDespesa = categoriaDespesa;
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;
 	}
 	
-	public Despesas(int codigo, Categoria categoria, String nome, float valor, boolean recorrencia) {
+	public Despesas(int codigo, CategoriaDespesa categoriaDespesa, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
-		this.categoria = categoria;
+		this.categoriaDespesa = categoriaDespesa;
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;
@@ -32,7 +32,7 @@ public class Despesas {
 
 	@Override
 	public String toString() {
-		return "Rendimento [codigo=" + codigo + ", categoria=" + categoria + ", nome=" + nome + ", valor=" + valor
+		return "Rendimento [codigo=" + codigo + ", categoria=" + categoriaDespesa + ", nome=" + nome + ", valor=" + valor
 				+ ", recorrencia=" + recorrencia + "]";
 	}
 
@@ -44,12 +44,12 @@ public class Despesas {
 		this.codigo = codigo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public CategoriaDespesa getCategoriaDespesa() {
+		return categoriaDespesa;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoria(CategoriaDespesa categoriaDespesa) {
+		this.categoriaDespesa = categoriaDespesa;
 	}
 
 	public String getNome() {
