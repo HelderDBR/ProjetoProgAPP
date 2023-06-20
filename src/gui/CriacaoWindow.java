@@ -163,7 +163,11 @@ public class CriacaoWindow extends JFrame {
 				String nome = textRend.getText();
 				double valor = (Double.parseDouble(textValor.getText()));
 				if(rdbtnMensal.isSelected()) {
+<<<<<<< HEAD
 					boolean recorrencia = false;
+=======
+					boolean recorrencia = true;
+>>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 				}
 				setVisible(false);
 			}

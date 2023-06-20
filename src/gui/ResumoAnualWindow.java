@@ -15,6 +15,11 @@ import java.awt.GridLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+import java.io.File;
+import java.io.IOException;
+>>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 import java.awt.event.ActionEvent;
 
 public class ResumoAnualWindow extends JFrame {
@@ -88,6 +93,22 @@ public class ResumoAnualWindow extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		btnExport = new JButton("Exportar Resumo");
+<<<<<<< HEAD
+=======
+		btnExport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					File file = new File();
+					file.createNewFile();
+					
+					
+					
+				} catch (IOException ex){
+					
+				}
+			}
+		});
+>>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 		btnExport.setBounds(642, 43, 177, 21);
 		contentPane.add(btnExport);
 		
