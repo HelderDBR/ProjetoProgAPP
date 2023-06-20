@@ -9,6 +9,13 @@ public class FundoDespesasOcasionais {
 	
 	public FundoDespesasOcasionais() {
 	}
+	
+	public FundoDespesasOcasionais(String nome, float valor, boolean recorrencia) {
+		super();
+		this.nome = nome;
+		this.valor = valor;
+		this.recorrencia = recorrencia;
+	}
 
 	public FundoDespesasOcasionais(int codigo, String nome, float valor, boolean recorrencia) {
 		super();

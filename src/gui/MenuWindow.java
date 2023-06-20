@@ -8,15 +8,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class MenuWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnConsultarRendimento;
+	private JButton btnConsultarMes;
+	private JButton btnConsultarInvestimento;
 	private JButton btnConsultarDespesasOcasionais;
 	private JButton btnResumoMensal;
 	private JButton btnResumoAnual;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -38,6 +43,7 @@ public class MenuWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuWindow() {
+		setTitle("Menu - Controle Financeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 700);
 		contentPane = new JPanel();
@@ -46,32 +52,67 @@ public class MenuWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		btnNewButton = new JButton("Consultar Mês");
-		btnNewButton.addActionListener(new ActionListener() {
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 94, 416, 559);
+		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		btnConsultarMes = new JButton("Consultar Mês");
+		btnConsultarMes.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnConsultarMes);
+		
+		btnConsultarInvestimento = new JButton("Consultar Investimento");
+		btnConsultarInvestimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				RendimentoMensalWindow teste = new RendimentoMensalWindow();
-				teste.setVisible(true);
+				new InvestimentoLongoWindow().setVisible(true);
 				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(81, 97, 246, 65);
-		contentPane.add(btnNewButton);
-		
-		btnConsultarRendimento = new JButton("Consultar Investimento");
-		btnConsultarRendimento.setBounds(81, 180, 246, 65);
-		contentPane.add(btnConsultarRendimento);
+		btnConsultarInvestimento.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnConsultarInvestimento);
 		
 		btnConsultarDespesasOcasionais = new JButton("Consultar Despesas Ocasionais");
-		btnConsultarDespesasOcasionais.setBounds(81, 265, 246, 65);
-		contentPane.add(btnConsultarDespesasOcasionais);
+		btnConsultarDespesasOcasionais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DespesasOcasionaisWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnConsultarDespesasOcasionais.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnConsultarDespesasOcasionais);
 		
 		btnResumoMensal = new JButton("Resumo Mensal");
-		btnResumoMensal.setBounds(81, 353, 246, 65);
-		contentPane.add(btnResumoMensal);
+		btnResumoMensal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new ResumoMensalWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnResumoMensal.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnResumoMensal);
 		
 		btnResumoAnual = new JButton("Resumo Anual");
-		btnResumoAnual.setBounds(81, 439, 246, 65);
-		contentPane.add(btnResumoAnual);
+		btnResumoAnual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ResumoAnualWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnResumoAnual.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(btnResumoAnual);
+		
+		lblNewLabel = new JLabel("Menu Inicial");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblNewLabel.setBounds(10, 10, 416, 74);
+		contentPane.add(lblNewLabel);
+		btnConsultarMes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new RendimentoMensalWindow().setVisible(true);
+				setVisible(false);
+			}
+		});
 	}
 }

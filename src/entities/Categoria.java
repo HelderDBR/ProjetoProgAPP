@@ -9,6 +9,11 @@ public class Categoria {
 		
 	}
 	
+	public Categoria(String nome) {
+		super();
+		this.nome = nome;
+	}
+	
 	public Categoria(int codigo, String nome) {
 		super();
 		this.codigo = codigo;

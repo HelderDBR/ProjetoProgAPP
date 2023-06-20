@@ -10,6 +10,13 @@ public class Investimento {
 	public Investimento() {
 	}
 
+	public Investimento(String nome, float valor, boolean recorrencia) {
+		super();
+		this.nome = nome;
+		this.valor = valor;
+		this.recorrencia = recorrencia;
+	}
+	
 	public Investimento(int codigo, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
