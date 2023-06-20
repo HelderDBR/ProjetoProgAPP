@@ -37,6 +37,8 @@ import entities.Despesas;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -190,7 +192,15 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddRend = new JButton("Cadastrar Rendimento");
 		btnAddRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CriacaoWindow().setVisible(true);
+				try {
+					new CriacaoWindow().setVisible(true);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "SQLException", "Erro", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
 			}
 		});
 		editionPanel.add(btnAddRend);
@@ -204,7 +214,15 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddDesp = new JButton("Cadastrar Despesa");
 		btnAddDesp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CriacaoWindow().setVisible(true);
+				try {
+					new CriacaoWindow().setVisible(true);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "SQLException", "Erro", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
 			}
 		});
 		editionPanel.add(btnAddDesp);
