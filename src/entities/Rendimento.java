@@ -3,7 +3,7 @@ package entities;
 public class Rendimento {
 
 	private int codigo;
-	private String categoria;
+	private Categoria categoria;
 	private String nome;
 	private float valor;
 	private boolean recorrencia;
@@ -12,7 +12,7 @@ public class Rendimento {
 		
 	}
 	
-	public Rendimento(int codigo, String categoria, String nome, float valor, boolean recorrencia) {
+	public Rendimento(int codigo, Categoria categoria, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
 		this.categoria = categoria;
@@ -35,11 +35,11 @@ public class Rendimento {
 		this.codigo = codigo;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
