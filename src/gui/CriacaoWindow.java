@@ -14,6 +14,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CriacaoWindow extends JFrame {
 	private JLabel lblCategoria;
@@ -25,6 +28,7 @@ public class CriacaoWindow extends JFrame {
 	private JComboBox comboCat;
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
+	private JButton btnSend;
 
 	/**
 	 * Launch the application.
@@ -48,7 +52,7 @@ public class CriacaoWindow extends JFrame {
 	public CriacaoWindow() {
 		setTitle("Cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 601);
+		setBounds(100, 100, 450, 258);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -56,28 +60,27 @@ public class CriacaoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 49, 416, 21);
+		comboCat.setBounds(10, 49, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
 		textRend.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				textRend.setText("");
+				if (textRend.getText().equals("Digite o Nome do Rendimento")) {
+					textRend.setText("");
+				}
 			}
 			
 			public void focusLost(FocusEvent e) {
 				if(textRend.getText().equals("")) {
 					textRend.setText("Digite o Nome do Rendimento");
-				} else {
-					
-				}
-				
+				} 
 			}
 		});
 		textRend.setText("Digite o Nome do Rendimento");
 		textRend.setToolTipText("Digite o Nome do Rendimento");
-		textRend.setBounds(10, 120, 229, 19);
+		textRend.setBounds(10, 90, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
 		
@@ -85,23 +88,27 @@ public class CriacaoWindow extends JFrame {
 		textValor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				textValor.setText("");
+				if (textValor.getText().equals("Digite o Valor do Rendimento")) {
+					textValor.setText("");
+				}
 			}
 			
 			public void focusLost(FocusEvent e) {
-				textValor.setText("Digite o Valor do Rendimento");
+				if (textValor.getText().equals("")) {
+					textValor.setText("Digite o Valor do Rendimento");					
+				}
 			}
 		});
 		textValor.setToolTipText("Digite o Valor do Rendimento");
 		textValor.setText("Digite o Valor do Rendimento");
-		textValor.setBounds(10, 185, 229, 19);
+		textValor.setBounds(10, 119, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
 		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setToolTipText("Tipo");
-		panel.setBounds(295, 107, 114, 97);
+		panel.setBounds(295, 41, 114, 97);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -118,5 +125,16 @@ public class CriacaoWindow extends JFrame {
 		lblCategoria = new JLabel("Escolha a Categoria");
 		lblCategoria.setBounds(10, 26, 399, 13);
 		contentPane.add(lblCategoria);
+		
+		btnSend = new JButton("Enviar");
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Chama a função de cadastrar Rendimento/Despesa //
+				
+				setVisible(false);
+			}
+		});
+		btnSend.setBounds(154, 190, 85, 21);
+		contentPane.add(btnSend);
 	}
 }
