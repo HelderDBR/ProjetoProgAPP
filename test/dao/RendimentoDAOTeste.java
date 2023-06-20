@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import entities.Rendimento;
+import entities.CategoriaRendimento;
 
 public class RendimentoDAOTeste {
 	public static void main(String[] args) throws SQLException, IOException {
@@ -13,6 +14,7 @@ public class RendimentoDAOTeste {
 		rendimento.setNome("Teste");
 		rendimento.setValor(100);
 		rendimento.setRecorrencia(true);
+		rendimento.setCategoriaRendimento(new CategoriaRendimento(2, "Teste"));
 		
 		Connection conn = BancoDados.conectar();
 		

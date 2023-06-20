@@ -3,7 +3,7 @@ package entities;
 public class Rendimento {
 
 	private int codigo;
-	private Categoria categoria;
+	private CategoriaRendimento categoriaRendimento;
 	private String nome;
 	private float valor;
 	private boolean recorrencia;
@@ -12,10 +12,10 @@ public class Rendimento {
 		
 	}
 	
-	public Rendimento(int codigo, Categoria categoria, String nome, float valor, boolean recorrencia) {
+	public Rendimento(int codigo, CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
-		this.categoria = categoria;
+		this.categoriaRendimento = categoriaRendimento;
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;
@@ -23,7 +23,7 @@ public class Rendimento {
 
 	@Override
 	public String toString() {
-		return "Rendimento [codigo=" + codigo + ", categoria=" + categoria + ", nome=" + nome + ", valor=" + valor
+		return "Rendimento [codigo=" + codigo + ", categoria=" + categoriaRendimento + ", nome=" + nome + ", valor=" + valor
 				+ ", recorrencia=" + recorrencia + "]";
 	}
 
@@ -35,12 +35,12 @@ public class Rendimento {
 		this.codigo = codigo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public CategoriaRendimento getCategoriaRendimento() {
+		return categoriaRendimento;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoriaRendimento(CategoriaRendimento categoriaRendimento) {
+		this.categoriaRendimento = categoriaRendimento;
 	}
 
 	public String getNome() {

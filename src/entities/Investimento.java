@@ -7,8 +7,6 @@ public class Investimento {
 	private float valor;
 	private boolean recorrencia;
 	
-	
-	
 	public Investimento() {
 	}
 
