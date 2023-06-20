@@ -31,17 +31,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import entities.Categoria;
-import entities.Despesas;
+import entities.*;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-=======
 import java.io.IOException;
 import java.sql.SQLException;
->>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -67,7 +63,7 @@ public class RendimentoMensalWindow extends JFrame {
 	private JTable tblDesp;
 	private JMenuBar menuBar;
 	private JButton btnBack;
-	private Categoria categorias;
+	private CategoriaRendimento categorias;
 	private Despesas despesa;
 
 	/**
@@ -93,7 +89,7 @@ public class RendimentoMensalWindow extends JFrame {
 		setResizable(false);
 		this.initComponents();
 		
-		this.categorias = new Categoria();
+		this.categorias = new CategoriaRendimento();
 		
 		this.buscarCategorias();
 		this.buscarRendimentos();
@@ -195,9 +191,6 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddRend = new JButton("Cadastrar Rendimento");
 		btnAddRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				new CriacaoWindow().setVisible(true);
-=======
 				try {
 					new CriacaoWindow().setVisible(true);
 				} catch (SQLException e1) {
@@ -207,7 +200,6 @@ public class RendimentoMensalWindow extends JFrame {
 					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
->>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 			}
 		});
 		editionPanel.add(btnAddRend);
@@ -221,9 +213,6 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddDesp = new JButton("Cadastrar Despesa");
 		btnAddDesp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				new CriacaoWindow().setVisible(true);
-=======
 				try {
 					new CriacaoWindow().setVisible(true);
 				} catch (SQLException e1) {
@@ -233,7 +222,6 @@ public class RendimentoMensalWindow extends JFrame {
 					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
->>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 			}
 		});
 		editionPanel.add(btnAddDesp);
