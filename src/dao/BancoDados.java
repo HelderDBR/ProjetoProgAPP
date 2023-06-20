@@ -16,7 +16,8 @@ public class BancoDados {
 		if(conn == null) {
 			Properties props = carregarPropriedades();
 			String url = props.getProperty("jdbc.url");
-			conn = DriverManager.getConnection(url,props);
+			
+			conn = DriverManager.getConnection(url, "root", "");
 			
 		}
 		
