@@ -12,15 +12,23 @@ public class Rendimento {
 		
 	}
 
-	public Rendimento(CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
+	public Rendimento(Categoria categoria, String nome, float valor, boolean recorrencia) {
 		super();
-		this.categoriaRendimento = categoriaRendimento;
+		this.categoria = categoria;
 		this.nome = nome;
 		this.valor = valor;
 		this.recorrencia = recorrencia;
 	}
 	
 	public Rendimento(int codigo, CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
+		super();
+		this.categoria = categoria;
+		this.nome = nome;
+		this.valor = valor;
+		this.recorrencia = recorrencia;
+	}
+	
+	public Rendimento(int codigo, Categoria categoria, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
 		this.categoriaRendimento = categoriaRendimento;
