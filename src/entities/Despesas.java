@@ -12,6 +12,14 @@ public class Despesas {
 		
 	}
 	
+	public Despesas(Categoria categoria, String nome, float valor, boolean recorrencia) {
+		super();
+		this.categoria = categoria;
+		this.nome = nome;
+		this.valor = valor;
+		this.recorrencia = recorrencia;
+	}
+	
 	public Despesas(int codigo, Categoria categoria, String nome, float valor, boolean recorrencia) {
 		super();
 		this.codigo = codigo;
