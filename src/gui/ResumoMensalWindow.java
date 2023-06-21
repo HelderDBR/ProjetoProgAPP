@@ -47,6 +47,7 @@ public class ResumoMensalWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ResumoMensalWindow() {
+		this.initComponents();
 		
 	}
 	
