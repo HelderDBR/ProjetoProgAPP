@@ -2,8 +2,14 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import entities.CategoriaDespesa;
+import entities.CategoriaRendimento;
+import entities.Despesas;
 import entities.Rendimento;
 
 public class RendimentoDAO {
@@ -28,6 +34,37 @@ public class RendimentoDAO {
 			st.executeUpdate();
 		}finally {
 			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
+	public List<Rendimento> buscarTodos() throws SQLException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from rendimento");
+			rs = st.executeQuery();
+			
+			List<Rendimento> listaRendimentos = new ArrayList<>();
+			
+			while(rs.next()) {
+				Rendimento rendimento = new Rendimento();
+				
+				rendimento.setNome(rs.getString("nome"));
+				int codigoCategoriaRendimento = rs.getInt("codigo_categoria_rendimento");
+				rendimento.setCategoriaRendimento(new CategoriaRendimento(codigoCategoriaRendimento, ""));
+				rendimento.setValor(rs.getFloat("valor"));
+				rendimento.setMes(rs.getInt("mes"));
+				rendimento.setAno(rs.getInt("ano"));
+				
+				listaRendimentos.add(rendimento);
+			}
+			
+			return listaRendimentos;
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
 			BancoDados.desconectar();
 		}
 	}

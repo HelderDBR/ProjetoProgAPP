@@ -2,8 +2,13 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import entities.CategoriaDespesa;
+import entities.Despesas;
 import entities.FundoDespesasOcasionais;
 
 public class FundoDespesasOcasionaisDAO {
@@ -27,6 +32,35 @@ public class FundoDespesasOcasionaisDAO {
 			st.executeUpdate();
 		}finally {
 			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
+	public List<FundoDespesasOcasionais> buscarTodos() throws SQLException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from fundo_despesas_ocasionais");
+			rs = st.executeQuery();
+			
+			List<FundoDespesasOcasionais> listaFundoDespesasOcasionais = new ArrayList<>();
+			
+			while(rs.next()) {
+				FundoDespesasOcasionais fundoDespesasOcasionais = new FundoDespesasOcasionais();
+				
+				fundoDespesasOcasionais.setNome(rs.getString("nome"));
+				fundoDespesasOcasionais.setValor(rs.getFloat("valor"));
+				fundoDespesasOcasionais.setMes(rs.getInt("mes"));
+				fundoDespesasOcasionais.setAno(rs.getInt("ano"));
+				
+				listaFundoDespesasOcasionais.add(fundoDespesasOcasionais);
+			}
+			
+			return listaFundoDespesasOcasionais;
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
 			BancoDados.desconectar();
 		}
 	}

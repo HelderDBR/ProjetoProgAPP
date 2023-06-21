@@ -3,6 +3,7 @@ package dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import entities.Investimento;
 
@@ -14,8 +15,9 @@ public class InvestimentoDAOTeste {
 		
 		investimento.setNome("CDB");
 		investimento.setValor(150);
-		investimento.setRecorrencia(false);
+		//investimento.setRecorrencia(false);
 		
-		new InvestimentoDAO(conn).cadastrar(investimento);
+		List<Investimento> investimentos = new InvestimentoDAO(conn).buscarTodos();
+		investimentos.forEach(System.out::println);
 	}
 }

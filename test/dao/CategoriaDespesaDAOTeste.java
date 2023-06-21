@@ -21,6 +21,6 @@ public class CategoriaDespesaDAOTeste {
 		
 		listaCategoriaDespesa = new CategoriaDespesaDAO(conn).buscarTodos();
 		
-		System.out.println(listaCategoriaDespesa.get(1).getDescricao());
+		listaCategoriaDespesa.forEach(System.out::println);
 	}
 }
