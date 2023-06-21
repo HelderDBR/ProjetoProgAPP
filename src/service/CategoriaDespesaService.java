@@ -24,10 +24,10 @@ public class CategoriaDespesaService {
 		return new CategoriaDespesaDAO(conn).buscarTodos();
 	}
 	
-	public void editarCategoriaDespesa (int codigoCategoria, CategoriaDespesa categoria)throws SQLException, IOException
+	public void editarCategoriaDespesa (CategoriaDespesa categoria)throws SQLException, IOException
 	{
 		Connection conn = BancoDados.conectar();
-		new CategoriaDespesaDAO(conn).editar(codigoCategoria, categoria);
+		new CategoriaDespesaDAO(conn).editar(categoria);
 	}
 
 	public void excluirCategoriaDespesa(int codigoCategoria) throws SQLException, IOException {

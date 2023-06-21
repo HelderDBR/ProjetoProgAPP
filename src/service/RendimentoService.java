@@ -25,10 +25,10 @@ public class RendimentoService {
 		return new RendimentoDAO(conn).buscarTodos();
 	}
 	
-	public void editarRendimento (int codigoRendimento, Rendimento rendimento)throws SQLException, IOException
+	public void editarRendimento (Rendimento rendimento)throws SQLException, IOException
 	{
 		Connection conn = BancoDados.conectar();
-		new RendimentoDAO(conn).editar(codigoRendimento, rendimento);
+		new RendimentoDAO(conn).editar(rendimento);
 	}
 
 	public void excluirRendimento(int codigoRendimento) throws SQLException, IOException {

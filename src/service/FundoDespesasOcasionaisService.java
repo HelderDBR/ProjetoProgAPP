@@ -25,10 +25,10 @@ public class FundoDespesasOcasionaisService {
 		return new FundoDespesasOcasionaisDAO(conn).buscarTodos();
 	}
 
-	public void editarFundoDespesasOcasionais (int codigoFundo, FundoDespesasOcasionais fundo)throws SQLException, IOException
+	public void editarFundoDespesasOcasionais (FundoDespesasOcasionais fundo)throws SQLException, IOException
 	{
 		Connection conn = BancoDados.conectar();
-		new FundoDespesasOcasionaisDAO(conn).editar(codigoFundo, fundo);
+		new FundoDespesasOcasionaisDAO(conn).editar(fundo);
 	}
 	
 	public void excluirFundoDespesasOcasionais(int codigoFundoDespesasOcasionais) throws SQLException, IOException {

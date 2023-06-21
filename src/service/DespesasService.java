@@ -25,10 +25,10 @@ public class DespesasService {
 			return new DespesaDAO(conn).buscarTodos();
 		}
 	
-	public void editar (int codigoDespesas, Despesas despesas)throws SQLException, IOException
+	public void editarDespesas (Despesas despesas)throws SQLException, IOException
 	{
 		Connection conn = BancoDados.conectar();
-		new DespesaDAO(conn).editar(codigoDespesas, despesas);
+		new DespesaDAO(conn).editar(despesas);
 	}
 	
 	public void excluirDespesas(int codigoDespesas) throws SQLException, IOException {

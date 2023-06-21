@@ -25,10 +25,10 @@ public class InvestimentoService {
 			return new InvestimentoDAO(conn).buscarTodos();
 		}
 	
-	public void editarInvestimento (int codigoInvestimento, Investimento investimento)throws SQLException, IOException
+	public void editarInvestimento (Investimento investimento)throws SQLException, IOException
 	{
 		Connection conn = BancoDados.conectar();
-		new InvestimentoDAO(conn).editar(codigoInvestimento, investimento);
+		new InvestimentoDAO(conn).editar(investimento);
 	}
 	
 	public void excluirInvestimento(int codigoInvestimento) throws SQLException, IOException {
