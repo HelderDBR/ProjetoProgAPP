@@ -55,6 +55,7 @@ public class CriacaoDespesaWindow extends JFrame {
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
 	private MaskFormatter mascaraAno;
+	private RendimentoMensalWindow rendimentoWindow;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class CriacaoDespesaWindow extends JFrame {
 		this.initComponents();
 		this.categoriaDespensaService = new CategoriaDespesaService();
 		this.despesasService = new DespesasService();
+		this.rendimentoWindow = new RendimentoMensalWindow();
 		
 		try {
 			this.buscarCategorias();
@@ -247,6 +249,7 @@ private void criarMascaraAno() {
 		desp.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
 		despesasService.cadastrarDespesas(desp);
+		rendimentoWindow.buscarDespesas();
 		setVisible(false);
 	}
 }

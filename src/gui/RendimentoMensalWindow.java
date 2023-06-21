@@ -101,7 +101,7 @@ public class RendimentoMensalWindow extends JFrame {
 		}
 	}
 
-	private void buscarDespesas() throws SQLException, IOException {
+	public void buscarDespesas() throws SQLException, IOException {
 		DefaultTableModel modelo = (DefaultTableModel) tblDesp.getModel();
 		modelo.fireTableDataChanged();
 		modelo.setRowCount(0);
@@ -131,7 +131,7 @@ public class RendimentoMensalWindow extends JFrame {
 		}
 	}
 
-	private void buscarRendimentos() throws SQLException, IOException {
+	public void buscarRendimentos() throws SQLException, IOException {
 		DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
 		modelo.fireTableDataChanged();
 		modelo.setRowCount(0);

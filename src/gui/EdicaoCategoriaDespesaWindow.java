@@ -52,7 +52,7 @@ public class EdicaoCategoriaDespesaWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EdicaoCategoriaDespsaWindow() {
+	public EdicaoCategoriaDespesaWindow() {
 		setResizable(false);
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();

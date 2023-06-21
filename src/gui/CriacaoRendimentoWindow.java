@@ -55,6 +55,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
 	private MaskFormatter mascaraAno;
+	private RendimentoMensalWindow rendimentoWindow;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
 		this.rendimentoService = new RendimentoService();
+		this.rendimentoWindow = new RendimentoMensalWindow();
 		
 		try {
 			this.buscarCategorias();
@@ -245,6 +247,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
 		rendimentoService.cadastrarRendimento(rend);
+		rendimentoWindow.buscarRendimentos();
 		setVisible(false);
 	}
 }
