@@ -18,11 +18,9 @@ import javax.swing.table.DefaultTableModel;
 import entities.ResumoAnual;
 
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-=======
 import java.io.File;
 import java.io.IOException;
->>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class ResumoAnualWindow extends JFrame {
@@ -57,10 +55,18 @@ public class ResumoAnualWindow extends JFrame {
 	 */
 	public ResumoAnualWindow() {
 		this.initComponents();
-		this.buscarLinhas();
+		try {
+			this.buscarLinhas();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	private void buscarLinhas() {
+	private void buscarLinhas() throws SQLException, IOException {
 		ResumoAnual resumo = new ResumoAnual();
 		resumo.CriarResumoAnual(2023);
 		

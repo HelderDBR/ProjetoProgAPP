@@ -47,6 +47,10 @@ public class ResumoMensalWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ResumoMensalWindow() {
+		
+	}
+	
+	private void initComponents() {
 		setTitle("Resumo Mensal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 854, 452);
