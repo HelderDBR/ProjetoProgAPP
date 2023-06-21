@@ -125,7 +125,12 @@ public class EdicaoCategoriaRendimentoWindow extends JFrame {
 	
 	private void btnDonePressed() throws SQLException, IOException {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		this.categoriaRendimentoService.editarCategoriaRendimento((CategoriaRendimento) comboChoice.getSelectedItem());
+		
+		CategoriaRendimento novaCat = new CategoriaRendimento();
+		novaCat = (CategoriaRendimento) comboChoice.getSelectedItem();
+		String novoNome = textName.getText();
+		novaCat.setDescricao(novoNome);
+		this.categoriaRendimentoService.editarCategoriaRendimento(novaCat);
 		
 		setVisible(false);
 	}

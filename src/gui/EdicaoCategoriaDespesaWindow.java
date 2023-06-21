@@ -126,8 +126,12 @@ public class EdicaoCategoriaDespesaWindow extends JFrame {
 	private void btnDonePressed() throws SQLException, IOException {
 		List<CategoriaDespesa> categorias = this.categoriaDespensaService.buscarCategoriasDespesa();
 		
-		this.categoriaDespensaService.editarCategoriaDespesa((CategoriaDespesa) this.comboChoice.getSelectedItem());
+		CategoriaDespesa novaCat = new CategoriaDespesa();
+		novaCat = (CategoriaDespesa) comboChoice.getSelectedItem();
+		String novoNome = textName.getText();
+		novaCat.setDescricao(novoNome);
+		this.categoriaDespensaService.editarCategoriaDespesa(novaCat);
 		
-		
+		setVisible(false);
 	}
 }
