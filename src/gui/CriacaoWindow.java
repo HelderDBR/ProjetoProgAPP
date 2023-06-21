@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class CriacaoWindow extends JFrame {
 	private JLabel lblCategoria;
@@ -105,19 +106,19 @@ public class CriacaoWindow extends JFrame {
 		textRend.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textRend.getText().equals("Digite o Nome do Rendimento")) {
+				if (textRend.getText().equals("Digite o Nome")) {
 					textRend.setText("");
 				}
 			}
 			
 			public void focusLost(FocusEvent e) {
 				if(textRend.getText().equals("")) {
-					textRend.setText("Digite o Nome do Rendimento");
+					textRend.setText("Digite o Nome");
 				} 
 			}
 		});
 		textRend.setText("Digite o Nome");
-		textRend.setToolTipText("Digite o Nome do Rendimento");
+		textRend.setToolTipText("Digite o Nome");
 		textRend.setBounds(10, 90, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
@@ -126,18 +127,18 @@ public class CriacaoWindow extends JFrame {
 		textValor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textValor.getText().equals("Digite o Valor do Rendimento")) {
+				if (textValor.getText().equals("Digite o Valor")) {
 					textValor.setText("");
 				}
 			}
 			
 			public void focusLost(FocusEvent e) {
 				if (textValor.getText().equals("")) {
-					textValor.setText("Digite o Valor do Rendimento");					
+					textValor.setText("Digite o Valor");					
 				}
 			}
 		});
-		textValor.setToolTipText("Digite o Valor do Rendimento");
+		textValor.setToolTipText("Digite o Valor");
 		textValor.setText("Digite o Valor");
 		textValor.setBounds(10, 119, 229, 19);
 		contentPane.add(textValor);
@@ -161,6 +162,7 @@ public class CriacaoWindow extends JFrame {
 		btnGropuTipo.add(rdbtnOcasional);
 		
 		spinnerMes = new JSpinner();
+		spinnerMes.setModel(new SpinnerNumberModel(0, 0, 12, 1));
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
@@ -179,7 +181,7 @@ public class CriacaoWindow extends JFrame {
 				}else {
 					mes = (int) spinnerMes.getValue();
 				}
-				int ano = 25;
+				int ano = Integer.parseInt(txtDigiteOAno.getText());
 				Rendimento rend = new Rendimento(categoria, nome, valor, mes, ano);
 				RendimentoService rendimentoService = new RendimentoService();
 				try {
