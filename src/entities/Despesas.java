@@ -34,7 +34,7 @@ public class Despesas {
 
 	@Override
 	public String toString() {
-		return "Despesas [codigo=" + codigo + ", categoriaDespesa=" + categoriaDespesa + ", nome=" + nome + ", valor="
+		return "Despesas [ categoriaDespesa=" + categoriaDespesa + ", nome=" + nome + ", valor="
 				+ valor + ", mes=" + mes + ", ano=" + ano + "]";
 	}
 
