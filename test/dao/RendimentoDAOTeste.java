@@ -13,16 +13,16 @@ public class RendimentoDAOTeste {
 	public static void main(String[] args) throws SQLException, IOException {
 		Rendimento rendimento = new Rendimento();
 		
-		rendimento.setNome("Teste");
-		rendimento.setValor(100);
+		rendimento.setNome("Oioi");
+		rendimento.setValor(240);
 		rendimento.setCategoriaRendimento(new CategoriaRendimento(2, "Teste"));
 		
 		Connection conn = BancoDados.conectar();
 		
-		List<Rendimento> listaRendimentos = new RendimentoDAO(conn).buscarTodos();
+		//List<Rendimento> listaRendimentos = new RendimentoDAO(conn).buscarTodos();
 		
-		listaRendimentos.forEach(System.out::println);
-		//new RendimentoDAO(conn).cadastrar(rendimento);
+		//listaRendimentos.forEach(System.out::println);
+		new RendimentoDAO(conn).cadastrar(rendimento);
 
 	}
 }

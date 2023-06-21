@@ -45,6 +45,7 @@ public class CategoriaRendimentoDAO {
 			while(rs.next()) {
 				CategoriaRendimento categoriaRendimento = new CategoriaRendimento();
 				
+				categoriaRendimento.setCodigo(rs.getInt("codigo"));
 				categoriaRendimento.setDescricao(rs.getString("descricao"));
 				
 				listaCategoriaRendimento.add(categoriaRendimento);
