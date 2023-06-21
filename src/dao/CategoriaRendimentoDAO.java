@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.CategoriaDespesa;
 import entities.CategoriaRendimento;
 
 public class CategoriaRendimentoDAO {
@@ -81,6 +82,22 @@ public class CategoriaRendimentoDAO {
 
 		}finally {
 			BancoDados.finalizarStatement(st);
+		}
+	}
+	
+	public void editar(CategoriaRendimento categoriaRendimento) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update categoria_rendimento descricao = ? where codigo = ?");
+			
+			st.setString(1, categoriaRendimento.getDescricao());
+			st.setInt(2, categoriaRendimento.getCodigo());
+			
+			st.executeUpdate();
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
 		}
 	}
 	
