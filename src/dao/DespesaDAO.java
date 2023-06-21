@@ -51,6 +51,7 @@ public class DespesaDAO {
 				
 				CategoriaDespesa categoriaDespesa = new CategoriaDespesaDAO(conn).buscarPorCodigo(rs.getInt("codigo_categoria_despesa"));
 				
+				despesa.setCodigo(rs.getInt("codigo"));
 				despesa.setNome(rs.getString("nome"));
 				despesa.setCategoriaDespesa(categoriaDespesa);
 				despesa.setValor(rs.getFloat("valor"));

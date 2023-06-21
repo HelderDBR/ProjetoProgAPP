@@ -23,5 +23,6 @@ public class RendimentoDAOTeste {
 		
 		listaRendimentos.forEach(System.out::println);
 		//new RendimentoDAO(conn).cadastrar(rendimento);
+
 	}
 }
