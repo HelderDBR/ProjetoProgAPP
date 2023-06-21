@@ -63,6 +63,25 @@ public class FundoDespesasOcasionaisDAO {
 		}
 	}
 	
+	public void editar(FundoDespesasOcasionais fundoDespesasOcasionais) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update fundo_despesas_ocasionais nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
+			
+			st.setString(1, fundoDespesasOcasionais.getNome());
+			st.setFloat(2, fundoDespesasOcasionais.getValor());
+			st.setInt(3, fundoDespesasOcasionais.getMes());
+			st.setInt(4, fundoDespesasOcasionais.getAno());
+			
+			st.executeUpdate();
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int excluir(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		

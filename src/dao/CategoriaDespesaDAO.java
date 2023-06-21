@@ -82,6 +82,7 @@ public class CategoriaDespesaDAO {
 		}finally {
 			BancoDados.finalizarStatement(st);
 			BancoDados.finalizarResultSet(rs);
+			BancoDados.desconectar();
 		}
 	}
 	
