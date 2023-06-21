@@ -68,6 +68,27 @@ public class RendimentoDAO {
 		}
 	}
 	
+	public void editar(Rendimento rendimento) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update rendimento nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_rendimento = ? where codigo = ?");
+			
+			st.setString(1, rendimento.getNome());
+			st.setFloat(2, rendimento.getValor());
+			st.setInt(3, rendimento.getMes());
+			st.setInt(4, rendimento.getAno());
+			st.setInt(5, rendimento.getCategoriaRendimento().getCodigo());
+			st.setInt(6, rendimento.getCodigo());
+			
+			st.executeUpdate();
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int excluir(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		

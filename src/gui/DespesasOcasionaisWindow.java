@@ -13,13 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import entities.FundoDespesasOcasionais;
+import service.FundoDespesasOcasionaisService;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class DespesasOcasionaisWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private FundoDespesasOcasionaisService despesasOcasionais;
 
 	/**
 	 * Launch the application.
@@ -41,9 +49,52 @@ public class DespesasOcasionaisWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public DespesasOcasionaisWindow() {
+		this.initComponents();
 		
+		this.despesasOcasionais = new FundoDespesasOcasionaisService();
+		try {
+			this.buscarDespesas();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	private void buscarDespesas() throws SQLException, IOException {
+		List<FundoDespesasOcasionais> despesas = this.despesasOcasionais.buscarFundoDespesasOcasionais();
+		
+		DefaultTableModel modelo = (DefaultTableModel) this.table.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
+		
+		for (FundoDespesasOcasionais fundoDespesasOcasionais : despesas) {
+			
+			if (fundoDespesasOcasionais.getMes()==0) {
+				modelo.addRow(new Object[] {
+						fundoDespesasOcasionais.getNome(),
+						fundoDespesasOcasionais.getValor(),
+						"",
+						(fundoDespesasOcasionais.getValor())*12,
+						
+				});
+			} else {
+				modelo.addRow(new Object[] {
+						fundoDespesasOcasionais.getNome(),
+						"",
+						fundoDespesasOcasionais.getValor(),
+						fundoDespesasOcasionais.getValor(),
+						
+				});
+			}
+			
+			
+		}
+		
+	}
+
 	private void initComponents() {
 		setTitle("Fundo de Despesas Ocasionais");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

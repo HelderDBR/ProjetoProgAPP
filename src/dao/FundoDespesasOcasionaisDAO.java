@@ -73,6 +73,7 @@ public class FundoDespesasOcasionaisDAO {
 			st.setFloat(2, fundoDespesasOcasionais.getValor());
 			st.setInt(3, fundoDespesasOcasionais.getMes());
 			st.setInt(4, fundoDespesasOcasionais.getAno());
+			st.setInt(5, fundoDespesasOcasionais.getCodigo());
 			
 			st.executeUpdate();
 			
