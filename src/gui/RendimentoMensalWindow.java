@@ -215,9 +215,9 @@ public class RendimentoMensalWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento/n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
 				if (choice == 0) {
-					new EdicaoWindowRendimento();
+					new EdicaoCategoriaRendimentoWindow();
 				}else {
-					new EdicaoWindowDespesa();
+					new EdicaoCategoriaDespesaWindow();
 				}
 			}
 		});
@@ -226,6 +226,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnDelCat = new JButton("Excluir Categoria");
 		btnDelCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new ExclusaoCategoriaWindow();
 			}
 		});
 		editionPanel.add(btnDelCat);
@@ -233,22 +234,32 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddRend = new JButton("Cadastrar Rendimento");
 		btnAddRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					new CriacaoWindow().setVisible(true);
+					new CriacaoRendimentoWindow().setVisible(true);
 				
 			}
 		});
 		editionPanel.add(btnAddRend);
 		
 		btnEditRend = new JButton("Editar Rendimento");
+		btnEditRend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		editionPanel.add(btnEditRend);
 		
 		btnDelRend = new JButton("Excluir Rendimento");
+		btnDelRend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ExclusaoRendimentoWindow().setVisible(true);
+			}
+		});
 		editionPanel.add(btnDelRend);
 		
 		btnAddDesp = new JButton("Cadastrar Despesa");
 		btnAddDesp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					new CriacaoWindow().setVisible(true);
+					new CriacaoDespesaWindow().setVisible(true);
 			}
 		});
 		editionPanel.add(btnAddDesp);
