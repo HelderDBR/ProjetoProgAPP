@@ -10,28 +10,34 @@ public class ResumoAnual{
 
 	private float rendimentoMensal = 0;
 	private float rendimentoOcasional = 0;
-	private float rendimentoAnual;
-	private float investimentoMensal;
-	private float investimentoAnual;
-	private float investimentoOcasional;
-	private float fundoMensal;
-	private float fundoOcasional;
-	private float fundoAnual;
-	private float totalDisponivel;
-	private float totalDespesasMensal;
-	private float totalDespesasOcasional;
-	private float total;
+	private float rendimentoAnual = 0;
+	private float investimentoMensal = 0;
+	private float investimentoAnual = 0;
+	private float investimentoOcasional = 0;
+	private float fundoMensal = 0;
+	private float fundoOcasional = 0;
+	private float fundoAnual = 0;
+	private float totalDisponivel = 0;
+	private float totalDespesasMensal = 0;
+	private float totalDespesasOcasional = 0;
+	private float total = 0;
 	
-	public ResumoAnual() throws SQLException, IOException
+	public ResumoAnual()
+	{
+		
+	}
+	
+	public void CriarResumoAnual(int ano) throws SQLException, IOException
 	{
 		RendimentoService rendimentos = new RendimentoService();
 		List<Rendimento> rendimento = rendimentos.buscarRendimentos();
 		for(Rendimento rendi : rendimento)
 		{
-			if(rendi.isRecorrencia() == true)
+			if(rendi.getMes() == 0)
 			{
 				this.rendimentoMensal = this.rendimentoMensal + rendi.getValor();
-			}else {
+			}else 
+				if(rendi.getAno() == ano){
 				this.rendimentoOcasional = this.rendimentoOcasional + rendi.getValor();
 			}
 			
@@ -45,10 +51,11 @@ public class ResumoAnual{
 		List<Investimento> investimento = investimentos.buscarInvestimento();
 		for(Investimento inves : investimento)
 		{
-			if(inves.isRecorrencia() == true) 
+			if(inves.getMes() == 0) 
 			{
 				this.investimentoMensal = this.investimentoMensal + inves.getValor();
-			}else {
+			}else 
+				if(inves.getAno() == ano){
 				this.investimentoOcasional = this.investimentoOcasional + inves.getValor();
 			}
 		}
@@ -62,24 +69,44 @@ public class ResumoAnual{
 		List<FundoDespesasOcasionais> fundosOcasionais = fundos.buscarFundoDespesasOcasionais();
 		for(FundoDespesasOcasionais fund : fundosOcasionais)
 		{
-			if(fund.isRecorrencia() == true)
+			if(fund.getMes() == 0)
 			{
 				this.fundoMensal = this.fundoMensal + fund.getValor();
-			}else {
+			}else 
+				if(fund.getAno() == ano){
 				this.fundoOcasional = this.fundoOcasional + fund.getValor();
 			}
 		}
 		this.fundoMensal = this.fundoMensal*12;
 		
-		this.fundoAnual = this.fundoMensal + this.fundoOcasional;
+		float excedente = 0;
+		for(int i = 1; i<=12; i++)
+		{
+			ResumoMensal resumo = new ResumoMensal(i, ano);
+			excedente = excedente + resumo.getTotal();
+		}
+		
+		this.fundoAnual = this.fundoMensal + this.fundoOcasional + excedente;
 		
 		
-		this.totalDisponivel = totalDisponivel;
-		this.totalDespesasMensal = totalDespesasMensal;
-		this.totalDespesasOcasional = totalDespesasOcasional;
-		this.total = total;
+		this.totalDisponivel = this.rendimentoAnual - this.investimentoAnual;
 		
+		DespesasService despesa = new DespesasService();
+		List<Despesas> despesas = despesa.buscarDespesas();
+		for(Despesas desp : despesas)
+		{
+			if(desp.getMes() == 0)
+			{
+				this.totalDespesasMensal = this.totalDespesasMensal + desp.getValor();
+			}else
+				if(desp.getAno() == ano)
+				{
+					this.totalDespesasOcasional = this.totalDespesasOcasional + desp.getValor();
+				}
+		}
+		this.totalDespesasMensal = totalDespesasMensal*12;
 		
+		this.total = this.totalDisponivel - this.totalDespesasMensal - this.totalDespesasOcasional;
 	}
 	
 	public ResumoAnual(float rendimentoMensal, float rendimentoOcasional, float rendimentoAnual,
