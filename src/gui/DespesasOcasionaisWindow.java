@@ -41,6 +41,10 @@ public class DespesasOcasionaisWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public DespesasOcasionaisWindow() {
+		
+	}
+	
+	private void initComponents() {
 		setTitle("Fundo de Despesas Ocasionais");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 854, 452);

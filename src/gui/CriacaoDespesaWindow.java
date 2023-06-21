@@ -7,9 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 import entities.*;
 import service.CategoriaRendimentoService;
@@ -24,6 +26,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class CriacaoDespesaWindow extends JFrame {
 	private RendimentoService rendimentoService;
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
+	private MaskFormatter mascaraAno;
 
 	/**
 	 * Launch the application.
@@ -77,6 +81,7 @@ public class CriacaoDespesaWindow extends JFrame {
 	
 	public CriacaoDespesaWindow(){
 		setResizable(false);
+		this.criarMascaraAno();
 		this.initComponents();
 		this.categoriaDespensaService = new CategoriaDespesaService();
 		this.despesasService = new DespesasService();
@@ -93,6 +98,17 @@ public class CriacaoDespesaWindow extends JFrame {
 		}
 	}
 
+private void criarMascaraAno() {
+		
+		try {
+			this.mascaraAno = new MaskFormatter("####");
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null,"ParseException", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private void buscarCategorias() throws SQLException, IOException {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
 		for(CategoriaRendimento categoria : categorias) {
@@ -204,7 +220,7 @@ public class CriacaoDespesaWindow extends JFrame {
 		btnSend.setBounds(154, 190, 85, 21);
 		contentPane.add(btnSend);
 		
-		txtDigiteOAno = new JTextField();
+		txtDigiteOAno = new JFormattedTextField(mascaraAno);
 		txtDigiteOAno.setText("Digite o Ano");
 		txtDigiteOAno.setBounds(10, 148, 229, 19);
 		contentPane.add(txtDigiteOAno);
