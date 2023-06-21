@@ -19,11 +19,12 @@ public class InvestimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("INSERT INTO investimento (nome, valor, recorrencia) VALUES (?, ?, ?)");
+			st = conn.prepareStatement("INSERT INTO investimento (nome, valor, mes, ano) VALUES (?, ?, ?, ?)");
 			
 			st.setString(1, investimento.getNome());
 			st.setFloat(2, investimento.getValor());
-			st.setBoolean(3, investimento.isRecorrencia());
+			st.setInt(3, investimento.getMes());
+			st.setInt(4, investimento.getAno());
 			
 			st.executeUpdate();
 		}finally {

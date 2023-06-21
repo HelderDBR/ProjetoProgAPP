@@ -17,12 +17,13 @@ public class RendimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("insert into rendimento (nome, valor, recorrencia, codigo_categoria_rendimento) values (?, ?, ?, ?)");
+			st = conn.prepareStatement("insert into rendimento (nome, valor, mes, ano, codigo_categoria_rendimento) values (?, ?, ?, ?, ?)");
 			
 			st.setString(1, rendimento.getNome());
 			st.setFloat(2, rendimento.getValor());
-			st.setBoolean(3, rendimento.isRecorrencia());
-			st.setInt(4, rendimento.getCategoriaRendimento().getCodigo());
+			st.setInt(3, rendimento.getMes());
+			st.setInt(4, rendimento.getAno());
+			st.setInt(5, rendimento.getCategoriaRendimento().getCodigo());
 			
 			st.executeUpdate();
 		}finally {

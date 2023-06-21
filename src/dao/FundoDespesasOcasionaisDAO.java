@@ -17,11 +17,12 @@ public class FundoDespesasOcasionaisDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("insert into fundo_despesas_ocasionais (nome, valor, recorrencia) values (?, ?, ?)");
+			st = conn.prepareStatement("insert into fundo_despesas_ocasionais (nome, valor, mes, ano) values (?, ?, ?, ?)");
 			
 			st.setString(1, fundoDespesasOcasionais.getNome());
 			st.setFloat(2, fundoDespesasOcasionais.getValor());
-			st.setBoolean(3, fundoDespesasOcasionais.isRecorrencia());
+			st.setInt(3, fundoDespesasOcasionais.getMes());
+			st.setInt(4, fundoDespesasOcasionais.getAno());
 			
 			st.executeUpdate();
 		}finally {

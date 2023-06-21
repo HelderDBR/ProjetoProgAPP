@@ -17,13 +17,13 @@ public class DespesaDAO {
 		PreparedStatement st = null;
 		
 		try {
-
-			st = conn.prepareStatement("insert into despesas (nome, valor, recorrencia, codigo_categoria_despesa) values (?, ?, ?, ?)");
+			st = conn.prepareStatement("insert into despesas (nome, valor, mes, ano, codigo_categoria_despesa) values (?, ?, ?, ?, ?)");
 			
 			st.setString(1, despesa.getNome());
 			st.setFloat(2, despesa.getValor());
-			st.setBoolean(3, despesa.isRecorrencia());
-			st.setInt(4, despesa.getCategoriaDespesa().getCodigo());
+			st.setInt(3, despesa.getMes());
+			st.setInt(4, despesa.getAno());
+			st.setInt(5, despesa.getCategoriaDespesa().getCodigo());
 			
 			st.executeUpdate();
 		}finally {
