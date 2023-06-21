@@ -59,6 +59,7 @@ public class EdicaoCategoriaDespesaWindow extends JFrame {
 		this.categoriaDespensaService = new CategoriaDespesaService();
 		try {
 			buscarCategorias();
+			btnDonePressed();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -124,12 +125,14 @@ public class EdicaoCategoriaDespesaWindow extends JFrame {
 	
 	private void btnDonePressed() throws SQLException, IOException {
 		List<CategoriaDespesa> categorias = this.categoriaDespensaService.buscarCategoriasDespesa();
+		
 		for(CategoriaDespesa categoria : categorias) {
 			
 			if (categoria.equals(comboChoice)) {
 				categoria.setDescricao(textName.getText());
 			}
 		}
-		setVisible(false);
+		
+		
 	}
 }
