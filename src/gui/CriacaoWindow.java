@@ -277,7 +277,7 @@ public class CriacaoWindow extends JFrame {
 		
 		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
 		rend.setNome(textRend.getText());
-		rend.setValor((Float.parseFloat(textValor.getText())));
+		//rend.setValor((Float.parseFloat(textValor.getText())));
 		if(rdbtnMensal.isSelected()) {
 			rend.setMes(0);
 		}else {
