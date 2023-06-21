@@ -226,6 +226,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnDelCat = new JButton("Excluir Categoria");
 		btnDelCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new ExclusaoCategoriaWindow();
 			}
 		});
 		editionPanel.add(btnDelCat);
@@ -248,6 +249,11 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.add(btnEditRend);
 		
 		btnDelRend = new JButton("Excluir Rendimento");
+		btnDelRend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ExclusaoRendimentoWindow().setVisible(true);
+			}
+		});
 		editionPanel.add(btnDelRend);
 		
 		btnAddDesp = new JButton("Cadastrar Despesa");

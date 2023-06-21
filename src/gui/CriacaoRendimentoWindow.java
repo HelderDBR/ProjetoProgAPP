@@ -132,7 +132,6 @@ public class CriacaoRendimentoWindow extends JFrame {
 				} 
 			}
 		});
-		textRend.setText("Digite o Nome");
 		textRend.setToolTipText("Digite o Nome");
 		textRend.setBounds(10, 90, 229, 19);
 		contentPane.add(textRend);
@@ -154,7 +153,6 @@ public class CriacaoRendimentoWindow extends JFrame {
 			}
 		});
 		textValor.setToolTipText("Digite o Valor");
-		textValor.setText("Digite o Valor");
 		textValor.setBounds(10, 119, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
@@ -205,7 +203,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		contentPane.add(btnSend);
 		
 		txtDigiteOAno = new JTextField();
-		txtDigiteOAno.setText("Digite o Ano");
+		txtDigiteOAno.setToolTipText("Digite o Ano");
 		txtDigiteOAno.setBounds(10, 148, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
