@@ -57,4 +57,31 @@ public class CategoriaRendimentoDAO {
 			BancoDados.desconectar();
 		}
 	}
+	
+	public String buscarPorCodigo(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from categoria_rendimento where codigo = ?");
+			st.setInt(1, codigo);
+			
+			rs = st.executeQuery();
+			
+			if(rs.next()) {
+				CategoriaRendimento categoriaRendimento = new CategoriaRendimento();
+				
+				categoriaRendimento.setCodigo(rs.getInt("codigo"));
+				categoriaRendimento.setDescricao(rs.getString("descricao"));
+				
+				return categoriaRendimento.getDescricao();
+			}
+			
+			return null;
+
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
+		}
+	}
 }

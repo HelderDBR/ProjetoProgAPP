@@ -143,7 +143,7 @@ public class RendimentoMensalWindow extends JFrame {
 			if (rendimento.getMes() == 0) {
 				
 				modelo.addRow(new Object[] {
-						rendimento.getCategoriaRendimento(),
+						rendimento.getCategoriaRendimento().getDescricao(),
 						rendimento.getNome(),
 						rendimento.getValor(),
 						"",
@@ -151,7 +151,7 @@ public class RendimentoMensalWindow extends JFrame {
 				});
 			} else {
 				modelo.addRow(new Object[] {
-						rendimento.getCategoriaRendimento(),
+						rendimento.getCategoriaRendimento().getDescricao(),
 						rendimento.getNome(),
 						"",
 						rendimento.getValor(),

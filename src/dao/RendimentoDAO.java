@@ -53,7 +53,10 @@ public class RendimentoDAO {
 				
 				rendimento.setNome(rs.getString("nome"));
 				int codigoCategoriaRendimento = rs.getInt("codigo_categoria_rendimento");
-				rendimento.setCategoriaRendimento(new CategoriaRendimento(codigoCategoriaRendimento, ""));
+				
+				String desc = new CategoriaRendimentoDAO(conn).buscarPorCodigo(codigoCategoriaRendimento);
+				
+				rendimento.setCategoriaRendimento(new CategoriaRendimento(codigoCategoriaRendimento, desc));
 				rendimento.setValor(rs.getFloat("valor"));
 				rendimento.setMes(rs.getInt("mes"));
 				rendimento.setAno(rs.getInt("ano"));
