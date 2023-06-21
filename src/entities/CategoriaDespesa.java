@@ -28,4 +28,11 @@ public class CategoriaDespesa {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	@Override
+	public String toString() {
+		return "CategoriaDespesa [descricao=" + descricao + "]";
+	}
+	
+	
 }
