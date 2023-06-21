@@ -1,5 +1,6 @@
 package entities;
 
+
 public class Rendimento {
 
 	private int codigo;
