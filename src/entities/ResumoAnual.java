@@ -80,9 +80,10 @@ public class ResumoAnual{
 		this.fundoMensal = this.fundoMensal*12;
 		
 		float excedente = 0;
+		ResumoMensal resumo = new ResumoMensal();
 		for(int i = 1; i<=12; i++)
 		{
-			ResumoMensal resumo = new ResumoMensal(i, ano);
+			resumo.criarResumoMensal(i, ano);
 			excedente = excedente + resumo.getTotal();
 		}
 		
