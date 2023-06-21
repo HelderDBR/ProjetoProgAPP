@@ -47,6 +47,7 @@ public class FundoDespesasOcasionaisDAO {
 			while(rs.next()) {
 				FundoDespesasOcasionais fundoDespesasOcasionais = new FundoDespesasOcasionais();
 				
+				fundoDespesasOcasionais.setCodigo(rs.getInt("codigo"));
 				fundoDespesasOcasionais.setNome(rs.getString("nome"));
 				fundoDespesasOcasionais.setValor(rs.getFloat("valor"));
 				fundoDespesasOcasionais.setMes(rs.getInt("mes"));

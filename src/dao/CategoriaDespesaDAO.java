@@ -20,7 +20,6 @@ public class CategoriaDespesaDAO {
 		PreparedStatement st = null;
 		
 		try {
-
 			st = conn.prepareStatement("insert into categoria_despesa (descricao) values (?)");
 			
 			st.setString(1, categoriaDespesa.getDescricao());

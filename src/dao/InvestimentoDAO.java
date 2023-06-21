@@ -50,6 +50,7 @@ public class InvestimentoDAO {
 			while(rs.next()) {
 				Investimento investimento = new Investimento();
 				
+				investimento.setCodigo(rs.getInt("codigo"));
 				investimento.setNome(rs.getString("nome"));
 				investimento.setValor(rs.getFloat("valor"));
 				investimento.setMes(rs.getInt("mes"));
