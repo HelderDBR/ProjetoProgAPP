@@ -3,6 +3,8 @@ package dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entities.CategoriaDespesa;
 import entities.Despesas;
@@ -12,13 +14,19 @@ public class DespesaDAOTeste {
 		Despesas despesa = new Despesas();
 		
 		despesa.setCategoria(new CategoriaDespesa(2, "Serviços"));
-		despesa.setNome("Netflix");
-		despesa.setValor(20);
+		despesa.setNome("Spotify");
+		despesa.setValor((float) 9.90);
 		despesa.setMes(0);
 		despesa.setAno(2023);
 		
 		Connection conn = BancoDados.conectar();
 		
-		new DespesaDAO(conn).cadastrar(despesa);
+		//new DespesaDAO(conn).cadastrar(despesa);
+		
+		List<Despesas> listaDespesas = new ArrayList<>();
+		
+		listaDespesas = new DespesaDAO(conn).buscarTodos();
+		
+		System.out.println(listaDespesas.get(3).getNome());
 	}
 }
