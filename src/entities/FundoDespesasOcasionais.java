@@ -5,30 +5,34 @@ public class FundoDespesasOcasionais {
 	private int codigo;
 	private String nome;
 	private float valor;
-	private boolean recorrencia;
+	private int mes;
+	private int ano;
 	
 	public FundoDespesasOcasionais() {
 	}
 	
-	public FundoDespesasOcasionais(String nome, float valor, boolean recorrencia) {
+	public FundoDespesasOcasionais(String nome, float valor, int mes, int ano) {
 		super();
 		this.nome = nome;
 		this.valor = valor;
-		this.recorrencia = recorrencia;
+		this.mes = mes;
+		this.ano = ano;
 	}
 
-	public FundoDespesasOcasionais(int codigo, String nome, float valor, boolean recorrencia) {
+	public FundoDespesasOcasionais(int codigo, String nome, float valor, int mes, int ano) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.valor = valor;
-		this.recorrencia = recorrencia;
+		this.mes = mes;
+		this.ano = ano;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Investimento [codigo=" + codigo + ", nome=" + nome + ", valor=" + valor + ", recorrencia=" + recorrencia
-				+ "]";
+		return "FundoDespesasOcasionais [codigo=" + codigo + ", nome=" + nome + ", valor=" + valor + ", mes=" + mes
+				+ ", ano=" + ano + "]";
 	}
 
 	public int getCodigo() {
@@ -55,13 +59,22 @@ public class FundoDespesasOcasionais {
 		this.valor = valor;
 	}
 
-	public boolean isRecorrencia() {
-		return recorrencia;
+	public int getMes() {
+		return mes;
 	}
 
-	public void setRecorrencia(boolean recorrencia) {
-		this.recorrencia = recorrencia;
+	public void setMes(int mes) {
+		this.mes = mes;
 	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
 	
 	
 }

@@ -17,7 +17,7 @@ public class RendimentoService {
 		new RendimentoDAO(conn).cadastrar(rendimento);
 	}
 
-public List<Rendimento> buscarREndimentos() throws SQLException, IOException {
+public List<Rendimento> buscarRendimentos() throws SQLException, IOException {
 		
 		Connection conn = BancoDados.conectar();
 		return new RendimentoDAO(conn).buscarTodos();
