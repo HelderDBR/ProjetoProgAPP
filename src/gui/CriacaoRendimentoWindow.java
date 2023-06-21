@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class CriacaoWindow extends JFrame {
+public class CriacaoRendimentoWindow extends JFrame {
 	private JLabel lblCategoria;
 	private JRadioButton rdbtnOcasional;
 	private JRadioButton rdbtnMensal;
@@ -50,9 +50,6 @@ public class CriacaoWindow extends JFrame {
 	private JTextField txtDigiteOAno;
 	private RendimentoService rendimentoService;
 	private DespesasService despesasService;
-	private JRadioButton rdbtnDespesa;
-	private JRadioButton rdbtnRendimento;
-	private JPanel panel_1;
 	private ButtonGroup btnGrupo2;
 
 	/**
@@ -62,7 +59,7 @@ public class CriacaoWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CriacaoWindow frame = new CriacaoWindow();
+					CriacaoRendimentoWindow frame = new CriacaoRendimentoWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,13 +75,11 @@ public class CriacaoWindow extends JFrame {
 	 */
 	
 	
-	public CriacaoWindow(){
+	public CriacaoRendimentoWindow(){
 		setResizable(false);
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
-		this.categoriaDespensaService = new CategoriaDespesaService();
 		this.rendimentoService = new RendimentoService();
-		this.despesasService = new DespesasService();
 		
 		try {
 			this.buscarCategorias();
@@ -100,20 +95,9 @@ public class CriacaoWindow extends JFrame {
 
 	private void buscarCategorias() throws SQLException, IOException {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
 		for(CategoriaRendimento categoria : categorias) {
 			
 			this.comboCat.addItem(categoria);
-		}
-		
-		for(CategoriaDespesa despesa : despesas) {
-			for (int i = 0; i < comboCat.getItemCount(); i++) {
-				if (despesa.getDescricao().equals((String) comboCat.getSelectedItem())) {
-					
-				}else{
-					this.comboCat.addItem(despesa);
-				}
-			}
 		}
 	}
 
@@ -226,50 +210,12 @@ public class CriacaoWindow extends JFrame {
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
-		panel_1 = new JPanel();
-		panel_1.setToolTipText("Tipo");
-		panel_1.setBorder(new TitledBorder(null, "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(293, 133, 114, 78);
-		contentPane.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		rdbtnRendimento = new JRadioButton("Rendimento");
-		panel_1.add(rdbtnRendimento);
-		
-		rdbtnDespesa = new JRadioButton("Despesa");
-		panel_1.add(rdbtnDespesa);
-		
 		btnGrupo2 = new ButtonGroup();
-		btnGrupo2.add(rdbtnDespesa);
-		btnGrupo2.add(rdbtnRendimento);
 	}
 
 	private void btnSendActionperformed() throws SQLException, IOException {
-		if (rdbtnDespesa.isSelected()) {
-			this.cadastrarDespesa();
-		}
-		if (rdbtnRendimento.isSelected()) {
-			this.cadastarRendimento();
-			
-		}
+		cadastarRendimento();
 		
-	}
-	
-	private void cadastrarDespesa() throws SQLException, IOException {
-		Despesas desp = new Despesas();
-		
-		desp.setCategoria((CategoriaDespesa) comboCat.getSelectedItem());
-		desp.setNome(textRend.getText());
-		desp.setValor((Float.parseFloat(textValor.getText())));
-		if (rdbtnMensal.isSelected()) {
-			desp.setMes(0);
-		}else {
-			desp.setMes((int) spinnerMes.getValue());
-		}
-		desp.setAno((Integer.parseInt(txtDigiteOAno.getText())));
-		
-		despesasService.cadastrarDespesas(desp);
-		setVisible(false);
 	}
 
 	public void cadastarRendimento() throws SQLException, IOException {
