@@ -190,7 +190,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddCat = new JButton("Cadastrar Categoria");
 		btnAddCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 
+				 	
 				String descricao = JOptionPane.showInputDialog(null, "Digite o Nome da Categoria", "Cadastro de Categoria", JOptionPane.QUESTION_MESSAGE);
 				CategoriaDespesa catDesp = new CategoriaDespesa(descricao);
 				CategoriaRendimento catRend = new CategoriaRendimento(descricao);
@@ -215,9 +215,9 @@ public class RendimentoMensalWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento\n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
 				if (choice == 0) {
-					new EdicaoCategoriaRendimentoWindow();
+					new EdicaoCategoriaRendimentoWindow().setVisible(true);;
 				}else {
-					new EdicaoCategoriaDespesaWindow();
+					new EdicaoCategoriaDespesaWindow().setVisible(true);;
 				}
 			}
 		});
