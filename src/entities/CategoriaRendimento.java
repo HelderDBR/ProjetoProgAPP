@@ -32,7 +32,7 @@ public class CategoriaRendimento {
 
 	@Override
 	public String toString() {
-		return "CategoriaRendimento [descricao=" + descricao + "]";
+		return this.getDescricao();
 	}
 	
 	

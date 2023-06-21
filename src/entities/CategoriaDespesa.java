@@ -31,7 +31,7 @@ public class CategoriaDespesa {
 
 	@Override
 	public String toString() {
-		return "CategoriaDespesa [descricao=" + descricao + "]";
+		return this.getDescricao();
 	}
 	
 	
