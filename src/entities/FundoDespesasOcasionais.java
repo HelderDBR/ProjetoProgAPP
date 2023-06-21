@@ -31,8 +31,7 @@ public class FundoDespesasOcasionais {
 	
 	@Override
 	public String toString() {
-		return "FundoDespesasOcasionais [nome=" + nome + ", valor=" + valor + ", mes=" + mes
-				+ ", ano=" + ano + "]";
+		return this.getNome() + this.getValor();
 	}
 
 	public int getCodigo() {

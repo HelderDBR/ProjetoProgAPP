@@ -34,8 +34,7 @@ public class Despesas {
 
 	@Override
 	public String toString() {
-		return "Despesas [ categoriaDespesa=" + categoriaDespesa + ", nome=" + nome + ", valor="
-				+ valor + ", mes=" + mes + ", ano=" + ano + "]";
+		return this.getNome() + this.getValor();
 	}
 
 	public int getCodigo() {

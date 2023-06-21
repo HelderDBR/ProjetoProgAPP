@@ -32,8 +32,7 @@ public class Investimento {
 
 	@Override
 	public String toString() {
-		return "Investimento [nome=" + nome + ", valor=" + valor + ", mes=" + mes + ", ano="
-				+ ano + "]";
+		return this.getNome() + this.getValor();
 	}
 
 	public int getCodigo() {
