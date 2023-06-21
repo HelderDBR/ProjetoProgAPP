@@ -81,8 +81,11 @@ public class CategoriaRendimentoDAO {
 
 		}finally {
 			BancoDados.finalizarStatement(st);
-			BancoDados.finalizarResultSet(rs);
-			BancoDados.desconectar();
+			
+<<<<<<< Updated upstream
+			
+=======
+>>>>>>> Stashed changes
 		}
 	}
 	
