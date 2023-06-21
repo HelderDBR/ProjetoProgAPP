@@ -109,8 +109,8 @@ private void criarMascaraAno() {
 	}
 	
 	private void buscarCategorias() throws SQLException, IOException {
-		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		for(CategoriaRendimento categoria : categorias) {
+		List<CategoriaDespesa> categorias = this.categoriaDespensaService.buscarCategoriasDespesa();
+		for(CategoriaDespesa categoria : categorias) {
 			
 			this.comboCat.addItem(categoria);
 		}

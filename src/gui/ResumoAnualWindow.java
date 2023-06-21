@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class ResumoAnualWindow extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private ResumoAnual resumoAnual;
+	private int ano;
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,8 @@ public class ResumoAnualWindow extends JFrame {
 	 */
 	public ResumoAnualWindow() {
 		this.initComponents();
+		ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o Ano a ser Resumido.", "Pedir Ano", JOptionPane.QUESTION_MESSAGE));
+		
 		try {
 			this.buscarLinhas();
 		} catch (SQLException e) {
@@ -68,7 +72,7 @@ public class ResumoAnualWindow extends JFrame {
 	
 	private void buscarLinhas() throws SQLException, IOException {
 		ResumoAnual resumo = new ResumoAnual();
-		resumo.CriarResumoAnual(2023);
+		resumo.CriarResumoAnual(ano);
 		
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.fireTableDataChanged();

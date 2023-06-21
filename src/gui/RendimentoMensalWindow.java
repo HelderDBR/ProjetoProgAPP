@@ -213,7 +213,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnEditCat = new JButton("Editar Categoria");
 		btnEditCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento/n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
+				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento\n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
 				if (choice == 0) {
 					new EdicaoCategoriaRendimentoWindow();
 				}else {

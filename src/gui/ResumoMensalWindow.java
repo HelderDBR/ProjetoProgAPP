@@ -14,6 +14,9 @@ import javax.swing.JScrollPane;
 import java.awt.GridLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import entities.ResumoMensal;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -26,6 +29,9 @@ public class ResumoMensalWindow extends JFrame {
 	private JPanel panel;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private ResumoMensal resumoMensal;
+	private int mes;
+	private int ano;
 
 	/**
 	 * Launch the application.
@@ -49,8 +55,47 @@ public class ResumoMensalWindow extends JFrame {
 	public ResumoMensalWindow() {
 		this.initComponents();
 		
+		
+		
+		this.buscarLinhas();
+		
 	}
 	
+	private void buscarLinhas() {
+		ResumoMensal resumo = new ResumoMensal();
+		resumo.criarResumoMensal(, );
+		
+		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
+	
+		modelo.addRow(new Object[] {
+				"Rendimento",
+				resumo.getRendimento()
+		});
+		modelo.addRow(new Object[] {
+				"Investimento a Longo Prazo",
+				resumo.getInvestimentosLongoPrazo()
+		});
+		modelo.addRow(new Object[] {
+				"Fundo para Despesas Ocasionais",
+				resumo.getFundoDespesasOcasionais()
+		});
+		modelo.addRow(new Object[] {
+				"Valor Total Disponível por Mês para Despesas",
+				resumo.getTotalDisponivel()
+		});
+		modelo.addRow(new Object[] {
+				"Valor Total das Despesas Orçadas para o Mês",
+				resumo.getTotalDespesas()
+		});
+		modelo.addRow(new Object[] {
+				"Valor Total",
+				resumo.getTotal()
+		});
+		
+	}
+
 	private void initComponents() {
 		setTitle("Resumo Mensal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
