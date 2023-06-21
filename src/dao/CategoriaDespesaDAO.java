@@ -1,8 +1,11 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 import entities.CategoriaDespesa;
 
@@ -25,6 +28,32 @@ public class CategoriaDespesaDAO {
 			st.executeUpdate();
 		}finally {
 			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
+	public List<CategoriaDespesa> buscarTodos() throws SQLException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from categoria_despesa");
+			rs = st.executeQuery();
+			
+			List<CategoriaDespesa> listaCategoriaDespesa = new ArrayList<>();
+			
+			while(rs.next()) {
+				CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
+				
+				categoriaDespesa.setDescricao(rs.getString("descricao"));
+				
+				listaCategoriaDespesa.add(categoriaDespesa);
+			}
+			
+			return listaCategoriaDespesa;
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
 			BancoDados.desconectar();
 		}
 	}
