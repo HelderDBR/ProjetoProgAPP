@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.CategoriaDespesa;
+import entities.CategoriaRendimento;
 import entities.Despesas;
 
 public class DespesaDAO {
@@ -49,9 +50,10 @@ public class DespesaDAO {
 			while(rs.next()) {
 				Despesas despesa = new Despesas();
 				
+				CategoriaDespesa categoriaDespesa = new CategoriaDespesaDAO(conn).buscarPorCodigo(rs.getInt("codigo_categoria_despesa"));
+				
 				despesa.setNome(rs.getString("nome"));
-				int codigoCategoriaDespesa = rs.getInt("codigo_categoria_despesa");
-				despesa.setCategoria(new CategoriaDespesa(codigoCategoriaDespesa, ""));
+				despesa.setCategoriaDespesa(categoriaDespesa);
 				despesa.setValor(rs.getFloat("valor"));
 				despesa.setMes(rs.getInt("mes"));
 				despesa.setAno(rs.getInt("ano"));

@@ -57,4 +57,46 @@ public class CategoriaDespesaDAO {
 			BancoDados.desconectar();
 		}
 	}
+	
+	public CategoriaDespesa buscarPorCodigo(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from categoria_despesa where codigo = ?");
+			st.setInt(1, codigo);
+			
+			rs = st.executeQuery();
+			
+			if(rs.next()) {
+				CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
+				
+				categoriaDespesa.setCodigo(rs.getInt("codigo"));
+				categoriaDespesa.setDescricao(rs.getString("descricao"));
+				
+				return categoriaDespesa;
+			}
+			
+			return null;
+
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.finalizarResultSet(rs);
+		}
+	}
+	
+	public void excluir(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		
+		try {
+			
+			st = conn.prepareStatement("delete from categoria_despesa where codigo = ?");
+			st.setInt(1, codigo);
+			st.executeUpdate();
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
 }

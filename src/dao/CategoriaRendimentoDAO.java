@@ -58,7 +58,7 @@ public class CategoriaRendimentoDAO {
 		}
 	}
 	
-	public String buscarPorCodigo(int codigo) throws SQLException{
+	public CategoriaRendimento buscarPorCodigo(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		
@@ -74,7 +74,7 @@ public class CategoriaRendimentoDAO {
 				categoriaRendimento.setCodigo(rs.getInt("codigo"));
 				categoriaRendimento.setDescricao(rs.getString("descricao"));
 				
-				return categoriaRendimento.getDescricao();
+				return categoriaRendimento;
 			}
 			
 			return null;
