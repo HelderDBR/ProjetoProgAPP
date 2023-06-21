@@ -100,7 +100,7 @@ public class RendimentoMensalWindow extends JFrame {
 	}
 
 	private void buscarDespesas() throws SQLException, IOException {
-		DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
+		DefaultTableModel modelo = (DefaultTableModel) tblDesp.getModel();
 		modelo.fireTableDataChanged();
 		modelo.setRowCount(0);
 		
