@@ -66,6 +66,25 @@ public class InvestimentoDAO {
 		}
 	}
 	
+	public void editar(Investimento investimento) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update investimento nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
+			
+			st.setString(1, investimento.getNome());
+			st.setFloat(2, investimento.getValor());
+			st.setInt(3, investimento.getMes());
+			st.setInt(4, investimento.getAno());
+			
+			st.executeUpdate();
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int excluir(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		
