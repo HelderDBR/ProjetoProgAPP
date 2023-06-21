@@ -72,7 +72,7 @@ public class InvestimentoLongoWindow extends JFrame {
 		
 		for (Investimento investimento : investimentos) {
 			
-			if (investimento.getMes()==0) {
+			if (investimento.getMes() == 0) {
 				modelo.addRow(new Object[] {
 						investimento.getNome(),
 						investimento.getValor(),
