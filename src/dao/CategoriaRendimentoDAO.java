@@ -82,7 +82,10 @@ public class CategoriaRendimentoDAO {
 		}finally {
 			BancoDados.finalizarStatement(st);
 			
+<<<<<<< Updated upstream
 			
+=======
+>>>>>>> Stashed changes
 		}
 	}
 	
