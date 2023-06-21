@@ -11,10 +11,11 @@ public class DespesaDAOTeste {
 	public static void main(String[] args) throws IOException, SQLException{
 		Despesas despesa = new Despesas();
 		
-		despesa.setCategoria(new CategoriaDespesa(1, "Live"));
-		despesa.setNome("Mercado");
-		despesa.setValor(400);
-		despesa.setRecorrencia(false);
+		despesa.setCategoria(new CategoriaDespesa(2, "Serviços"));
+		despesa.setNome("Netflix");
+		despesa.setValor(20);
+		despesa.setMes(0);
+		despesa.setAno(2023);
 		
 		Connection conn = BancoDados.conectar();
 		
