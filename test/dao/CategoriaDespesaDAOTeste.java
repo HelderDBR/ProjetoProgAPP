@@ -3,17 +3,24 @@ package dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entities.CategoriaDespesa;
 
 public class CategoriaDespesaDAOTeste {
 	public static void main(String[] args) throws SQLException, IOException {
-		CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
+		/*
+		 * CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
+		 * 
+		 * categoriaDespesa.setDescricao("Serviços");
+		 */ 
+		 Connection conn = BancoDados.conectar();
+		 
+		List<CategoriaDespesa> listaCategoriaDespesa = new ArrayList<>();
 		
-		categoriaDespesa.setDescricao("Alimentacao");
+		listaCategoriaDespesa = new CategoriaDespesaDAO(conn).buscarTodos();
 		
-		Connection conn = BancoDados.conectar();
-		
-		new CategoriaDespesaDAO(conn).cadastrar(categoriaDespesa);
+		System.out.println(listaCategoriaDespesa.get(1).getDescricao());
 	}
 }
