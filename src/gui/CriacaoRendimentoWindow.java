@@ -112,7 +112,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
 		for(CategoriaRendimento categoria : categorias) {
 			
-			this.comboCat.addItem(categoria);
+			this.comboCat.addItem(categoria.getDescricao());
 		}
 	}
 
