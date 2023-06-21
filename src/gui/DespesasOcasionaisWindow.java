@@ -77,20 +77,16 @@ public class DespesasOcasionaisWindow extends JFrame {
 						fundoDespesasOcasionais.getNome(),
 						fundoDespesasOcasionais.getValor(),
 						"",
-						(fundoDespesasOcasionais.getValor())*12,
-						
+						(fundoDespesasOcasionais.getValor())*12
 				});
 			} else {
 				modelo.addRow(new Object[] {
 						fundoDespesasOcasionais.getNome(),
 						"",
 						fundoDespesasOcasionais.getValor(),
-						fundoDespesasOcasionais.getValor(),
-						
+						fundoDespesasOcasionais.getValor()
 				});
 			}
-			
-			
 		}
 		
 	}

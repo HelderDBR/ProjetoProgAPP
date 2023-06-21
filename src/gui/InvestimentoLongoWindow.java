@@ -77,20 +77,16 @@ public class InvestimentoLongoWindow extends JFrame {
 						investimento.getNome(),
 						investimento.getValor(),
 						"",
-						(investimento.getValor())*12,
-						
+						(investimento.getValor())*12
 				});
 			} else {
 				modelo.addRow(new Object[] {
 						investimento.getNome(),
 						"",
 						investimento.getValor(),
-						investimento.getValor(),
-						
+						investimento.getValor()
 				});
 			}
-			
-			
 		}
 		
 	}

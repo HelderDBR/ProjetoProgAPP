@@ -14,6 +14,9 @@ import javax.swing.JScrollPane;
 import java.awt.GridLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import entities.ResumoAnual;
+
 import java.awt.event.ActionListener;
 <<<<<<< HEAD
 =======
@@ -31,6 +34,7 @@ public class ResumoAnualWindow extends JFrame {
 	private JPanel panel;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private ResumoAnual resumoAnual;
 
 	/**
 	 * Launch the application.
@@ -52,6 +56,64 @@ public class ResumoAnualWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ResumoAnualWindow() {
+		this.initComponents();
+		this.buscarLinhas();
+	}
+	
+	private void buscarLinhas() {
+		ResumoAnual resumo = new ResumoAnual();
+		resumo.CriarResumoAnual(2023);
+		
+		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
+		
+		modelo.addRow(new Object[] {
+				"Rendimento",
+				resumo.getRendimentoMensal(),
+				resumo.getRendimentoOcasional(),
+				resumo.getRendimentoAnual()
+		});
+		modelo.addRow(new Object[] {
+				"Investimento a Longo Prazo",
+				resumo.getInvestimentoMensal(),
+				resumo.getInvestimentoOcasional(),
+				resumo.getInvestimentoAnual()
+		});
+		modelo.addRow(new Object[] {
+				"Fundo para Despesas Ocasionais",
+				resumo.getFundoMensal(),
+				resumo.getFundoOcasional(),
+				resumo.getFundoAnual()
+		});
+		modelo.addRow(new Object[] {
+				"Total Disponível para Despesas Durante o Ano",
+				"",
+				"",
+				resumo.getTotalDisponivel()
+		});
+		modelo.addRow(new Object[] {
+				"Total Despesas Mensais Orçadas (12 meses)",
+				"",
+				"",
+				resumo.getTotalDespesasMensal()
+		});
+		modelo.addRow(new Object[] {
+				"Total Despesas Ocasionais para o Ano",
+				"",
+				"",
+				resumo.getTotalDespesasOcasional()
+		});
+		modelo.addRow(new Object[] {
+				"Valor Total Restante ao Final do Ano",
+				"",
+				"",
+				resumo.getTotal()
+		});
+		
+	}
+
+	private void initComponents() {
 		setResizable(false);
 		setTitle("Resumo Anual");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,8 +155,6 @@ public class ResumoAnualWindow extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		btnExport = new JButton("Exportar Resumo");
-<<<<<<< HEAD
-=======
 		btnExport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -108,7 +168,6 @@ public class ResumoAnualWindow extends JFrame {
 				}
 			}
 		});
->>>>>>> b0e96809a70fcf39bdf25ed406dfd0736ae9b4c0
 		btnExport.setBounds(642, 43, 177, 21);
 		contentPane.add(btnExport);
 		
