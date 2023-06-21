@@ -44,6 +44,7 @@ public class CategoriaDespesaDAO {
 			while(rs.next()) {
 				CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
 				
+				categoriaDespesa.setCodigo(rs.getInt("codigo"));
 				categoriaDespesa.setDescricao(rs.getString("descricao"));
 				
 				listaCategoriaDespesa.add(categoriaDespesa);
