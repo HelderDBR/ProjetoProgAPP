@@ -21,6 +21,12 @@ public class CategoriaRendimentoService {
 		Connection conn = BancoDados.conectar();
 		return new CategoriaRendimentoDAO(conn).buscarTodos();
 	}
+	
+	public void editarCategoriaRendimento (int codigoCategoria, CategoriaRendimento categoria)throws SQLException, IOException
+	{
+		Connection conn = BancoDados.conectar();
+		new CategoriaRendimentoDAO(conn).editar(codigoCategoria, categoria);
+	}
 
 	public void excluirCategoriaRendimento(int codigoCategoria) throws SQLException, IOException {
 		

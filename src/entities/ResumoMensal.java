@@ -15,27 +15,36 @@ public class ResumoMensal {
 	private float totalDespesas = 0;
 	private float total = 0;
 	
-	public ResumoMensal() throws SQLException, IOException
+	public ResumoMensal(int mes, int ano) throws SQLException, IOException
 	{
 		RendimentoService rendimentos = new RendimentoService();
 		List<Rendimento> rendimento = rendimentos.buscarRendimentos();
 		for(Rendimento rendi : rendimento)
 		{
-			this.rendimento = this.rendimento + rendi.getValor();
+			if((mes == rendi.getMes() && ano == rendi.getAno()) || rendi.getMes() == 0)
+			{
+				this.rendimento = this.rendimento + rendi.getValor();
+			}
 		}
 		
 		InvestimentoService investimentos = new InvestimentoService();
 		List<Investimento> investimento = investimentos.buscarInvestimento();
 		for(Investimento inves : investimento)
 		{
-			this.investimentosLongoPrazo = this.investimentosLongoPrazo + inves.getValor();
+			if((mes == inves.getMes() && ano == inves.getAno()) || inves.getMes() == 0)
+			{
+				this.investimentosLongoPrazo = this.investimentosLongoPrazo + inves.getValor();
+			}
 		}
 
 		FundoDespesasOcasionaisService fundos = new FundoDespesasOcasionaisService();
 		List<FundoDespesasOcasionais> fundosOcasionais = fundos.buscarFundoDespesasOcasionais();
 		for(FundoDespesasOcasionais fund : fundosOcasionais)
 		{
-			this.fundoDespesasOcasionais = this.fundoDespesasOcasionais + fund.getValor();
+			if((mes == fund.getMes() && ano == fund.getAno()) || fund.getMes() == 0)
+			{
+				this.fundoDespesasOcasionais = this.fundoDespesasOcasionais + fund.getValor();
+			}
 		}
 		
 		this.totalDisponivel = this.rendimento - this.investimentosLongoPrazo - this.fundoDespesasOcasionais;
@@ -44,7 +53,10 @@ public class ResumoMensal {
 		List<Despesas> despesas = despesa.buscarDespesas();
 		for(Despesas desp : despesas)
 		{
-			this.totalDespesas = this.totalDespesas + desp.getValor();
+			if((mes == desp.getMes() && ano == desp.getAno()) || desp.getMes() == 0)
+			{
+				this.totalDespesas = this.totalDespesas + desp.getValor();
+			}
 		}
 		
 		this.total = this.totalDisponivel - totalDespesas;
