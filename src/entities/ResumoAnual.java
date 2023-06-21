@@ -10,19 +10,24 @@ public class ResumoAnual{
 
 	private float rendimentoMensal = 0;
 	private float rendimentoOcasional = 0;
-	private float rendimentoAnual;
-	private float investimentoMensal;
-	private float investimentoAnual;
-	private float investimentoOcasional;
-	private float fundoMensal;
-	private float fundoOcasional;
-	private float fundoAnual;
-	private float totalDisponivel;
-	private float totalDespesasMensal;
-	private float totalDespesasOcasional;
-	private float total;
+	private float rendimentoAnual = 0;
+	private float investimentoMensal = 0;
+	private float investimentoAnual = 0;
+	private float investimentoOcasional = 0;
+	private float fundoMensal = 0;
+	private float fundoOcasional = 0;
+	private float fundoAnual = 0;
+	private float totalDisponivel = 0;
+	private float totalDespesasMensal = 0;
+	private float totalDespesasOcasional = 0;
+	private float total = 0;
 	
-	public ResumoAnual(int ano) throws SQLException, IOException
+	public ResumoAnual()
+	{
+		
+	}
+	
+	public void CriarResumoAnual(int ano) throws SQLException, IOException
 	{
 		RendimentoService rendimentos = new RendimentoService();
 		List<Rendimento> rendimento = rendimentos.buscarRendimentos();

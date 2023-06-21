@@ -15,7 +15,11 @@ public class ResumoMensal {
 	private float totalDespesas = 0;
 	private float total = 0;
 	
-	public ResumoMensal(int mes, int ano) throws SQLException, IOException
+	public ResumoMensal() {
+		
+	}
+	
+	public void criarResumoMensal(int mes, int ano) throws SQLException, IOException
 	{
 		RendimentoService rendimentos = new RendimentoService();
 		List<Rendimento> rendimento = rendimentos.buscarRendimentos();
