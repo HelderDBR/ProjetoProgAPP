@@ -27,6 +27,6 @@ public class DespesaDAOTeste {
 		
 		listaDespesas = new DespesaDAO(conn).buscarTodos();
 		
-		System.out.println(listaDespesas.get(3).getNome());
+		listaDespesas.forEach(System.out::println);
 	}
 }
