@@ -13,13 +13,22 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import entities.FundoDespesasOcasionais;
+import entities.Investimento;
+import service.InvestimentoService;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class InvestimentoLongoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private InvestimentoService investimentoService;
 
 	/**
 	 * Launch the application.
@@ -41,6 +50,52 @@ public class InvestimentoLongoWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public InvestimentoLongoWindow() {
+		this.initComponents();
+		
+		try {
+			this.buscarInvestimentos();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void buscarInvestimentos() throws SQLException, IOException {
+		List<Investimento> investimentos = this.investimentoService.buscarInvestimento();
+		
+		DefaultTableModel modelo = (DefaultTableModel) this.table.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
+		
+		for (Investimento investimento : investimentos) {
+			
+			if (investimento.getMes()==0) {
+				modelo.addRow(new Object[] {
+						investimento.getNome(),
+						investimento.getValor(),
+						"",
+						(investimento.getValor())*12,
+						
+				});
+			} else {
+				modelo.addRow(new Object[] {
+						investimento.getNome(),
+						"",
+						investimento.getValor(),
+						investimento.getValor(),
+						
+				});
+			}
+			
+			
+		}
+		
+	}
+
+	private void initComponents() {
 		setTitle("Investimentos a Longo Prazo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 854, 452);
