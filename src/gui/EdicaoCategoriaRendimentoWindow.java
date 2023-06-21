@@ -19,8 +19,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class EdicaoWindow extends JFrame {
+public class EdicaoCategoriaRendimentoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnDone;
@@ -38,7 +40,7 @@ public class EdicaoWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EdicaoWindow frame = new EdicaoWindow();
+					EdicaoCategoriaRendimentoWindow frame = new EdicaoCategoriaRendimentoWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,13 +52,14 @@ public class EdicaoWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EdicaoWindow() {
+	public EdicaoCategoriaRendimentoWindow() {
 		setResizable(false);
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
 		this.categoriaDespensaService = new CategoriaDespesaService();
 		try {
 			buscarCategorias();
+			btnDonePressed();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -68,20 +71,9 @@ public class EdicaoWindow extends JFrame {
 	
 	private void buscarCategorias() throws SQLException, IOException {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
 		for(CategoriaRendimento categoria : categorias) {
 			
 			this.comboChoice.addItem(categoria);
-		}
-		
-		for(CategoriaDespesa despesa : despesas) {
-			for (int i = 0; i < comboChoice.getItemCount(); i++) {
-				if (despesa.getDescricao().equals((String) comboChoice.getSelectedItem())) {
-					
-				}else{
-					this.comboChoice.addItem(despesa);
-				}
-			}
 		}
 	}
 	
@@ -113,7 +105,33 @@ public class EdicaoWindow extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		btnDone = new JButton("Finalizar");
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					btnDonePressed();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+			
+		});
 		btnDone.setBounds(100, 144, 85, 21);
 		contentPane.add(btnDone);
+	}
+	
+	private void btnDonePressed() throws SQLException, IOException {
+		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
+		for(CategoriaRendimento categoria : categorias) {
+			
+			if (categoria.equals(comboChoice)) {
+				categoria.setDescricao(textName.getText());
+			}
+		}
+		
 	}
 }

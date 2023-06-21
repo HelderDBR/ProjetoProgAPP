@@ -113,7 +113,7 @@ public class RendimentoMensalWindow extends JFrame {
 			if (despesa.getMes() == 0) {
 				
 				modelo.addRow(new Object[] {
-						despesa.getCategoriaDespesa(),
+						despesa.getCategoriaDespesa().getDescricao(),
 						despesa.getNome(),
 						despesa.getValor(),
 						"",
@@ -121,7 +121,7 @@ public class RendimentoMensalWindow extends JFrame {
 				});
 			} else {
 				modelo.addRow(new Object[] {
-						despesa.getCategoriaDespesa(),
+						despesa.getCategoriaDespesa().getDescricao(),
 						despesa.getNome(),
 						"",
 						despesa.getValor(),
@@ -213,7 +213,12 @@ public class RendimentoMensalWindow extends JFrame {
 		btnEditCat = new JButton("Editar Categoria");
 		btnEditCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento/n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
+				if (choice == 0) {
+					new EdicaoWindowRendimento();
+				}else {
+					new EdicaoWindowDespesa();
+				}
 			}
 		});
 		editionPanel.add(btnEditCat);

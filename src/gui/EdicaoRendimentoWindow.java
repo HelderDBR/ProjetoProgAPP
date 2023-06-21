@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class CriacaoWindow extends JFrame {
+public class EdicaoRendimentoWindow extends JFrame {
 	private JLabel lblCategoria;
 	private JRadioButton rdbtnOcasional;
 	private JRadioButton rdbtnMensal;
@@ -50,9 +50,6 @@ public class CriacaoWindow extends JFrame {
 	private JTextField txtDigiteOAno;
 	private RendimentoService rendimentoService;
 	private DespesasService despesasService;
-	private JRadioButton rdbtnDespesa;
-	private JRadioButton rdbtnRendimento;
-	private JPanel panel_1;
 	private ButtonGroup btnGrupo2;
 
 	/**
@@ -62,7 +59,7 @@ public class CriacaoWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CriacaoWindow frame = new CriacaoWindow();
+					EdicaoRendimentoWindow frame = new EdicaoRendimentoWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,7 +75,7 @@ public class CriacaoWindow extends JFrame {
 	 */
 	
 	
-	public CriacaoWindow(){
+	public EdicaoRendimentoWindow(){
 		setResizable(false);
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
@@ -130,7 +127,7 @@ public class CriacaoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 49, 229, 21);
+		comboCat.setBounds(10, 59, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
@@ -197,7 +194,7 @@ public class CriacaoWindow extends JFrame {
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
-		lblCategoria.setBounds(10, 26, 399, 13);
+		lblCategoria.setBounds(10, 36, 229, 13);
 		contentPane.add(lblCategoria);
 		
 		btnSend = new JButton("Enviar");
@@ -226,53 +223,20 @@ public class CriacaoWindow extends JFrame {
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
-		panel_1 = new JPanel();
-		panel_1.setToolTipText("Tipo");
-		panel_1.setBorder(new TitledBorder(null, "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(293, 133, 114, 78);
-		contentPane.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		rdbtnRendimento = new JRadioButton("Rendimento");
-		panel_1.add(rdbtnRendimento);
-		
-		rdbtnDespesa = new JRadioButton("Despesa");
-		panel_1.add(rdbtnDespesa);
+		JComboBox comboRend = new JComboBox();
+		comboRend.setToolTipText("Rendimento a ser Editado:");
+		comboRend.setBounds(10, 10, 229, 21);
+		contentPane.add(comboRend);
 		
 		btnGrupo2 = new ButtonGroup();
-		btnGrupo2.add(rdbtnDespesa);
-		btnGrupo2.add(rdbtnRendimento);
 	}
 
 	private void btnSendActionperformed() throws SQLException, IOException {
-		if (rdbtnDespesa.isSelected()) {
-			this.cadastrarDespesa();
-		}
-		if (rdbtnRendimento.isSelected()) {
-			this.cadastarRendimento();
-			
-		}
-		
+		this.editarRendimento();	
 	}
 	
-	private void cadastrarDespesa() throws SQLException, IOException {
-		Despesas desp = new Despesas();
-		
-		desp.setCategoria((CategoriaDespesa) comboCat.getSelectedItem());
-		desp.setNome(textRend.getText());
-		desp.setValor((Float.parseFloat(textValor.getText())));
-		if (rdbtnMensal.isSelected()) {
-			desp.setMes(0);
-		}else {
-			desp.setMes((int) spinnerMes.getValue());
-		}
-		desp.setAno((Integer.parseInt(txtDigiteOAno.getText())));
-		
-		despesasService.cadastrarDespesas(desp);
-		setVisible(false);
-	}
 
-	public void cadastarRendimento() throws SQLException, IOException {
+	public void editarRendimento() throws SQLException, IOException {
 		Rendimento rend = new Rendimento();
 		
 		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
@@ -285,7 +249,7 @@ public class CriacaoWindow extends JFrame {
 		}
 		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
-		rendimentoService.cadastrarRendimento(rend);
+		rendimentoService.editarRendimento(rend);
 		setVisible(false);
 	}
 }
