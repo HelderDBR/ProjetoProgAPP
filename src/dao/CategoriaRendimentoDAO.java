@@ -37,7 +37,7 @@ public class CategoriaRendimentoDAO {
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement("select * from categoria_despesa");
+			st = conn.prepareStatement("select * from categoria_rendimento");
 			rs = st.executeQuery();
 			
 			List<CategoriaRendimento> listaCategoriaRendimento = new ArrayList<>();
