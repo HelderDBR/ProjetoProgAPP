@@ -7,27 +7,25 @@ import java.util.List;
 
 import dao.BancoDados;
 import entities.Categoria;
-import entities.CategoriaRendimento;
 import dao.CategoriaDAO;
-import dao.CategoriaRendimentoDAO;
 
 public class CategoriaService {
 
-	public void cadastrarCategoria(CategoriaRendimento categoria) throws SQLException, IOException {
+	public void cadastrarCategoria(Categoria categoria) throws SQLException, IOException {
 			
 			Connection conn = BancoDados.conectar();
-			new CategoriaRendimentoDAO(conn).cadastrar(categoria);
+			new CategoriaDAO(conn).cadastrar(categoria);
 		}
 
-	public List<CategoriaRendimento> buscarCategorias() throws SQLException, IOException {
+	public List<Categoria> buscarCategorias() throws SQLException, IOException {
 			
 			Connection conn = BancoDados.conectar();
-			return new CategoriaRendimentoDAO(conn).buscarTodos();
+			return new CategoriaDAO(conn).buscarTodos();
 		}
 	
 	public void excluirCategoria(int codigoCategoria) throws SQLException, IOException {
 			
 			Connection conn = BancoDados.conectar();
-			new CategoriaRendimentoDAO(conn).excluir(codigoCategoria);
+			new CategoriaDAO(conn).excluir(codigoCategoria);
 		}
 }
