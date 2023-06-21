@@ -36,8 +36,7 @@ public class Rendimento {
 	
 	@Override
 	public String toString() {
-		return "Rendimento [categoriaRendimento=" + categoriaRendimento + ", nome=" + nome
-				+ ", valor=" + valor + ", mes=" + mes + ", ano=" + ano + "]";
+		return this.getNome() + this.getValor();
 	}
 
 	public int getCodigo() {
