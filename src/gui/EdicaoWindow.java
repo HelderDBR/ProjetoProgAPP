@@ -54,6 +54,15 @@ public class EdicaoWindow extends JFrame {
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
 		this.categoriaDespensaService = new CategoriaDespesaService();
+		try {
+			buscarCategorias();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void buscarCategorias() throws SQLException, IOException {
