@@ -11,11 +11,15 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
-import entities.Categoria;
-import service.CategoriaService;
+import entities.*;
+import service.CategoriaRendimentoService;
+import service.*;
+import service.RendimentoService;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
@@ -25,6 +29,7 @@ import java.util.List;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
 
 public class CriacaoWindow extends JFrame {
 	private JLabel lblCategoria;
@@ -37,7 +42,9 @@ public class CriacaoWindow extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
 	private JButton btnSend;
-	private CategoriaService categorias;
+	private CategoriaRendimentoService categorias;
+	private JSpinner spinnerMes;
+	private JTextField txtDigiteOAno;
 
 	/**
 	 * Launch the application.
@@ -65,14 +72,14 @@ public class CriacaoWindow extends JFrame {
 	public CriacaoWindow() throws SQLException, IOException {
 		setResizable(false);
 		this.initComponents();
-		this.categorias = new CategoriaService();
+		this.categorias = new CategoriaRendimentoService();
 		
 		this.buscarCategorias();
 	}
 
 	private void buscarCategorias() throws SQLException, IOException {
-		List<Categoria> categoria = this.categorias.buscarCategorias();
-		for(Categoria categoria1 : categoria) {
+		List<CategoriaRendimento> categoria = this.categorias.buscarCategoriasRendimento();
+		for(CategoriaRendimento categoria1 : categoria) {
 			
 			this.comboCat.addItem(categoria1);
 		}
@@ -109,7 +116,7 @@ public class CriacaoWindow extends JFrame {
 				} 
 			}
 		});
-		textRend.setText("Digite o Nome do Rendimento");
+		textRend.setText("Digite o Nome");
 		textRend.setToolTipText("Digite o Nome do Rendimento");
 		textRend.setBounds(10, 90, 229, 19);
 		contentPane.add(textRend);
@@ -131,7 +138,7 @@ public class CriacaoWindow extends JFrame {
 			}
 		});
 		textValor.setToolTipText("Digite o Valor do Rendimento");
-		textValor.setText("Digite o Valor do Rendimento");
+		textValor.setText("Digite o Valor");
 		textValor.setBounds(10, 119, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
@@ -153,6 +160,9 @@ public class CriacaoWindow extends JFrame {
 		btnGropuTipo.add(rdbtnMensal);
 		btnGropuTipo.add(rdbtnOcasional);
 		
+		spinnerMes = new JSpinner();
+		panel.add(spinnerMes);
+		
 		lblCategoria = new JLabel("Escolha a Categoria");
 		lblCategoria.setBounds(10, 26, 399, 13);
 		contentPane.add(lblCategoria);
@@ -160,15 +170,37 @@ public class CriacaoWindow extends JFrame {
 		btnSend = new JButton("Enviar");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CategoriaRendimento categoria = (CategoriaRendimento) comboCat.getSelectedItem();
 				String nome = textRend.getText();
-				double valor = (Double.parseDouble(textValor.getText()));
+				float valor = (Float.parseFloat(textValor.getText()));
+				int mes = 0;
 				if(rdbtnMensal.isSelected()) {
-					boolean recorrencia = true;
+					mes = 0;
+				}else {
+					mes = (int) spinnerMes.getValue();
+				}
+				int ano = 25;
+				Rendimento rend = new Rendimento(categoria, nome, valor, mes, ano);
+				RendimentoService rendimentoService = new RendimentoService();
+				try {
+					rendimentoService.cadastrarRendimento(rend);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null,"IOException", "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
 				}
 				setVisible(false);
 			}
 		});
 		btnSend.setBounds(154, 190, 85, 21);
 		contentPane.add(btnSend);
+		
+		txtDigiteOAno = new JTextField();
+		txtDigiteOAno.setText("Digite o Ano");
+		txtDigiteOAno.setBounds(10, 148, 229, 19);
+		contentPane.add(txtDigiteOAno);
+		txtDigiteOAno.setColumns(10);
 	}
 }
