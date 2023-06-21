@@ -19,13 +19,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import service.CategoriaService;
+import entities.*;
+import entities.Despesas;
+import entities.Rendimento;
+import service.CategoriaDespesaService;
+import service.CategoriaRendimentoService;
+import service.*;
 import service.DespesasService;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class RendimentoMensalWindow extends JFrame {
@@ -50,8 +56,10 @@ public class RendimentoMensalWindow extends JFrame {
 	private JTable tblDesp;
 	private JMenuBar menuBar;
 	private JButton btnBack;
-	private CategoriaService categorias;
-	private DespesasService despesa;
+	private CategoriaRendimentoService categoriaRendimentoService;
+	private CategoriaDespesaService categoriaDespesaService;
+	private DespesasService despesaService;
+	private RendimentoService rendimentoService;
 
 	/**
 	 * Launch the application.
@@ -76,56 +84,79 @@ public class RendimentoMensalWindow extends JFrame {
 		setResizable(false);
 		this.initComponents();
 		
-		this.categorias = new CategoriaService();
+		this.categoriaRendimentoService = new CategoriaRendimentoService();
+		this.categoriaDespesaService = new CategoriaDespesaService();
 		
-		this.buscarCategorias();
-		this.buscarRendimentos();
-		this.buscarDespesas();
+		try {
+			this.buscarRendimentos();
+			this.buscarDespesas();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	private void buscarDespesas() {
-		/*	DefaultTableModel modelo = (DefaultTableModel) tblDesp.getModel();
-		 * modelo.fireTableDataChanged();
-		 * modelo.setRowCount(0);
-		 * 
-		 * List<Despesas> despesas = this.despesasService.buscarTodos();
-		 * 
-		 * for(Despesasa despesa : despesas){
-		 * 
-		 * modelo.addRow(new Object[]{
-		 * despesa.getCategoria();
-		 * despesa.getNome();
-		 * despesa.getValor();
-		 * });
-		 * 
-		 */
-	}
-
-	private void buscarRendimentos() {
-		/*	DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
-		 * modelo.fireTableDataChanged();
-		 * modelo.setRowCount(0);
-		 * 
-		 * List<Rendimento> rendimentos = this.rendimentoService.buscarTodos();
-		 * 
-		 * for(Rendimento rendimento : rendimentos){
-		 * 
-		 * modelo.addRow(new Object[]{
-		 * rendimento.getCategoria();
-		 * rendimento.getNome();
-		 * rendimento.getValor();
-		 * });
-		 * 
-		 */
+	private void buscarDespesas() throws SQLException, IOException {
+		DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
 		
-	}
-
-	private void buscarCategorias() {
-		/*List<Categoria> categoria = this.categorias;
-		for(Categoria categoria1 : categoria) {
+		List<Despesas> despesas = this.despesaService.buscarDespesas();
+		
+		for (Despesas despesa : despesas) {
 			
-			this.comboCat.addItem(categoria1);
-		}*/
+			if (despesa.getMes() == 0) {
+				
+				modelo.addRow(new Object[] {
+						despesa.getCategoriaDespesa(),
+						despesa.getNome(),
+						despesa.getValor(),
+						"",
+						(despesa.getValor())*12,
+				});
+			} else {
+				modelo.addRow(new Object[] {
+						despesa.getCategoriaDespesa(),
+						despesa.getNome(),
+						"",
+						despesa.getValor(),
+						despesa.getValor(),
+				});
+			}
+		}
+	}
+
+	private void buscarRendimentos() throws SQLException, IOException {
+		DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
+		modelo.fireTableDataChanged();
+		modelo.setRowCount(0);
+		
+		List<Rendimento> rendimentos = this.rendimentoService.buscarRendimentos();
+		
+		for (Rendimento rendimento : rendimentos) {
+			
+			if (rendimento.getMes() == 0) {
+				
+				modelo.addRow(new Object[] {
+						rendimento.getCategoriaRendimento(),
+						rendimento.getNome(),
+						rendimento.getValor(),
+						"",
+						(rendimento.getValor())*12,
+				});
+			} else {
+				modelo.addRow(new Object[] {
+						rendimento.getCategoriaRendimento(),
+						rendimento.getNome(),
+						"",
+						rendimento.getValor(),
+						rendimento.getValor(),
+				});
+			}
+		}
 	}
 	
 	public void initComponents() {
@@ -158,14 +189,31 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 
-				String nome = JOptionPane.showInputDialog(null, "Digite o Nome da Categoria", "Cadastro de Categoria", JOptionPane.QUESTION_MESSAGE);
-				System.out.println("Categoria: " + nome);
-				//Manda nome para a função de criar Categoria nova
+				String descricao = JOptionPane.showInputDialog(null, "Digite o Nome da Categoria", "Cadastro de Categoria", JOptionPane.QUESTION_MESSAGE);
+				CategoriaDespesa catDesp = new CategoriaDespesa(descricao);
+				CategoriaRendimento catRend = new CategoriaRendimento(descricao);
+				
+				try {
+					categoriaRendimentoService.cadastrarCategoriaRendimento(catRend);
+					categoriaDespesaService.cadastrarCategoriaDespesa(catDesp);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		editionPanel.add(btnAddCat);
 		
 		btnEditCat = new JButton("Editar Categoria");
+		btnEditCat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		editionPanel.add(btnEditCat);
 		
 		btnDelCat = new JButton("Excluir Categoria");
@@ -178,15 +226,8 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddRend = new JButton("Cadastrar Rendimento");
 		btnAddRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
 					new CriacaoWindow().setVisible(true);
-				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "SQLException", "Erro", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
+				
 			}
 		});
 		editionPanel.add(btnAddRend);
@@ -200,15 +241,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnAddDesp = new JButton("Cadastrar Despesa");
 		btnAddDesp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
 					new CriacaoWindow().setVisible(true);
-				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "SQLException", "Erro", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "IOException", "Erro", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
 			}
 		});
 		editionPanel.add(btnAddDesp);
