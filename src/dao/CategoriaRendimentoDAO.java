@@ -84,4 +84,26 @@ public class CategoriaRendimentoDAO {
 			BancoDados.finalizarResultSet(rs);
 		}
 	}
+	
+	public int excluir(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		
+		try {
+			
+			st = conn.prepareStatement("delete from categoria_rendimento where codigo = ?");
+			st.setInt(1, codigo);
+
+			int modificacoes = st.executeUpdate();
+			
+			if(modificacoes != 0) {
+				return modificacoes;
+			}else {
+				return 0;
+			}
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
 }

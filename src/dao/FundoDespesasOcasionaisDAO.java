@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.CategoriaDespesa;
-import entities.Despesas;
 import entities.FundoDespesasOcasionais;
 
 public class FundoDespesasOcasionaisDAO {
@@ -61,6 +59,28 @@ public class FundoDespesasOcasionaisDAO {
 		}finally {
 			BancoDados.finalizarStatement(st);
 			BancoDados.finalizarResultSet(rs);
+			BancoDados.desconectar();
+		}
+	}
+	
+	public int excluir(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		
+		try {
+			
+			st = conn.prepareStatement("delete from fundo_despesas_ocasionais where codigo = ?");
+			st.setInt(1, codigo);
+
+			int modificacoes = st.executeUpdate();
+			
+			if(modificacoes != 0) {
+				return modificacoes;
+			}else {
+				return 0;
+			}
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
 			BancoDados.desconectar();
 		}
 	}

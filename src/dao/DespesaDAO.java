@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.CategoriaDespesa;
-import entities.CategoriaRendimento;
 import entities.Despesas;
 
 public class DespesaDAO {
@@ -65,6 +64,28 @@ public class DespesaDAO {
 		}finally {
 			BancoDados.finalizarStatement(st);
 			BancoDados.finalizarResultSet(rs);
+			BancoDados.desconectar();
+		}
+	}
+	
+	public int excluir(int codigo) throws SQLException{
+		PreparedStatement st = null;
+		
+		try {
+			
+			st = conn.prepareStatement("delete from despesas where codigo = ?");
+			st.setInt(1, codigo);
+
+			int modificacoes = st.executeUpdate();
+			
+			if(modificacoes != 0) {
+				return modificacoes;
+			}else {
+				return 0;
+			}
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
 			BancoDados.desconectar();
 		}
 	}
