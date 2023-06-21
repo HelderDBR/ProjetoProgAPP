@@ -69,6 +69,27 @@ public class DespesaDAO {
 		}
 	}
 	
+	public void editar(Despesas despesa) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update despesas nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_despesa = ? where codigo = ?");
+			
+			st.setString(1, despesa.getNome());
+			st.setFloat(2, despesa.getValor());
+			st.setInt(3, despesa.getMes());
+			st.setInt(4, despesa.getAno());
+			st.setInt(5, despesa.getCategoriaDespesa().getCodigo());
+			st.setInt(6, despesa.getCodigo());
+			
+			st.executeUpdate();
+			
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int excluir(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		

@@ -84,6 +84,22 @@ public class CategoriaRendimentoDAO {
 		}
 	}
 	
+	public void editar(CategoriaRendimento categoriaRendimento) throws SQLException {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("update categoria_rendimento descricao = ? where codigo = ?");
+			
+			st.setString(1, categoriaRendimento.getDescricao());
+			st.setInt(2, categoriaRendimento.getCodigo());
+			
+			st.executeUpdate();
+		}finally {
+			BancoDados.finalizarStatement(st);
+			BancoDados.desconectar();
+		}
+	}
+	
 	public int excluir(int codigo) throws SQLException{
 		PreparedStatement st = null;
 		
