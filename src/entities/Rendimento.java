@@ -36,7 +36,7 @@ public class Rendimento {
 	
 	@Override
 	public String toString() {
-		return "Rendimento [codigo=" + codigo + ", categoriaRendimento=" + categoriaRendimento + ", nome=" + nome
+		return "Rendimento [categoriaRendimento=" + categoriaRendimento + ", nome=" + nome
 				+ ", valor=" + valor + ", mes=" + mes + ", ano=" + ano + "]";
 	}
 

@@ -31,7 +31,7 @@ public class FundoDespesasOcasionais {
 	
 	@Override
 	public String toString() {
-		return "FundoDespesasOcasionais [codigo=" + codigo + ", nome=" + nome + ", valor=" + valor + ", mes=" + mes
+		return "FundoDespesasOcasionais [nome=" + nome + ", valor=" + valor + ", mes=" + mes
 				+ ", ano=" + ano + "]";
 	}
 
