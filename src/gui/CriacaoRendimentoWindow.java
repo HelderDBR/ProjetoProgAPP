@@ -88,6 +88,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		
 		try {
 			this.buscarCategorias();
+			this.btnSendActionperformed();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -236,13 +237,13 @@ public class CriacaoRendimentoWindow extends JFrame {
 		
 		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
 		rend.setNome(textRend.getText());
-		rend.setValor((Float.parseFloat(this.textValor.getText())));
+		//rend.setValor((Float.parseFloat(textValor.getText())));
 		if(rdbtnMensal.isSelected()) {
 			rend.setMes(0);
 		}else {
-			rend.setMes((int) this.spinnerMes.getValue());
+			rend.setMes((int) spinnerMes.getValue());
 		}
-		rend.setAno((Integer.parseInt(this.txtDigiteOAno.getText())));
+		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
 		rendimentoService.cadastrarRendimento(rend);
 		setVisible(false);

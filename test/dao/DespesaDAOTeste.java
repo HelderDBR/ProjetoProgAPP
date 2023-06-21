@@ -25,8 +25,10 @@ public class DespesaDAOTeste {
 		
 		List<Despesas> listaDespesas = new ArrayList<>();
 		
-		listaDespesas = new DespesaDAO(conn).buscarTodos();
+		//listaDespesas = new DespesaDAO(conn).buscarTodos();
 		
 		listaDespesas.forEach(System.out::println);
+		
+		new DespesaDAO(conn).excluir(2);
 	}
 }
