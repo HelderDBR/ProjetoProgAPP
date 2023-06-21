@@ -24,6 +24,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -43,9 +44,11 @@ public class CriacaoWindow extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
 	private JButton btnSend;
-	private CategoriaRendimentoService categorias;
+	private CategoriaRendimentoService categoriaRendimentoService;
+	private CategoriaDespesaService categoriaDespensaService;
 	private JSpinner spinnerMes;
 	private JTextField txtDigiteOAno;
+	private RendimentoService rendimentoService;
 
 	/**
 	 * Launch the application.
@@ -73,7 +76,9 @@ public class CriacaoWindow extends JFrame {
 	public CriacaoWindow(){
 		setResizable(false);
 		this.initComponents();
-		this.categorias = new CategoriaRendimentoService();
+		this.categoriaRendimentoService = new CategoriaRendimentoService();
+		this.categoriaDespensaService = new CategoriaDespesaService();
+		this.rendimentoService = new RendimentoService();
 		
 		try {
 			this.buscarCategorias();
@@ -88,10 +93,21 @@ public class CriacaoWindow extends JFrame {
 	}
 
 	private void buscarCategorias() throws SQLException, IOException {
-		List<CategoriaRendimento> categoria = this.categorias.buscarCategoriasRendimento();
-		for(CategoriaRendimento categoria1 : categoria) {
+		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
+		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
+		for(CategoriaRendimento categoria : categorias) {
 			
-			this.comboCat.addItem(categoria1);
+			this.comboCat.addItem(categoria);
+		}
+		
+		for(CategoriaDespesa despesa : despesas) {
+			for (int i = 0; i < comboCat.getItemCount(); i++) {
+				if (despesa.getDescricao().equals((String) comboCat.getSelectedItem())) {
+					
+				}else{
+					this.comboCat.addItem(despesa);
+				}
+			}
 		}
 	}
 
@@ -211,18 +227,18 @@ public class CriacaoWindow extends JFrame {
 	}
 	
 	public void cadastarRendimento() throws SQLException, IOException {
-		CategoriaRendimento categoria = (CategoriaRendimento) comboCat.getSelectedItem();
-		String nome = textRend.getText();
-		float valor = (Float.parseFloat(textValor.getText()));
-		int mes = 0;
+		Rendimento rend = new Rendimento();
+		
+		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
+		rend.setNome(textRend.getText());
+		rend.setValor((Float.parseFloat(textValor.getText())));
 		if(rdbtnMensal.isSelected()) {
-			mes = 0;
+			rend.setMes(0);
 		}else {
-			mes = (int) spinnerMes.getValue();
+			rend.setMes((int) spinnerMes.getValue());
 		}
-		int ano = Integer.parseInt(txtDigiteOAno.getText());
-		Rendimento rend = new Rendimento(categoria, nome, valor, mes, ano);
-		RendimentoService rendimentoService = new RendimentoService();
+		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
+		
 		rendimentoService.cadastrarRendimento(rend);
 		setVisible(false);
 	}
