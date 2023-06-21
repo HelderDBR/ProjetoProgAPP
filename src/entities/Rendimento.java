@@ -7,33 +7,37 @@ public class Rendimento {
 	private CategoriaRendimento categoriaRendimento;
 	private String nome;
 	private float valor;
-	private boolean recorrencia;
+	private int mes;
+	private int ano;
 	
 	public Rendimento() {
 		
 	}
 
-	public Rendimento(CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
+	public Rendimento(CategoriaRendimento categoriaRendimento, String nome, float valor, int mes, int ano) {
 		super();
 		this.categoriaRendimento = categoriaRendimento;
 		this.nome = nome;
 		this.valor = valor;
-		this.recorrencia = recorrencia;
+		this.mes = mes;
+		this.ano = ano;
 	}
 	
-	public Rendimento(int codigo, CategoriaRendimento categoriaRendimento, String nome, float valor, boolean recorrencia) {
+	public Rendimento(int codigo, CategoriaRendimento categoriaRendimento, String nome, float valor, int mes, int ano) {
 		super();
 		this.codigo = codigo;
 		this.categoriaRendimento = categoriaRendimento;
 		this.nome = nome;
 		this.valor = valor;
-		this.recorrencia = recorrencia;
+		this.mes = mes;
+		this.ano = ano;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Rendimento [codigo=" + codigo + ", categoria=" + categoriaRendimento + ", nome=" + nome + ", valor=" + valor
-				+ ", recorrencia=" + recorrencia + "]";
+		return "Rendimento [codigo=" + codigo + ", categoriaRendimento=" + categoriaRendimento + ", nome=" + nome
+				+ ", valor=" + valor + ", mes=" + mes + ", ano=" + ano + "]";
 	}
 
 	public int getCodigo() {
@@ -68,13 +72,21 @@ public class Rendimento {
 		this.valor = valor;
 	}
 
-	public boolean isRecorrencia() {
-		return recorrencia;
+	public int getMes() {
+		return mes;
 	}
 
-	public void setRecorrencia(boolean recorrencia) {
-		this.recorrencia = recorrencia;
+	public void setMes(int mes) {
+		this.mes = mes;
 	}
-	
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
 	
 }
