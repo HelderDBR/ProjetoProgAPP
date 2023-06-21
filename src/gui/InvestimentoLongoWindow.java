@@ -52,6 +52,8 @@ public class InvestimentoLongoWindow extends JFrame {
 	public InvestimentoLongoWindow() {
 		this.initComponents();
 		
+		this.investimentoService = new InvestimentoService();
+		
 		try {
 			this.buscarInvestimentos();
 		} catch (SQLException e) {
