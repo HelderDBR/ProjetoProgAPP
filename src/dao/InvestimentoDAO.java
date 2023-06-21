@@ -76,6 +76,7 @@ public class InvestimentoDAO {
 			st.setFloat(2, investimento.getValor());
 			st.setInt(3, investimento.getMes());
 			st.setInt(4, investimento.getAno());
+			st.setInt(5, investimento.getCodigo());
 			
 			st.executeUpdate();
 			
