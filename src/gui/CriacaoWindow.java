@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class CriacaoWindow extends JFrame {
 	private JLabel lblCategoria;
@@ -69,12 +70,21 @@ public class CriacaoWindow extends JFrame {
 	 */
 	
 	
-	public CriacaoWindow() throws SQLException, IOException {
+	public CriacaoWindow(){
 		setResizable(false);
 		this.initComponents();
 		this.categorias = new CategoriaRendimentoService();
 		
-		this.buscarCategorias();
+		try {
+			this.buscarCategorias();
+			this.btnSendActionperformed();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null,"IOException", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 
 	private void buscarCategorias() throws SQLException, IOException {
@@ -105,19 +115,19 @@ public class CriacaoWindow extends JFrame {
 		textRend.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textRend.getText().equals("Digite o Nome do Rendimento")) {
+				if (textRend.getText().equals("Digite o Nome")) {
 					textRend.setText("");
 				}
 			}
 			
 			public void focusLost(FocusEvent e) {
 				if(textRend.getText().equals("")) {
-					textRend.setText("Digite o Nome do Rendimento");
+					textRend.setText("Digite o Nome");
 				} 
 			}
 		});
 		textRend.setText("Digite o Nome");
-		textRend.setToolTipText("Digite o Nome do Rendimento");
+		textRend.setToolTipText("Digite o Nome");
 		textRend.setBounds(10, 90, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
@@ -126,18 +136,18 @@ public class CriacaoWindow extends JFrame {
 		textValor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textValor.getText().equals("Digite o Valor do Rendimento")) {
+				if (textValor.getText().equals("Digite o Valor")) {
 					textValor.setText("");
 				}
 			}
 			
 			public void focusLost(FocusEvent e) {
 				if (textValor.getText().equals("")) {
-					textValor.setText("Digite o Valor do Rendimento");					
+					textValor.setText("Digite o Valor");					
 				}
 			}
 		});
-		textValor.setToolTipText("Digite o Valor do Rendimento");
+		textValor.setToolTipText("Digite o Valor");
 		textValor.setText("Digite o Valor");
 		textValor.setBounds(10, 119, 229, 19);
 		contentPane.add(textValor);
@@ -161,6 +171,7 @@ public class CriacaoWindow extends JFrame {
 		btnGropuTipo.add(rdbtnOcasional);
 		
 		spinnerMes = new JSpinner();
+		spinnerMes.setModel(new SpinnerNumberModel(0, 0, 12, 1));
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
@@ -170,29 +181,19 @@ public class CriacaoWindow extends JFrame {
 		btnSend = new JButton("Enviar");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CategoriaRendimento categoria = (CategoriaRendimento) comboCat.getSelectedItem();
-				String nome = textRend.getText();
-				float valor = (Float.parseFloat(textValor.getText()));
-				int mes = 0;
-				if(rdbtnMensal.isSelected()) {
-					mes = 0;
-				}else {
-					mes = (int) spinnerMes.getValue();
-				}
-				int ano = 25;
-				Rendimento rend = new Rendimento(categoria, nome, valor, mes, ano);
-				RendimentoService rendimentoService = new RendimentoService();
-				try {
-					rendimentoService.cadastrarRendimento(rend);
-				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null,"IOException", "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
-				setVisible(false);
+					try {
+						btnSendActionperformed();
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null,"IOException", "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
+				
 			}
+
+			
 		});
 		btnSend.setBounds(154, 190, 85, 21);
 		contentPane.add(btnSend);
@@ -202,5 +203,27 @@ public class CriacaoWindow extends JFrame {
 		txtDigiteOAno.setBounds(10, 148, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
+	}
+
+	private void btnSendActionperformed() throws SQLException, IOException {
+		this.cadastarRendimento();
+		
+	}
+	
+	public void cadastarRendimento() throws SQLException, IOException {
+		CategoriaRendimento categoria = (CategoriaRendimento) comboCat.getSelectedItem();
+		String nome = textRend.getText();
+		float valor = (Float.parseFloat(textValor.getText()));
+		int mes = 0;
+		if(rdbtnMensal.isSelected()) {
+			mes = 0;
+		}else {
+			mes = (int) spinnerMes.getValue();
+		}
+		int ano = Integer.parseInt(txtDigiteOAno.getText());
+		Rendimento rend = new Rendimento(categoria, nome, valor, mes, ano);
+		RendimentoService rendimentoService = new RendimentoService();
+		rendimentoService.cadastrarRendimento(rend);
+		setVisible(false);
 	}
 }
