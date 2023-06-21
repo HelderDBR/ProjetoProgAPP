@@ -86,6 +86,8 @@ public class RendimentoMensalWindow extends JFrame {
 		
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
 		this.categoriaDespesaService = new CategoriaDespesaService();
+		this.rendimentoService = new RendimentoService();
+		this.despesaService = new DespesasService();
 		
 		try {
 			this.buscarRendimentos();
