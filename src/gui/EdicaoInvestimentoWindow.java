@@ -98,6 +98,7 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		contentPane.add(lblName);
 		
 		textName = new JTextField();
+		textName.setText("Nome");
 		textName.setBounds(10, 85, 96, 19);
 		contentPane.add(textName);
 		textName.setColumns(10);
@@ -107,6 +108,7 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		contentPane.add(lblValue);
 		
 		textValue = new JTextField();
+		textValue.setText("1500");
 		textValue.setBounds(10, 137, 96, 19);
 		contentPane.add(textValue);
 		textValue.setColumns(10);
