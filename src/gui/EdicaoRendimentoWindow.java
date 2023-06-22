@@ -84,8 +84,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		this.despesasService = new DespesasService();
 		
 		try {
-			this.buscarCategorias();
-			this.btnSendActionperformed();
+			this.buscarRendimentos();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -95,22 +94,11 @@ public class EdicaoRendimentoWindow extends JFrame {
 		}
 	}
 
-	private void buscarCategorias() throws SQLException, IOException {
-		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
-		for(CategoriaRendimento categoria : categorias) {
+	private void buscarRendimentos() throws SQLException, IOException {
+		List<Rendimento> categorias = this.rendimentoService.buscarRendimentos();
+		for(Rendimento categoria : categorias) {
 			
 			this.comboCat.addItem(categoria);
-		}
-		
-		for(CategoriaDespesa despesa : despesas) {
-			for (int i = 0; i < comboCat.getItemCount(); i++) {
-				if (despesa.getDescricao().equals((String) comboCat.getSelectedItem())) {
-					
-				}else{
-					this.comboCat.addItem(despesa);
-				}
-			}
 		}
 	}
 

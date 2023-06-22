@@ -243,7 +243,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnEditRend = new JButton("Editar Rendimento");
 		btnEditRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new EdicaoRendimentoWindow();
 			}
 		});
 		editionPanel.add(btnEditRend);
