@@ -243,7 +243,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnEditRend = new JButton("Editar Rendimento");
 		btnEditRend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new EdicaoRendimentoWindow();
+				new EdicaoRendimentoWindow().setVisible(true);
 			}
 		});
 		editionPanel.add(btnEditRend);
@@ -265,6 +265,11 @@ public class RendimentoMensalWindow extends JFrame {
 		editionPanel.add(btnAddDesp);
 		
 		btnEditDesp = new JButton("Editar Despesa");
+		btnEditDesp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ExclusaoDespesaWindow().setVisible(true);
+			}
+		});
 		editionPanel.add(btnEditDesp);
 		
 		btnDelDesp = new JButton("Excluir Despesa");
