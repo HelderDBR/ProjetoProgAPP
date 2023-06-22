@@ -130,7 +130,7 @@ public class CriacaoInvestimentoWindow extends JFrame {
 		
 		invest.setAno((int) spinnerAno.getValue());
 		invest.setMes((int) spinnerMes.getValue());
-		invest.setNome(textName.getName());
+		invest.setNome(textName.getText());
 		invest.setValor(Float.parseFloat(textValue.getText()));
 		
 		this.investimentoService.cadastrarInvestimento(invest);

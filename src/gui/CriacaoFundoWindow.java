@@ -45,16 +45,10 @@ public class CriacaoFundoWindow extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGropuTipo;
 	private JButton btnSend;
-	private CategoriaRendimentoService categoriaRendimentoService;
-	private CategoriaDespesaService categoriaDespensaService;
 	private JSpinner spinnerMes;
 	private JTextField txtDigiteOAno;
-	private RendimentoService rendimentoService;
-	private DespesasService despesasService;
-	private ButtonGroup btnGrupo2;
 	private MaskFormatter mascaraAno;
-	private RendimentoMensalWindow rendimentoWindow;
-	private InvestimentoService investimentoService;
+	private FundoDespesasOcasionaisService fundoService;
 
 	/**
 	 * Launch the application.
@@ -83,7 +77,7 @@ public class CriacaoFundoWindow extends JFrame {
 		setResizable(false);
 		this.criarMascaraAno();
 		this.initComponents();
-		this.investimentoService = new InvestimentoService();
+		this.fundoService = new FundoDespesasOcasionaisService();
 		
 	}
 
@@ -132,7 +126,7 @@ public class CriacaoFundoWindow extends JFrame {
 		textInvest.setColumns(10);
 		
 		textValor = new JTextField();
-		textValor.setText("Digite o Valor do Investimento");
+		textValor.setText("Digite o Valor do Fundo de Despesas");
 		textValor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -200,27 +194,27 @@ public class CriacaoFundoWindow extends JFrame {
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
-		btnGrupo2 = new ButtonGroup();
+		new ButtonGroup();
 	}
 
 	private void btnSendActionperformed() throws SQLException, IOException {
-		cadastarInvestimento();
+		cadastarFundo();
 		
 	}
 
-	public void cadastarInvestimento() throws SQLException, IOException {
-		Investimento invest = new Investimento();
+	public void cadastarFundo() throws SQLException, IOException {
+		FundoDespesasOcasionais fund = new FundoDespesasOcasionais();
 		
-		invest.setNome(textInvest.getText());
-		invest.setValor((Float.parseFloat(textValor.getText())));
+		fund.setNome(textInvest.getText());
+		fund.setValor((Float.parseFloat(textValor.getText())));
 		if(rdbtnMensal.isSelected()) {
-			invest.setMes(0);
+			fund.setMes(0);
 		}else {
-			invest.setMes((int) spinnerMes.getValue());
+			fund.setMes((int) spinnerMes.getValue());
 		}
-		invest.setAno((Integer.parseInt(txtDigiteOAno.getText())));
+		fund.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
-		investimentoService.cadastrarInvestimento(invest);
+		fundoService.cadastrarFundoDespesasOcasionais(fund);
 		setVisible(false);
 	}
 }
