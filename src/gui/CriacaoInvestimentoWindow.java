@@ -22,17 +22,17 @@ import java.awt.event.ActionEvent;
 public class CriacaoInvestimentoWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
+	private JTextField textName;
+	private JTextField textValue;
+	private JLabel lblName;
+	private JLabel lblValue;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JSpinner spinner;
-	private JSpinner spinner_1;
+	private JSpinner spinnerMes;
+	private JSpinner spinnerAno;
 	private InvestimentoService investimentoService;
 	private Investimento investimento;
-	private JButton btnNewButton;
+	private JButton btnSend;
 
 	/**
 	 * Launch the application.
@@ -70,23 +70,23 @@ public class CriacaoInvestimentoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblNewLabel = new JLabel("Digite o Nome:");
-		lblNewLabel.setBounds(10, 10, 96, 13);
-		contentPane.add(lblNewLabel);
+		lblName = new JLabel("Digite o Nome:");
+		lblName.setBounds(10, 10, 96, 13);
+		contentPane.add(lblName);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 33, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textName = new JTextField();
+		textName.setBounds(10, 33, 96, 19);
+		contentPane.add(textName);
+		textName.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("Digite o Valor:");
-		lblNewLabel_1.setBounds(10, 62, 96, 13);
-		contentPane.add(lblNewLabel_1);
+		lblValue = new JLabel("Digite o Valor:");
+		lblValue.setBounds(10, 62, 96, 13);
+		contentPane.add(lblValue);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 85, 96, 19);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textValue = new JTextField();
+		textValue.setBounds(10, 85, 96, 19);
+		contentPane.add(textValue);
+		textValue.setColumns(10);
 		
 		lblNewLabel_2 = new JLabel("Digite o Mês:");
 		lblNewLabel_2.setBounds(128, 10, 78, 13);
@@ -96,18 +96,18 @@ public class CriacaoInvestimentoWindow extends JFrame {
 		lblNewLabel_3.setBounds(128, 62, 78, 13);
 		contentPane.add(lblNewLabel_3);
 		
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 12, 1));
-		spinner.setBounds(216, 7, 45, 20);
-		contentPane.add(spinner);
+		spinnerMes = new JSpinner();
+		spinnerMes.setModel(new SpinnerNumberModel(0, 0, 12, 1));
+		spinnerMes.setBounds(216, 7, 45, 20);
+		contentPane.add(spinnerMes);
 		
-		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(2023, 2000, 2050, 1));
-		spinner_1.setBounds(216, 59, 45, 20);
-		contentPane.add(spinner_1);
+		spinnerAno = new JSpinner();
+		spinnerAno.setModel(new SpinnerNumberModel(2023, 2000, 2050, 1));
+		spinnerAno.setBounds(216, 59, 45, 20);
+		contentPane.add(spinnerAno);
 		
-		btnNewButton = new JButton("Finalizar");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnSend = new JButton("Finalizar");
+		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					btnDoneActionPressed();
@@ -120,17 +120,17 @@ public class CriacaoInvestimentoWindow extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(73, 135, 85, 21);
-		contentPane.add(btnNewButton);
+		btnSend.setBounds(73, 135, 85, 21);
+		contentPane.add(btnSend);
 	}
 
 	protected void btnDoneActionPressed() throws SQLException, IOException {
 		Investimento invest = new Investimento();
 		
-		invest.setAno((int) spinner_1.getValue());
-		invest.setMes((int) spinner.getValue());
-		invest.setNome(textField.getName());
-		invest.setValor(Float.parseFloat(textField_1.getText()));
+		invest.setAno((int) spinnerAno.getValue());
+		invest.setMes((int) spinnerMes.getValue());
+		invest.setNome(textName.getName());
+		invest.setValor(Float.parseFloat(textValue.getText()));
 		
 		this.investimentoService.cadastrarInvestimento(invest);
 		setVisible(false);

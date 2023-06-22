@@ -23,12 +23,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class InvestimentoLongoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private InvestimentoService investimentoService;
+	private JSpinner spinnerMes;
+	private JSpinner spinnerAno;
+	private int mes;
+	private int ano;
 
 	/**
 	 * Launch the application.
@@ -53,9 +59,11 @@ public class InvestimentoLongoWindow extends JFrame {
 		this.initComponents();
 		
 		this.investimentoService = new InvestimentoService();
+		mes = (int) spinnerMes.getValue();
+		ano = (int) spinnerAno.getValue();
 		
 		try {
-			this.buscarInvestimentos();
+			this.buscarInvestimentos(mes, ano);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,7 +73,7 @@ public class InvestimentoLongoWindow extends JFrame {
 		}
 	}
 	
-	private void buscarInvestimentos() throws SQLException, IOException {
+	private void buscarInvestimentos(int mes, int ano) throws SQLException, IOException {
 		List<Investimento> investimentos = this.investimentoService.buscarInvestimento();
 		
 		DefaultTableModel modelo = (DefaultTableModel) this.table.getModel();
@@ -73,7 +81,7 @@ public class InvestimentoLongoWindow extends JFrame {
 		modelo.setRowCount(0);
 		
 		for (Investimento investimento : investimentos) {
-			
+			if (investimento.getAno() == ano) {
 			if (investimento.getMes() == 0) {
 				modelo.addRow(new Object[] {
 						investimento.getNome(),
@@ -81,7 +89,7 @@ public class InvestimentoLongoWindow extends JFrame {
 						"",
 						(investimento.getValor())*12
 				});
-			} else {
+			} else if (investimento.getMes() == mes){
 				modelo.addRow(new Object[] {
 						investimento.getNome(),
 						"",
@@ -90,7 +98,7 @@ public class InvestimentoLongoWindow extends JFrame {
 				});
 			}
 		}
-		
+	}
 	}
 
 	private void initComponents() {
@@ -106,7 +114,7 @@ public class InvestimentoLongoWindow extends JFrame {
 		JLabel lblInvestimentosALongo = new JLabel("Investimentos a Longo Prazo");
 		lblInvestimentosALongo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInvestimentosALongo.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		lblInvestimentosALongo.setBounds(138, 10, 466, 52);
+		lblInvestimentosALongo.setBounds(138, 0, 466, 52);
 		contentPane.add(lblInvestimentosALongo);
 		
 		JPanel panel = new JPanel();
@@ -123,9 +131,19 @@ public class InvestimentoLongoWindow extends JFrame {
 		panel.add(btnAddInves);
 		
 		JButton btnEditInves = new JButton("Editar Investimento");
+		btnEditInves.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EdicaoInvestimentoWindow().setVisible(true);
+			}
+		});
 		panel.add(btnEditInves);
 		
 		JButton btnDelInves = new JButton("Excluir Investimento");
+		btnDelInves.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ExclusaoInvestimentoWindow().setVisible(true);
+			}
+		});
 		panel.add(btnDelInves);
 		
 		JPanel panel_1 = new JPanel();
@@ -166,7 +184,9 @@ public class InvestimentoLongoWindow extends JFrame {
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			try {
-				buscarInvestimentos();
+				mes = (int) spinnerMes.getValue();
+				ano = (int) spinnerAno.getValue();
+				buscarInvestimentos(mes, ano);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -178,5 +198,23 @@ public class InvestimentoLongoWindow extends JFrame {
 		});
 		btnRefresh.setBounds(10, 47, 85, 21);
 		contentPane.add(btnRefresh);
+		
+		JLabel lblNewLabel = new JLabel("Digite o Mes:");
+		lblNewLabel.setBounds(105, 79, 75, 13);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Digite o Ano:");
+		lblNewLabel_1.setBounds(234, 79, 65, 13);
+		contentPane.add(lblNewLabel_1);
+		
+		spinnerMes = new JSpinner();
+		spinnerMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinnerMes.setBounds(169, 76, 55, 20);
+		contentPane.add(spinnerMes);
+		
+		spinnerAno = new JSpinner();
+		spinnerAno.setModel(new SpinnerNumberModel(2023, 2000, 20050, 1));
+		spinnerAno.setBounds(311, 76, 55, 20);
+		contentPane.add(spinnerAno);
 	}
 }
