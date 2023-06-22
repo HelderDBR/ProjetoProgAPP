@@ -72,7 +72,7 @@ public class RendimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("update rendimento nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_rendimento = ? where codigo = ?");
+			st = conn.prepareStatement("update rendimento set nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_rendimento = ? where codigo = ?");
 			
 			st.setString(1, rendimento.getNome());
 			st.setFloat(2, rendimento.getValor());

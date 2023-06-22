@@ -71,7 +71,7 @@ public class InvestimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("update investimento nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
+			st = conn.prepareStatement("update investimento set nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
 			
 			st.setString(1, investimento.getNome());
 			st.setFloat(2, investimento.getValor());
