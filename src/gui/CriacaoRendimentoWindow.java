@@ -247,7 +247,6 @@ public class CriacaoRendimentoWindow extends JFrame {
 		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
 		rendimentoService.cadastrarRendimento(rend);
-		rendimentoWindow.buscarRendimentos();
 		setVisible(false);
 	}
 }
