@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class RendimentoMensalWindow extends JFrame {
 
@@ -61,6 +63,12 @@ public class RendimentoMensalWindow extends JFrame {
 	private DespesasService despesaService;
 	private RendimentoService rendimentoService;
 	private JButton btnRefresh;
+	private JLabel lblNewLabel;
+	private JLabel lblEscolhaOAno;
+	private int mes;
+	private int ano;
+	private JSpinner spinner;
+	private JSpinner spinner_1;
 
 	/**
 	 * Launch the application.
@@ -89,10 +97,11 @@ public class RendimentoMensalWindow extends JFrame {
 		this.categoriaDespesaService = new CategoriaDespesaService();
 		this.rendimentoService = new RendimentoService();
 		this.despesaService = new DespesasService();
-		
+		this.mes = 1;
+		this.ano = 2023;
 		try {
-			this.buscarRendimentos();
-			this.buscarDespesas();
+			this.buscarRendimentos(mes,ano);
+			this.buscarDespesas(mes,ano);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,7 +111,7 @@ public class RendimentoMensalWindow extends JFrame {
 		}
 	}
 
-	public void buscarDespesas() throws SQLException, IOException {
+	public void buscarDespesas(int mes, int ano) throws SQLException, IOException {
 		DefaultTableModel modelo = (DefaultTableModel) tblDesp.getModel();
 		modelo.fireTableDataChanged();
 		modelo.setRowCount(0);
@@ -110,7 +119,7 @@ public class RendimentoMensalWindow extends JFrame {
 		List<Despesas> despesas = this.despesaService.buscarDespesas();
 		
 		for (Despesas despesa : despesas) {
-			
+			if(despesa.getAno() == ano) {
 			if (despesa.getMes() == 0) {
 				
 				modelo.addRow(new Object[] {
@@ -120,7 +129,7 @@ public class RendimentoMensalWindow extends JFrame {
 						"",
 						(despesa.getValor())*12,
 				});
-			} else {
+			} else if(despesa.getMes() == mes){
 				modelo.addRow(new Object[] {
 						despesa.getCategoriaDespesa().getDescricao(),
 						despesa.getNome(),
@@ -130,9 +139,10 @@ public class RendimentoMensalWindow extends JFrame {
 				});
 			}
 		}
+		}
 	}
 
-	public void buscarRendimentos() throws SQLException, IOException {
+	public void buscarRendimentos(int mes, int ano) throws SQLException, IOException {
 		DefaultTableModel modelo = (DefaultTableModel) tblRend.getModel();
 		modelo.fireTableDataChanged();
 		modelo.setRowCount(0);
@@ -140,7 +150,7 @@ public class RendimentoMensalWindow extends JFrame {
 		List<Rendimento> rendimentos = this.rendimentoService.buscarRendimentos();
 		
 		for (Rendimento rendimento : rendimentos) {
-			
+			if(rendimento.getAno() == ano) {
 			if (rendimento.getMes() == 0) {
 				
 				modelo.addRow(new Object[] {
@@ -150,7 +160,7 @@ public class RendimentoMensalWindow extends JFrame {
 						"",
 						(rendimento.getValor())*12,
 				});
-			} else {
+			} else if(rendimento.getMes() == mes){
 				modelo.addRow(new Object[] {
 						rendimento.getCategoriaRendimento().getDescricao(),
 						rendimento.getNome(),
@@ -159,7 +169,7 @@ public class RendimentoMensalWindow extends JFrame {
 						rendimento.getValor(),
 				});
 			}
-		}
+		}}
 	}
 	
 	public void initComponents() {
@@ -368,8 +378,10 @@ public class RendimentoMensalWindow extends JFrame {
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					buscarDespesas();
-					buscarRendimentos();
+					mes = (int) spinner.getValue();
+					ano = (int) spinner_1.getValue();
+					buscarDespesas(mes, ano);
+					buscarRendimentos(mes, ano);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -381,6 +393,23 @@ public class RendimentoMensalWindow extends JFrame {
 		});
 		btnRefresh.setBounds(19, 95, 85, 21);
 		contentPane.add(btnRefresh);
+		
+		lblNewLabel = new JLabel("Escolha o Mês:");
+		lblNewLabel.setBounds(114, 99, 85, 13);
+		contentPane.add(lblNewLabel);
+		
+		lblEscolhaOAno = new JLabel("Escolha o Ano:");
+		lblEscolhaOAno.setBounds(114, 130, 85, 13);
+		contentPane.add(lblEscolhaOAno);
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinner.setBounds(209, 96, 54, 20);
+		contentPane.add(spinner);
+		
+		spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(2000, 2000, 2050, 1));
+		spinner_1.setBounds(209, 123, 54, 20);
+		contentPane.add(spinner_1);
 	}
-	
 }
