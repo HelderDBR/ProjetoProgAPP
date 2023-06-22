@@ -116,7 +116,7 @@ public class ExclusaoFundoWindow extends JFrame {
 	}
 	
 	private void btnDonePressed() throws SQLException, IOException {
-		Investimento invest = (Investimento) this.comboChoice.getSelectedItem();
+		FundoDespesasOcasionais invest = (FundoDespesasOcasionais) this.comboChoice.getSelectedItem();
 		
 		int choice = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este investimento?", "Confirmação", JOptionPane.YES_NO_OPTION);
 		if (choice == 0) {
