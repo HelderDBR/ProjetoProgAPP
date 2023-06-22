@@ -26,7 +26,6 @@ import java.awt.event.ActionEvent;
 public class ResumoMensalWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnExport;
 	private JButton btnBack;
 	private JLabel lblNewLabel;
 	private JPanel panel;
@@ -145,10 +144,6 @@ public class ResumoMensalWindow extends JFrame {
 		table.getColumnModel().getColumn(0).setPreferredWidth(416);
 		table.getColumnModel().getColumn(1).setPreferredWidth(218);
 		scrollPane.setViewportView(table);
-		
-		btnExport = new JButton("Exportar Resumo");
-		btnExport.setBounds(642, 43, 177, 21);
-		contentPane.add(btnExport);
 		
 		btnBack = new JButton("Voltar");
 		btnBack.addActionListener(new ActionListener() {

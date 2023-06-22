@@ -27,7 +27,6 @@ import java.awt.event.ActionEvent;
 public class ResumoAnualWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnExport;
 	private JButton btnBack;
 	private JLabel lblNewLabel;
 	private JPanel panel;
@@ -163,23 +162,6 @@ public class ResumoAnualWindow extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(134);
 		table.getColumnModel().getColumn(3).setPreferredWidth(136);
 		scrollPane.setViewportView(table);
-		
-		btnExport = new JButton("Exportar Resumo");
-		btnExport.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					File file = new File();
-					file.createNewFile();
-					
-					
-					
-				} catch (IOException ex){
-					
-				}
-			}
-		});
-		btnExport.setBounds(642, 43, 177, 21);
-		contentPane.add(btnExport);
 		
 		btnBack = new JButton("Voltar");
 		btnBack.addActionListener(new ActionListener() {

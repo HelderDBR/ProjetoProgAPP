@@ -24,8 +24,6 @@ public class MenuWindow extends JFrame {
 	private JButton btnResumoMensal;
 	private JButton btnResumoAnual;
 	private JLabel lblNewLabel;
-	private int mes;
-	private int ano;
 
 	/**
 	 * Launch the application.
