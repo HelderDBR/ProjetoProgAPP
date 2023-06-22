@@ -51,6 +51,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 	private RendimentoService rendimentoService;
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
+	private JComboBox comboRend;
 
 	/**
 	 * Launch the application.
@@ -84,6 +85,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		this.despesasService = new DespesasService();
 		
 		try {
+			this.buscarCategorias();
 			this.buscarRendimentos();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
@@ -94,11 +96,19 @@ public class EdicaoRendimentoWindow extends JFrame {
 		}
 	}
 
+	private void buscarCategorias() {
+		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
+		for(CategoriaRendimento categoria : categorias) {
+			
+			this.comboCat.addItem(categoria);
+		}
+	}
+
 	private void buscarRendimentos() throws SQLException, IOException {
 		List<Rendimento> categorias = this.rendimentoService.buscarRendimentos();
 		for(Rendimento categoria : categorias) {
 			
-			this.comboCat.addItem(categoria);
+			this.comboRend.addItem(categoria);
 		}
 	}
 
@@ -211,7 +221,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
-		JComboBox comboRend = new JComboBox();
+		comboRend = new JComboBox();
 		comboRend.setToolTipText("Rendimento a ser Editado:");
 		comboRend.setBounds(10, 10, 229, 21);
 		contentPane.add(comboRend);
