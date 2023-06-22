@@ -117,7 +117,7 @@ public class ExclusaoCategoriaDespesaWindow extends JFrame {
 		if (choice == 0) {
 			for (CategoriaDespesa despesa : categorias) {
 				if (comboChoice.getSelectedItem().toString().equals(despesa.toString())) {
-					this.categoriaRendimentoService.excluirCategoriaRendimento(despesa.getCodigo());
+					this.categoriaDespensaService.excluirCategoriaDespesa(despesa.getCodigo());
 				}
 			}
 		}
