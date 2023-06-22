@@ -24,8 +24,6 @@ public class MenuWindow extends JFrame {
 	private JButton btnResumoMensal;
 	private JButton btnResumoAnual;
 	private JLabel lblNewLabel;
-	private int mes;
-	private int ano;
 
 	/**
 	 * Launch the application.
@@ -88,7 +86,6 @@ public class MenuWindow extends JFrame {
 		btnResumoMensal = new JButton("Resumo Mensal");
 		btnResumoMensal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mes = (int) JOptionPane.showInputDialog(null,"","", JOptionPane.INFORMATION_MESSAGE);
 				new ResumoMensalWindow().setVisible(true);
 				setVisible(false);
 			}
