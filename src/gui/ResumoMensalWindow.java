@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import entities.ResumoMensal;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class ResumoMensalWindow extends JFrame {
@@ -54,16 +57,25 @@ public class ResumoMensalWindow extends JFrame {
 	 */
 	public ResumoMensalWindow() {
 		this.initComponents();
+		mes = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o Mês Desejado:","Informar Mês", JOptionPane.INFORMATION_MESSAGE));
+		ano = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o Ano Desejado:","Informar Ano", JOptionPane.INFORMATION_MESSAGE));
 		
 		
-		
-		this.buscarLinhas();
+		try {
+			this.buscarLinhas(mes,ano);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
-	private void buscarLinhas() {
+	private void buscarLinhas(int mes, int ano) throws SQLException, IOException {
 		ResumoMensal resumo = new ResumoMensal();
-		resumo.criarResumoMensal(, );
+		resumo.criarResumoMensal(mes,ano);
 		
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.fireTableDataChanged();
