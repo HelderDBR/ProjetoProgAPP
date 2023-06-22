@@ -240,7 +240,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 	
 
 	public void editarRendimento() throws SQLException, IOException {
-		Rendimento rend = new Rendimento();
+		Rendimento rend = (Rendimento) comboRend.getSelectedItem();
 		
 		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
 		rend.setNome(textRend.getText());
