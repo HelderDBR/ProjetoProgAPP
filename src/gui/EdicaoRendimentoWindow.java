@@ -52,6 +52,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
 	private JComboBox comboRend;
+	private JLabel lblEscolhaORendimento;
 
 	/**
 	 * Launch the application.
@@ -96,7 +97,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		}
 	}
 
-	private void buscarCategorias() {
+	private void buscarCategorias() throws SQLException, IOException {
 		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
 		for(CategoriaRendimento categoria : categorias) {
 			
@@ -125,7 +126,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 59, 229, 21);
+		comboCat.setBounds(10, 72, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
@@ -145,7 +146,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		});
 		textRend.setText("Digite o Nome");
 		textRend.setToolTipText("Digite o Nome");
-		textRend.setBounds(10, 90, 229, 19);
+		textRend.setBounds(10, 103, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
 		
@@ -166,7 +167,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		});
 		textValor.setToolTipText("Digite o Valor");
 		textValor.setText("Digite o Valor");
-		textValor.setBounds(10, 119, 229, 19);
+		textValor.setBounds(10, 132, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
@@ -192,7 +193,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
-		lblCategoria.setBounds(10, 36, 229, 13);
+		lblCategoria.setBounds(10, 53, 229, 13);
 		contentPane.add(lblCategoria);
 		
 		btnSend = new JButton("Enviar");
@@ -217,14 +218,18 @@ public class EdicaoRendimentoWindow extends JFrame {
 		
 		txtDigiteOAno = new JTextField();
 		txtDigiteOAno.setText("Digite o Ano");
-		txtDigiteOAno.setBounds(10, 148, 229, 19);
+		txtDigiteOAno.setBounds(10, 161, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
 		comboRend = new JComboBox();
 		comboRend.setToolTipText("Rendimento a ser Editado:");
-		comboRend.setBounds(10, 10, 229, 21);
+		comboRend.setBounds(10, 32, 229, 21);
 		contentPane.add(comboRend);
+		
+		lblEscolhaORendimento = new JLabel("Escolha o Rendimento:");
+		lblEscolhaORendimento.setBounds(10, 10, 229, 13);
+		contentPane.add(lblEscolhaORendimento);
 		
 		btnGrupo2 = new ButtonGroup();
 	}

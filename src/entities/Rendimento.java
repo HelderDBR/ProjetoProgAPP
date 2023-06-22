@@ -36,7 +36,7 @@ public class Rendimento {
 	
 	@Override
 	public String toString() {
-		return this.getNome() + this.getValor();
+		return (this.getNome()+ " " + this.getValor());
 	}
 
 	public int getCodigo() {
