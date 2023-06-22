@@ -97,8 +97,8 @@ public class RendimentoMensalWindow extends JFrame {
 		this.categoriaDespesaService = new CategoriaDespesaService();
 		this.rendimentoService = new RendimentoService();
 		this.despesaService = new DespesasService();
-		this.mes = 1;
-		this.ano = 2023;
+		this.mes = (int) spinner.getValue();
+		this.ano = (int) spinner_1.getValue();
 		try {
 			this.buscarRendimentos(mes,ano);
 			this.buscarDespesas(mes,ano);
@@ -408,7 +408,7 @@ public class RendimentoMensalWindow extends JFrame {
 		contentPane.add(spinner);
 		
 		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(2000, 2000, 2050, 1));
+		spinner_1.setModel(new SpinnerNumberModel(2023, 2000, 2050, 1));
 		spinner_1.setBounds(209, 123, 54, 20);
 		contentPane.add(spinner_1);
 	}
