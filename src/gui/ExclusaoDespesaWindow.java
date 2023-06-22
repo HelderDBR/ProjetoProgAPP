@@ -88,7 +88,7 @@ public class ExclusaoDespesaWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblName = new JLabel("Escolha a Categoria a ser Excluida:");
+		lblName = new JLabel("Escolha a Despesa a ser Excluida:");
 		lblName.setBounds(10, 10, 281, 13);
 		contentPane.add(lblName);
 		

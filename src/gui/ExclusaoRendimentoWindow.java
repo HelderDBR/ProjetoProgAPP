@@ -90,7 +90,7 @@ public class ExclusaoRendimentoWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblName = new JLabel("Escolha a Categoria a ser Excluida:");
+		lblName = new JLabel("Escolha o Rendimento a ser Excluido:");
 		lblName.setBounds(10, 10, 281, 13);
 		contentPane.add(lblName);
 		
@@ -121,7 +121,7 @@ public class ExclusaoRendimentoWindow extends JFrame {
 	private void btnDonePressed() throws SQLException, IOException {
 		Rendimento rend = (Rendimento) this.comboChoice.getSelectedItem();
 		
-		int choice = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esta despesa?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		int choice = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este rendimento?", "Confirmação", JOptionPane.YES_NO_OPTION);
 		if (choice == 0) {
 			this.rendimentoService.excluirRendimento(rend.getCodigo());
 		}
