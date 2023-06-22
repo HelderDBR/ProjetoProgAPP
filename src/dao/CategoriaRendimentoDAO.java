@@ -89,7 +89,7 @@ public class CategoriaRendimentoDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("update categoria_rendimento descricao = ? where codigo = ?");
+			st = conn.prepareStatement("update categoria_rendimento set descricao = ? where codigo = ?");
 			
 			st.setString(1, categoriaRendimento.getDescricao());
 			st.setInt(2, categoriaRendimento.getCodigo());

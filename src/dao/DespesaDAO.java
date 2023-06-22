@@ -73,7 +73,7 @@ public class DespesaDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("update despesas nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_despesa = ? where codigo = ?");
+			st = conn.prepareStatement("update despesas set nome = ?, valor = ?, mes = ?, ano = ?, codigo_categoria_despesa = ? where codigo = ?");
 			
 			st.setString(1, despesa.getNome());
 			st.setFloat(2, despesa.getValor());

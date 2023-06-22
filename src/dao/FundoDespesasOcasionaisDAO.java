@@ -68,7 +68,7 @@ public class FundoDespesasOcasionaisDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = conn.prepareStatement("update fundo_despesas_ocasionais nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
+			st = conn.prepareStatement("update fundo_despesas_ocasionais set nome = ?, valor = ?, mes = ?, ano = ? where codigo = ?");
 			
 			st.setString(1, fundoDespesasOcasionais.getNome());
 			st.setFloat(2, fundoDespesasOcasionais.getValor());
