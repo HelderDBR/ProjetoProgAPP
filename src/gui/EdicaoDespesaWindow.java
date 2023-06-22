@@ -51,6 +51,8 @@ public class EdicaoDespesaWindow extends JFrame {
 	private RendimentoService rendimentoService;
 	private DespesasService despesasService;
 	private ButtonGroup btnGrupo2;
+	private JComboBox comboRend;
+	private JLabel lblEscolhaORendimento;
 
 	/**
 	 * Launch the application.
@@ -85,6 +87,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		
 		try {
 			this.buscarCategorias();
+			this.buscarDespesas();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -95,21 +98,18 @@ public class EdicaoDespesaWindow extends JFrame {
 	}
 
 	private void buscarCategorias() throws SQLException, IOException {
-		List<CategoriaRendimento> categorias = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
-		for(CategoriaRendimento categoria : categorias) {
+		List<CategoriaDespesa> categorias = this.categoriaDespensaService.buscarCategoriasDespesa();
+		for(CategoriaDespesa categoria : categorias) {
 			
 			this.comboCat.addItem(categoria);
 		}
-		
-		for(CategoriaDespesa despesa : despesas) {
-			for (int i = 0; i < comboCat.getItemCount(); i++) {
-				if (despesa.getDescricao().equals((String) comboCat.getSelectedItem())) {
-					
-				}else{
-					this.comboCat.addItem(despesa);
-				}
-			}
+	}
+
+	private void buscarDespesas() throws SQLException, IOException {
+		List<Despesas> categorias = this.despesasService.buscarDespesas();
+		for(Despesas categoria : categorias) {
+			
+			this.comboRend.addItem(categoria);
 		}
 	}
 
@@ -126,7 +126,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 59, 229, 21);
+		comboCat.setBounds(10, 72, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
@@ -146,7 +146,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		});
 		textRend.setText("Digite o Nome");
 		textRend.setToolTipText("Digite o Nome");
-		textRend.setBounds(10, 90, 229, 19);
+		textRend.setBounds(10, 103, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
 		
@@ -167,7 +167,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		});
 		textValor.setToolTipText("Digite o Valor");
 		textValor.setText("Digite o Valor");
-		textValor.setBounds(10, 119, 229, 19);
+		textValor.setBounds(10, 132, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
@@ -193,7 +193,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
-		lblCategoria.setBounds(10, 36, 229, 13);
+		lblCategoria.setBounds(10, 53, 229, 13);
 		contentPane.add(lblCategoria);
 		
 		btnSend = new JButton("Enviar");
@@ -218,37 +218,41 @@ public class EdicaoDespesaWindow extends JFrame {
 		
 		txtDigiteOAno = new JTextField();
 		txtDigiteOAno.setText("Digite o Ano");
-		txtDigiteOAno.setBounds(10, 148, 229, 19);
+		txtDigiteOAno.setBounds(10, 161, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
 		
-		JComboBox comboRend = new JComboBox();
+		comboRend = new JComboBox();
 		comboRend.setToolTipText("Rendimento a ser Editado:");
-		comboRend.setBounds(10, 10, 229, 21);
+		comboRend.setBounds(10, 32, 229, 21);
 		contentPane.add(comboRend);
+		
+		lblEscolhaORendimento = new JLabel("Escolha o Rendimento:");
+		lblEscolhaORendimento.setBounds(10, 10, 229, 13);
+		contentPane.add(lblEscolhaORendimento);
 		
 		btnGrupo2 = new ButtonGroup();
 	}
 
 	private void btnSendActionperformed() throws SQLException, IOException {
-		this.editarDespesa();	
+		this.editarRendimento();	
 	}
 	
 
-	public void editarDespesa() throws SQLException, IOException {
-		Despesas desp = new Despesas();
+	public void editarRendimento() throws SQLException, IOException {
+		Rendimento rend = (Rendimento) comboRend.getSelectedItem();
 		
-		desp.setCategoria((CategoriaDespesa) comboCat.getSelectedItem());
-		desp.setNome(textRend.getText());
-		desp.setValor((Float.parseFloat(textValor.getText())));
-		if (rdbtnMensal.isSelected()) {
-			desp.setMes(0);
+		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
+		rend.setNome(textRend.getText());
+		rend.setValor((Float.parseFloat(textValor.getText())));
+		if(rdbtnMensal.isSelected()) {
+			rend.setMes(0);
 		}else {
-			desp.setMes((int) spinnerMes.getValue());
+			rend.setMes((int) spinnerMes.getValue());
 		}
-		desp.setAno((Integer.parseInt(txtDigiteOAno.getText())));
+		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
-		despesasService.editarDespesas(desp);
+		this.rendimentoService.editarRendimento(rend);
 		setVisible(false);
 	}
 }
