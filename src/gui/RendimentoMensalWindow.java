@@ -227,7 +227,13 @@ public class RendimentoMensalWindow extends JFrame {
 		btnDelCat = new JButton("Excluir Categoria");
 		btnDelCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ExclusaoCategoriaWindow().setVisible(true);;
+				int choice = JOptionPane.showConfirmDialog(null, "Sim - Rendimento\n Não - Despesa.", "Escolha de Categoria", JOptionPane.YES_NO_OPTION);
+				if (choice == 0) {
+					new ExclusaoCategoriaRendimentoWindow().setVisible(true);
+				}else {
+					new ExclusaoCategoriaDespesaWindow().setVisible(true);
+				}
+				
 			}
 		});
 		editionPanel.add(btnDelCat);

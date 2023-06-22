@@ -21,7 +21,7 @@ import entities.CategoriaRendimento;
 import service.CategoriaDespesaService;
 import service.CategoriaRendimentoService;
 
-public class ExclusaoCategoriaWindow extends JFrame {
+public class ExclusaoCategoriaRendimentoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnDone;
@@ -37,7 +37,7 @@ public class ExclusaoCategoriaWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ExclusaoCategoriaWindow frame = new ExclusaoCategoriaWindow();
+					ExclusaoCategoriaRendimentoWindow frame = new ExclusaoCategoriaRendimentoWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class ExclusaoCategoriaWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ExclusaoCategoriaWindow() {
+	public ExclusaoCategoriaRendimentoWindow() {
 		setResizable(false);
 		this.initComponents();
 		this.categoriaRendimentoService = new CategoriaRendimentoService();
@@ -66,19 +66,10 @@ public class ExclusaoCategoriaWindow extends JFrame {
 	}
 	
 	private void buscarCategorias() throws SQLException, IOException {
-		List<CategoriaDespesa> despesas = this.categoriaDespensaService.buscarCategoriasDespesa();
 		List<CategoriaRendimento> rendimentos = this.categoriaRendimentoService.buscarCategoriasRendimento();
-		for(CategoriaDespesa despesa : despesas) {
-			this.comboChoice.addItem(despesa);
+		for(CategoriaRendimento rendimento : rendimentos) {
+			this.comboChoice.addItem(rendimento);
 		}
-		for (CategoriaRendimento categoriaRendimento : rendimentos) {
-			if (rendimentos.equals(comboChoice.getSelectedItem())) {
-				
-			}else {
-				this.comboChoice.addItem(categoriaRendimento);
-			}
-		}
-		
 	}
 
 	private void initComponents() {
@@ -120,22 +111,15 @@ public class ExclusaoCategoriaWindow extends JFrame {
 	}
 	
 	private void btnDonePressed() throws SQLException, IOException {
-		List<CategoriaDespesa> categorias = this.categoriaDespensaService.buscarCategoriasDespesa();
-		List<CategoriaRendimento> rendimentos = this.categoriaRendimentoService.buscarCategoriasRendimento();
+		List<CategoriaRendimento> catRendimentos = this.categoriaRendimentoService.buscarCategoriasRendimento();
 		
-		int choice = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esta categoria?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		int choice = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esta categoria? Todos os Rendimentos nesta categoria também serão excluídos", "Confirmação", JOptionPane.YES_NO_OPTION);
 		if (choice == 0) {
-			for (CategoriaRendimento rendimento : rendimentos) {
-				if (comboChoice.getSelectedItem().equals(rendimento)) {
-					this.categoriaRendimentoService.excluirCategoriaRendimento(rendimento.getCodigo());
+			for (CategoriaRendimento catRend : catRendimentos) {
+				if (comboChoice.getSelectedItem().toString().equals(catRend.toString())) {
+					this.categoriaRendimentoService.excluirCategoriaRendimento(catRend.getCodigo());
 				}
 			}
-			for (CategoriaDespesa despesa : categorias) {
-				if (comboChoice.getSelectedItem().equals(despesa)) {
-					this.categoriaRendimentoService.excluirCategoriaRendimento(despesa.getCodigo());
-				}
-			}
-			
 		}
 		this.setVisible(false);
 	}
