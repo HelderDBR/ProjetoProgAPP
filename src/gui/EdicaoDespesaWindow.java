@@ -85,7 +85,6 @@ public class EdicaoDespesaWindow extends JFrame {
 		
 		try {
 			this.buscarCategorias();
-			this.btnSendActionperformed();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
