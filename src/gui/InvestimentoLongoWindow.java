@@ -115,6 +115,11 @@ public class InvestimentoLongoWindow extends JFrame {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnAddInves = new JButton("Cadastrar Investimento");
+		btnAddInves.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CriacaoInvestimentoWindow().setVisible(true);
+			}
+		});
 		panel.add(btnAddInves);
 		
 		JButton btnEditInves = new JButton("Editar Investimento");
@@ -156,5 +161,22 @@ public class InvestimentoLongoWindow extends JFrame {
 		});
 		btnBack.setBounds(10, 75, 85, 21);
 		contentPane.add(btnBack);
+		
+		JButton btnRefresh = new JButton("Atualizar");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			try {
+				buscarInvestimentos();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			}
+		});
+		btnRefresh.setBounds(10, 47, 85, 21);
+		contentPane.add(btnRefresh);
 	}
 }
