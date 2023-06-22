@@ -252,7 +252,7 @@ public class EdicaoRendimentoWindow extends JFrame {
 		}
 		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
-		rendimentoService.editarRendimento(rend);
+		this.rendimentoService.editarRendimento(rend);
 		setVisible(false);
 	}
 }

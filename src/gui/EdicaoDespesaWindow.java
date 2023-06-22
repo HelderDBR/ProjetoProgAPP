@@ -237,7 +237,7 @@ public class EdicaoDespesaWindow extends JFrame {
 	
 
 	public void editarDespesa() throws SQLException, IOException {
-Despesas desp = new Despesas();
+		Despesas desp = new Despesas();
 		
 		desp.setCategoria((CategoriaDespesa) comboCat.getSelectedItem());
 		desp.setNome(textRend.getText());

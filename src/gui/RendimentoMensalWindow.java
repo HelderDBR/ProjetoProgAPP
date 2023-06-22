@@ -60,6 +60,7 @@ public class RendimentoMensalWindow extends JFrame {
 	private CategoriaDespesaService categoriaDespesaService;
 	private DespesasService despesaService;
 	private RendimentoService rendimentoService;
+	private JButton btnRefresh;
 
 	/**
 	 * Launch the application.
@@ -267,7 +268,7 @@ public class RendimentoMensalWindow extends JFrame {
 		btnEditDesp = new JButton("Editar Despesa");
 		btnEditDesp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ExclusaoDespesaWindow().setVisible(true);
+				new EdicaoDespesaWindow().setVisible(true);
 			}
 		});
 		editionPanel.add(btnEditDesp);
@@ -351,6 +352,24 @@ public class RendimentoMensalWindow extends JFrame {
 		});
 		btnBack.setBounds(19, 126, 85, 21);
 		contentPane.add(btnBack);
+		
+		btnRefresh = new JButton("Atualizar");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					buscarDespesas();
+					buscarRendimentos();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnRefresh.setBounds(19, 95, 85, 21);
+		contentPane.add(btnRefresh);
 	}
 	
 }
