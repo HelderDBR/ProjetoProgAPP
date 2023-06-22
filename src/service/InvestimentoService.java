@@ -16,7 +16,7 @@ public class InvestimentoService {
 	public void cadastrarInvestimento(Investimento investimento) throws SQLException, IOException {
 			
 			Connection conn = BancoDados.conectar();
-			new InvestimentoDAO(conn).cadastrar(Investimento);
+			new InvestimentoDAO(conn).cadastrar(investimento);
 		}
 	
 	public List<Investimento> buscarInvestimento() throws SQLException, IOException {

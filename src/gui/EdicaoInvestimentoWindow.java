@@ -162,7 +162,7 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		
 		invest.setAno((int) spinnerAno.getValue());
 		invest.setMes((int) spinnerMes.getValue());
-		invest.setNome(textName.getName());
+		invest.setNome(textName.getText());
 		invest.setValor(Float.parseFloat(textValue.getText()));
 		
 		this.investimentoService.editarInvestimento(invest);
