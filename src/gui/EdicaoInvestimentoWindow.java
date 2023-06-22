@@ -17,7 +17,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class EdicaoInvestimentoWindow extends JFrame {
 
@@ -33,6 +35,8 @@ public class EdicaoInvestimentoWindow extends JFrame {
 	private InvestimentoService investimentoService;
 	private Investimento investimento;
 	private JButton btnSend;
+	private JComboBox comboBox;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -57,13 +61,31 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		setTitle("Cadastro de Investimento");
 		this.setResizable(false);
 		this.initComponents();
+		try {
+			this.buscarInvestimentos();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.investimentoService = new InvestimentoService();
 	}
 	
+	private void buscarInvestimentos() throws SQLException, IOException {
+		List<Investimento> investimentos = this.investimentoService.buscarInvestimento();
+		
+		for (Investimento investimento : investimentos) {
+				comboBox.addItem(investimento);
+		}
+		
+	}
+
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 288, 212);
+		setBounds(100, 100, 291, 256);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -71,39 +93,39 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblName = new JLabel("Digite o Nome:");
-		lblName.setBounds(10, 10, 96, 13);
+		lblName.setBounds(10, 62, 96, 13);
 		contentPane.add(lblName);
 		
 		textName = new JTextField();
-		textName.setBounds(10, 33, 96, 19);
+		textName.setBounds(10, 85, 96, 19);
 		contentPane.add(textName);
 		textName.setColumns(10);
 		
 		lblValue = new JLabel("Digite o Valor:");
-		lblValue.setBounds(10, 62, 96, 13);
+		lblValue.setBounds(10, 114, 96, 13);
 		contentPane.add(lblValue);
 		
 		textValue = new JTextField();
-		textValue.setBounds(10, 85, 96, 19);
+		textValue.setBounds(10, 137, 96, 19);
 		contentPane.add(textValue);
 		textValue.setColumns(10);
 		
 		lblNewLabel_2 = new JLabel("Digite o Mês:");
-		lblNewLabel_2.setBounds(128, 10, 78, 13);
+		lblNewLabel_2.setBounds(116, 62, 78, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Digite o Ano:");
-		lblNewLabel_3.setBounds(128, 62, 78, 13);
+		lblNewLabel_3.setBounds(116, 88, 78, 13);
 		contentPane.add(lblNewLabel_3);
 		
 		spinnerMes = new JSpinner();
 		spinnerMes.setModel(new SpinnerNumberModel(0, 0, 12, 1));
-		spinnerMes.setBounds(216, 7, 45, 20);
+		spinnerMes.setBounds(204, 59, 68, 20);
 		contentPane.add(spinnerMes);
 		
 		spinnerAno = new JSpinner();
 		spinnerAno.setModel(new SpinnerNumberModel(2023, 2000, 2050, 1));
-		spinnerAno.setBounds(216, 59, 45, 20);
+		spinnerAno.setBounds(204, 85, 68, 20);
 		contentPane.add(spinnerAno);
 		
 		btnSend = new JButton("Finalizar");
@@ -120,12 +142,20 @@ public class EdicaoInvestimentoWindow extends JFrame {
 				}
 			}
 		});
-		btnSend.setBounds(73, 135, 85, 21);
+		btnSend.setBounds(121, 188, 85, 21);
 		contentPane.add(btnSend);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(10, 33, 133, 21);
+		contentPane.add(comboBox);
+		
+		lblNewLabel = new JLabel("Escolha o Investimento a ser Editado:");
+		lblNewLabel.setBounds(10, 10, 184, 13);
+		contentPane.add(lblNewLabel);
 	}
 
 	protected void btnDoneActionPressed() throws SQLException, IOException {
-		Investimento invest = new Investimento();
+		Investimento invest = (Investimento) comboBox.getSelectedItem();
 		
 		invest.setAno((int) spinnerAno.getValue());
 		invest.setMes((int) spinnerMes.getValue());

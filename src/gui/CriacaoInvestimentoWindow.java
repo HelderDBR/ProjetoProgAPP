@@ -59,6 +59,7 @@ public class CriacaoInvestimentoWindow extends JFrame {
 		this.initComponents();
 		
 		this.investimentoService = new InvestimentoService();
+		this.investimento = new Investimento();
 	}
 	
 	private void initComponents() {
