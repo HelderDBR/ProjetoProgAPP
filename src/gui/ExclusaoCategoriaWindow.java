@@ -56,7 +56,6 @@ public class ExclusaoCategoriaWindow extends JFrame {
 		this.categoriaDespensaService = new CategoriaDespesaService();
 		try {
 			buscarCategorias();
-			btnDonePressed();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,"SQLException", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
