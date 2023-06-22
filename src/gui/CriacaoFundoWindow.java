@@ -49,6 +49,9 @@ public class CriacaoFundoWindow extends JFrame {
 	private JTextField txtDigiteOAno;
 	private MaskFormatter mascaraAno;
 	private FundoDespesasOcasionaisService fundoService;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -121,7 +124,7 @@ public class CriacaoFundoWindow extends JFrame {
 			}
 		});
 		textInvest.setToolTipText("Digite o Nome");
-		textInvest.setBounds(10, 23, 229, 19);
+		textInvest.setBounds(10, 41, 229, 19);
 		contentPane.add(textInvest);
 		textInvest.setColumns(10);
 		
@@ -142,7 +145,7 @@ public class CriacaoFundoWindow extends JFrame {
 			}
 		});
 		textValor.setToolTipText("Digite o Valor");
-		textValor.setBounds(10, 52, 229, 19);
+		textValor.setBounds(10, 93, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
@@ -184,15 +187,27 @@ public class CriacaoFundoWindow extends JFrame {
 
 			
 		});
-		btnSend.setBounds(154, 140, 85, 21);
+		btnSend.setBounds(312, 133, 85, 21);
 		contentPane.add(btnSend);
 		
 		txtDigiteOAno = new JFormattedTextField(mascaraAno);
 		txtDigiteOAno.setText("2023");
 		txtDigiteOAno.setToolTipText("Digite o Ano");
-		txtDigiteOAno.setBounds(10, 88, 229, 19);
+		txtDigiteOAno.setBounds(10, 134, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
+		
+		lblNewLabel = new JLabel("Digite o Ano:");
+		lblNewLabel.setBounds(10, 118, 229, 13);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("Digite o Valor:");
+		lblNewLabel_1.setBounds(10, 70, 229, 13);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("Digite o Nome:");
+		lblNewLabel_2.setBounds(10, 18, 229, 13);
+		contentPane.add(lblNewLabel_2);
 		
 		new ButtonGroup();
 	}

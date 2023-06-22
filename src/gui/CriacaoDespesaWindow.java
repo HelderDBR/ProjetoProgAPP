@@ -56,6 +56,7 @@ public class CriacaoDespesaWindow extends JFrame {
 	private ButtonGroup btnGrupo2;
 	private MaskFormatter mascaraAno;
 	private RendimentoMensalWindow rendimentoWindow;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -131,7 +132,7 @@ private void criarMascaraAno() {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 49, 229, 21);
+		comboCat.setBounds(10, 33, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
@@ -172,7 +173,7 @@ private void criarMascaraAno() {
 		});
 		textValor.setToolTipText("Digite o Valor");
 		textValor.setText("Digite o Valor");
-		textValor.setBounds(10, 119, 229, 19);
+		textValor.setBounds(10, 139, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
@@ -198,7 +199,7 @@ private void criarMascaraAno() {
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
-		lblCategoria.setBounds(10, 26, 399, 13);
+		lblCategoria.setBounds(10, 10, 399, 13);
 		contentPane.add(lblCategoria);
 		
 		btnSend = new JButton("Enviar");
@@ -218,14 +219,26 @@ private void criarMascaraAno() {
 
 			
 		});
-		btnSend.setBounds(154, 190, 85, 21);
+		btnSend.setBounds(293, 190, 85, 21);
 		contentPane.add(btnSend);
 		
 		txtDigiteOAno = new JFormattedTextField(mascaraAno);
-		txtDigiteOAno.setText("Digite o Ano");
-		txtDigiteOAno.setBounds(10, 148, 229, 19);
+		txtDigiteOAno.setText("2023");
+		txtDigiteOAno.setBounds(10, 191, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
+		
+		lblNewLabel = new JLabel("Digite o Ano:");
+		lblNewLabel.setBounds(10, 168, 229, 13);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Digite o Valor:");
+		lblNewLabel_1.setBounds(10, 116, 229, 13);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Digite o Nome:");
+		lblNewLabel_2.setBounds(10, 64, 229, 13);
+		contentPane.add(lblNewLabel_2);
 		
 		btnGrupo2 = new ButtonGroup();
 	}

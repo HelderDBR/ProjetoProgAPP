@@ -56,6 +56,9 @@ public class CriacaoRendimentoWindow extends JFrame {
 	private ButtonGroup btnGrupo2;
 	private MaskFormatter mascaraAno;
 	private RendimentoMensalWindow rendimentoWindow;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -74,9 +77,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * @throws IOException 
-	 * @throws SQLException 
+	 * Create the frame. 
 	 */
 	
 	
@@ -131,10 +132,11 @@ public class CriacaoRendimentoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		comboCat = new JComboBox();
-		comboCat.setBounds(10, 49, 229, 21);
+		comboCat.setBounds(10, 26, 229, 21);
 		contentPane.add(comboCat);
 		
 		textRend = new JTextField();
+		textRend.setText("Digite o Nome");
 		textRend.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -150,11 +152,12 @@ public class CriacaoRendimentoWindow extends JFrame {
 			}
 		});
 		textRend.setToolTipText("Digite o Nome");
-		textRend.setBounds(10, 90, 229, 19);
+		textRend.setBounds(10, 80, 229, 19);
 		contentPane.add(textRend);
 		textRend.setColumns(10);
 		
 		textValor = new JTextField();
+		textValor.setText("Digite o Valor");
 		textValor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -170,7 +173,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 			}
 		});
 		textValor.setToolTipText("Digite o Valor");
-		textValor.setBounds(10, 119, 229, 19);
+		textValor.setBounds(10, 132, 229, 19);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 		
@@ -196,7 +199,7 @@ public class CriacaoRendimentoWindow extends JFrame {
 		panel.add(spinnerMes);
 		
 		lblCategoria = new JLabel("Escolha a Categoria");
-		lblCategoria.setBounds(10, 26, 399, 13);
+		lblCategoria.setBounds(8, 10, 399, 13);
 		contentPane.add(lblCategoria);
 		
 		btnSend = new JButton("Enviar");
@@ -216,14 +219,27 @@ public class CriacaoRendimentoWindow extends JFrame {
 
 			
 		});
-		btnSend.setBounds(154, 190, 85, 21);
+		btnSend.setBounds(291, 190, 85, 21);
 		contentPane.add(btnSend);
 		
 		txtDigiteOAno = new JFormattedTextField(mascaraAno);
+		txtDigiteOAno.setText("2023");
 		txtDigiteOAno.setToolTipText("Digite o Ano");
-		txtDigiteOAno.setBounds(10, 148, 229, 19);
+		txtDigiteOAno.setBounds(10, 191, 229, 19);
 		contentPane.add(txtDigiteOAno);
 		txtDigiteOAno.setColumns(10);
+		
+		lblNewLabel = new JLabel("Digite o Ano:");
+		lblNewLabel.setBounds(10, 168, 229, 13);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("Digite o Nome:");
+		lblNewLabel_1.setBounds(10, 57, 229, 13);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("Digite o Valor:");
+		lblNewLabel_2.setBounds(10, 109, 229, 13);
+		contentPane.add(lblNewLabel_2);
 		
 		btnGrupo2 = new ButtonGroup();
 	}
