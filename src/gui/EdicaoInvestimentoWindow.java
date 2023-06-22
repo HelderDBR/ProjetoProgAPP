@@ -61,6 +61,8 @@ public class EdicaoInvestimentoWindow extends JFrame {
 		setTitle("Cadastro de Investimento");
 		this.setResizable(false);
 		this.initComponents();
+		this.investimentoService = new InvestimentoService();
+		
 		try {
 			this.buscarInvestimentos();
 		} catch (SQLException e) {
@@ -71,7 +73,6 @@ public class EdicaoInvestimentoWindow extends JFrame {
 			e.printStackTrace();
 		}
 		
-		this.investimentoService = new InvestimentoService();
 	}
 	
 	private void buscarInvestimentos() throws SQLException, IOException {

@@ -71,9 +71,9 @@ public class ExclusaoInvestimentoWindow extends JFrame {
 	}
 	
 	private void buscarInvestimentos() throws SQLException, IOException {
-		List<Despesas> despesas = this.despesasService.buscarDespesas();
+		List<Investimento> despesas = this.investimentoService.buscarInvestimento();
 		
-		for (Despesas despesa : despesas) {
+		for (Investimento despesa : despesas) {
 			this.comboChoice.addItem(despesa);
 		}
 		
