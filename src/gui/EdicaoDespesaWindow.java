@@ -240,9 +240,9 @@ public class EdicaoDespesaWindow extends JFrame {
 	
 
 	public void editarRendimento() throws SQLException, IOException {
-		Rendimento rend = (Rendimento) comboRend.getSelectedItem();
+		Despesas rend = (Despesas) comboRend.getSelectedItem();
 		
-		rend.setCategoriaRendimento((CategoriaRendimento) comboCat.getSelectedItem());
+		rend.setCategoriaDespesa((CategoriaDespesa) comboCat.getSelectedItem());
 		rend.setNome(textRend.getText());
 		rend.setValor((Float.parseFloat(textValor.getText())));
 		if(rdbtnMensal.isSelected()) {
@@ -252,7 +252,7 @@ public class EdicaoDespesaWindow extends JFrame {
 		}
 		rend.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
-		this.rendimentoService.editarRendimento(rend);
+		this.despesasService.editarDespesas(rend);
 		setVisible(false);
 	}
 }
