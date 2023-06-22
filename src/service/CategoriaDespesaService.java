@@ -8,6 +8,8 @@ import java.util.List;
 import dao.BancoDados;
 import entities.CategoriaDespesa;
 import entities.CategoriaRendimento;
+import entities.Despesas;
+import entities.Rendimento;
 import dao.CategoriaDespesaDAO;
 import dao.CategoriaRendimentoDAO;
 
@@ -32,6 +34,16 @@ public class CategoriaDespesaService {
 
 	public void excluirCategoriaDespesa(int codigoCategoria) throws SQLException, IOException {
 		
+		DespesasService rnd = new DespesasService();
+		List<Despesas> despesas = rnd.buscarDespesas();
+		
+		for(Despesas rendi: despesas)
+		{
+			if(rendi.getCategoriaDespesa().getCodigo() == codigoCategoria)
+			{
+				rnd.excluirDespesas(rendi.getCodigo());
+			}
+		}
 		Connection conn = BancoDados.conectar();
 		new CategoriaDespesaDAO(conn).excluir(codigoCategoria);
 	}

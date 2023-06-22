@@ -7,7 +7,9 @@ import java.util.List;
 
 import dao.BancoDados;
 import entities.CategoriaRendimento;
+import entities.Rendimento;
 import dao.CategoriaRendimentoDAO;
+import dao.RendimentoDAO;
 
 public class CategoriaRendimentoService {
 	public void cadastrarCategoriaRendimento(CategoriaRendimento categoria) throws SQLException, IOException {
@@ -30,6 +32,16 @@ public class CategoriaRendimentoService {
 
 	public void excluirCategoriaRendimento(int codigoCategoria) throws SQLException, IOException {
 		
+		RendimentoService rnd = new RendimentoService();
+		List<Rendimento> rendimento = rnd.buscarRendimentos();
+		
+		for(Rendimento rendi: rendimento)
+		{
+			if(rendi.getCategoriaRendimento().getCodigo() == codigoCategoria)
+			{
+				rnd.excluirRendimento(rendi.getCodigo());
+			}
+		}
 		Connection conn = BancoDados.conectar();
 		new CategoriaRendimentoDAO(conn).excluir(codigoCategoria);
 	}
