@@ -249,7 +249,6 @@ private void criarMascaraAno() {
 		desp.setAno((Integer.parseInt(txtDigiteOAno.getText())));
 		
 		despesasService.cadastrarDespesas(desp);
-		rendimentoWindow.buscarDespesas();
 		setVisible(false);
 	}
 }
